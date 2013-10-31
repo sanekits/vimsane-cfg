@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Restart vim with the most recent N files from ~/.vim_mru_files.  
+
+if [[ -z $1 ]]; then
+	MruFileCount=8
+else
+	MruFileCount=$1
+fi
+
+# Scrape the file list:
+files=$(grep -v '^#' ${HOME}/.vim_mru_files | head -n $MruFileCount)
+
+vim $files

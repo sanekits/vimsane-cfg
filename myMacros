@@ -1,0 +1,4 @@
+" Substitute '-' with '_' in a function name, globally in bash script.
+" expects to start at the beginning of line containing function declaration.
+" Uses a and b registers
+yyPwvt "ayjV:s/-/_/gwvt "byddk0:%s/a/b/g?^function

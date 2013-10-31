@@ -1,0 +1,11 @@
+function errExit {
+	# Print all params to stderr, prefixed by "ERROR".  If '$StderrLog' is defined,
+	# messages get echoed there as well.
+	local msg="ERROR: $@"
+	if [[ ! -z "$StderrLog" && -f "$StderrLog" ]]; then
+		echo "$msg" > "$StderrLog"
+	fi
+	echo "$msg" >&2
+	exit 1
+}	# </ errExit  
+
