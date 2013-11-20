@@ -286,11 +286,15 @@ syntax on
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  " According to http://stackoverflow.com/a/8748154/237059, there's a bug in a
+  " plugin which makes 'set formatoptions += {x}' malfunction.  Here's our
+  " workaround:
+  autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
 endif
 
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This
 " ensures that the comment leader is inserted in unsurprising ways when
 " writing or editing comment blocks.
-set formatoptions += "c"
-set formatoptions += "o"
-set formatoptions += "r"
+"set formatoptions += "c"  Disabled in favor of the autocmd hack above.
+"set formatoptions += "o"
+"set formatoptions += "r"
