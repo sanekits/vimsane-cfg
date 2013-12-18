@@ -19,25 +19,24 @@ fi
 
 if [[ -z $sourceMe ]]; then
 	pkgList="libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev"
+	cd $HOME
 	if $isDebian; then
-		sudo apt-get install "$pkgList" || errExit "apt-get failed"
+		sudo apt-get install $pkgList || errExit "apt-get failed"
 	else
 		# yum we assume
 		which yum || errExit "yum not installed"
 		yum install -y $pkgList || errExit "yum install failed"
 	fi
 	# Do we have the source?
-	if [[ ! -d $HOME/vimsrc ]]; then
-		mkdir $HOME/vimsrc -p || errExit ""
+	if [[ ! -d vimsrc/.git ]]; then
+		rm -rf vimsrc &>/dev/null
+		
+		git clone  https://github.com/b4winckler/vim.git vimsrc || errExit "git clone failed"
+	else
+		git pull || errExit "git pull failed"
 	fi
-	cd $HOME/vimsrc
-	if [[ ! -d .git ]]; then
-		rm -rf *
-		git clone https://github.com/b4winckler/vim.git ./ || errExit "git clone failed"
-	fi
-	git pull || errExit "git pull failed"
 
-	cd src
+	cd vimsrc/src || errExit "can't cd to vimsrc/src"
 	make distclean || errExit "distclean failed"
 	./configure --with-features=huge --enable-gui=gnome2 || errExit "configure failed"
 	make || errExit "make failed"
