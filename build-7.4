@@ -18,13 +18,14 @@ if which apt-get &>/dev/null; then
 fi
 
 if [[ -z $sourceMe ]]; then
-	pkgList="libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev"
 	cd $HOME
 	if $isDebian; then
+		pkgList="libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev"
 		sudo apt-get install $pkgList || errExit "apt-get failed"
 	else
 		# yum we assume
 		which yum || errExit "yum not installed"
+		pkgList="ncurses ncurses-devel"
 		yum install -y $pkgList || errExit "yum install failed"
 	fi
 	# Do we have the source?
