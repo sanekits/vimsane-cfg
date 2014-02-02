@@ -180,7 +180,7 @@ noremap <leader>d :bd<CR>
 noremap <C-Q>		<C-V>
 
 " How could someone use 's' for anything except "save"??
-nnoremap s :w<CR><CR>
+nnoremap s :w<CR>
 
 " CTRL-C and CTRL-Insert are Copy
 vnoremap <C-C> "+y
