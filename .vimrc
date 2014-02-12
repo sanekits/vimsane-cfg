@@ -236,6 +236,9 @@ let MRU_Window_Height = 25
 " <leader>hh switches from C module to header (FSwitch plugin)
 map <leader>hh  :FSHere<CR>
 
+" <leader>w writes the file even if you forgot rootness:
+map <leader>w :w !sudo tee %<CR>
+
 
 "folding settings
 set foldmethod=syntax   "fold based on syntax
