@@ -146,7 +146,7 @@ command! Gitadd cd %:p:h | ! git add %
 "# Cd to the directory of current buffer 
 command! Cd cd %:p:h | pwd
 command! Dirhere e %:p:h 
-command! Ddd w | nohup dddbash % &
+command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
 command! Mdownview w | ! firefox  %
