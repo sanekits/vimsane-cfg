@@ -146,7 +146,7 @@ command! Gitadd cd %:p:h | ! git add %
 "# Cd to the directory of current buffer 
 command! Cd cd %:p:h | pwd
 command! Dirhere e %:p:h 
-command! Ddd w | ! ddd --debugger /usr/bin/bashdb -- % 2>/dev/null &
+command! Ddd w | nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
 command! Mdownview w | ! firefox  %
@@ -234,10 +234,10 @@ noremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
 " <leader>hh switches from C module to header (FSwitch plugin)
-map <leader>hh  :FSHere<CR>
+nmap <leader>hh  :FSHere<CR>
 
 " <leader>w writes the file even if you forgot rootness:
-map <leader>w :w !sudo tee %<CR>
+nmap <leader>w :w !sudo tee %<CR>
 
 
 "folding settings
