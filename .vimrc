@@ -62,6 +62,7 @@ set incsearch
 " I like it writing automatically on swapping
 set autowrite
 set nowrap
+set linebreak  " if you do wrap, do it nicely
 set updatetime=800
 "set mouse=a
 set showcmd
@@ -301,3 +302,9 @@ endif
 "set formatoptions += "c"  Disabled in favor of the autocmd hack above.
 "set formatoptions += "o"
 "set formatoptions += "r"
+
+" When we're  in wrap mode, the per-line (instead of per-display) vertical
+" movement is disorienting.   This is cured by remapping j and k to gj and gk:
+map j gj
+map k gk
+
