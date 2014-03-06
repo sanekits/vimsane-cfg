@@ -61,7 +61,7 @@ set incsearch
 "#set cino=t0
 " I like it writing automatically on swapping
 set autowrite
-set nowrap
+set wrap
 set linebreak  " if you do wrap, do it nicely
 set updatetime=800
 "set mouse=a
@@ -143,6 +143,8 @@ command! Svndiff !svndiff %
 
 " GIT commands:
 command! Gitadd cd %:p:h | ! git add %
+" Gitsync adds the current file to git and commits+pushes, all in one step:
+command! Gitsync ! cd %:p:h ; git add % ; git commit % -m "Gitsync from vim" ;  git push origin
 
 "# Cd to the directory of current buffer 
 command! Cd cd %:p:h | pwd
