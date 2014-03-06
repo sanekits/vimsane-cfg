@@ -152,6 +152,12 @@ command! Dirhere e %:p:h
 command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
+
+" Gopen opens the document with shell handler.   This is also
+" mapped to <leader>g
+command! Gopen ! xdg-open %
+map <leader>g :!xdg-open % <CR><CR>
+
 command! Mdownview w | ! firefox  %
 command! Foxview w | ! firefox  %
 command! Term w | !terminator &
@@ -184,6 +190,7 @@ noremap <C-Q>		<C-V>
 
 " How could someone use 's' for anything except "save"??
 nnoremap s :w<CR>
+
 
 " CTRL-C and CTRL-Insert are Copy
 vnoremap <C-C> "+y
