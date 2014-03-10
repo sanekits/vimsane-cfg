@@ -153,10 +153,16 @@ command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
 
-" Gopen opens the document with shell handler.   This is also
+" Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
 command! Gopen ! xdg-open %
 map <leader>g :!xdg-open % <CR><CR>
+
+" To launch a mark URL, first capture the text in parens, the pass
+" it to xdg-open:
+nmap <leader>x yi):!xdg-open <c-r>" &<cr>
+" Same thing for stuff that isn't wrapped in parens:
+nmap <leader>X yiW:!xdg-open <c-r>" &<cr>
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
