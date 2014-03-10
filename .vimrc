@@ -158,6 +158,11 @@ command! Chmodx ! chmod +x %
 command! Gopen ! xdg-open %
 map <leader>g :!xdg-open % <CR><CR>
 
+" Sometimes you just need a pastebin in a browser, and you need
+" it now:
+command! Pastebin ! xdg-open http://pastebin.com
+map <leader>p :! xdg-open http://pastebin.com <CR><CR>
+
 command! Mdownview w | ! firefox  %
 command! Foxview w | ! firefox  %
 command! Term w | !terminator &
@@ -316,4 +321,6 @@ endif
 " movement is disorienting.   This is cured by remapping j and k to gj and gk:
 map j gj
 map k gk
+
+
 
