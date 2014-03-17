@@ -10,10 +10,8 @@ if exists("g:loaded_syntastic_python_pep257_checker")
 endif
 let g:loaded_syntastic_python_pep257_checker = 1
 
-" sanity: kill empty lines here rather than munging errorformat
-function! SyntaxCheckers_python_pep257_Preprocess(errors)
-    return filter(copy(a:errors), 'v:val != ""')
-endfunction
+let s:save_cpo = &cpo
+set cpo&vim
 
 function! SyntaxCheckers_python_pep257_GetLocList() dict
     let makeprg = self.makeprgBuild({})
@@ -27,7 +25,7 @@ function! SyntaxCheckers_python_pep257_GetLocList() dict
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
         \ 'subtype': 'Style',
-        \ 'preprocess': 'SyntaxCheckers_python_pep257_Preprocess',
+        \ 'preprocess': 'killEmpty',
         \ 'postprocess': ['compressWhitespace'] })
 
     " pep257 outputs byte offsets rather than column numbers
@@ -41,3 +39,8 @@ endfunction
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'python',
     \ 'name': 'pep257'})
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set et sts=4 sw=4:

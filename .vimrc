@@ -322,7 +322,10 @@ if has("autocmd")
     " workaround:
     autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
 
-    au BufNewFile,BufRead *.cpp set syntax=cpp11
+    let g:syntastic_cpp_compiler = 'g++'
+    "let g:syntastic_cpp_compiler = 'clang++'
+    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+    "au BufNewFile,BufRead *.cpp set syntax=cpp11
 endif
 
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This
