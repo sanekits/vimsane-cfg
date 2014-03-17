@@ -48,6 +48,7 @@ set backspace=indent,eol,start
 set shiftwidth=4
 set shiftround
 set tabstop=4
+set expandtab
 " Number lines in the margin:
 set number
 set showmatch
@@ -62,7 +63,7 @@ set incsearch
 " I like it writing automatically on swapping
 set autowrite
 set wrap
-set linebreak  " if you do wrap, do it nicely
+set linebreak  " if you do wrap, do it nicely (caution: this conflicts with 'set list', so you have to turn the latter off if you really want linebreak to work)
 set updatetime=800
 "set mouse=a
 set showcmd
@@ -140,6 +141,9 @@ command! Svnup !svn update
 command! SvnCommitNomsg !svn commit -m "" %
 command! Svnstat !svn status
 command! Svndiff !svndiff %
+
+" Purge local .pyc files
+command! Pyclean !rm *.pyc
 
 " GIT commands:
 command! Gitadd cd %:p:h | ! git add %
@@ -266,9 +270,12 @@ set foldmethod=syntax   "fold based on syntax
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1
-"set list
-" Display whitespace:
+
+" 'set list' enables the display of whitespace, and 'set listchars' refines
+" the behavior of that.  Use 'set nolist' to turn this off.
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
+set list
+
 " syntax settings for shell syntax
 let is_bash = 1 " our 'sh' Bourne shell is alias to bash
 let sh_fold_enabled= 7 " enable all kinds of syntax folding
@@ -309,11 +316,13 @@ set background=dark
 syntax on
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  " According to http://stackoverflow.com/a/8748154/237059, there's a bug in a
-  " plugin which makes 'set formatoptions += {x}' malfunction.  Here's our
-  " workaround:
-  autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    " According to http://stackoverflow.com/a/8748154/237059, there's a bug in a
+    " plugin which makes 'set formatoptions += {x}' malfunction.  Here's our
+    " workaround:
+    autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
+
+    au BufNewFile,BufRead *.cpp set syntax=cpp11
 endif
 
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This
