@@ -7,7 +7,7 @@ MruFileCount=8
 
 PaneCount=1
 
-
+addArgs=""
 
 function parseArgs {
 	while [[ ! -z $1 ]]; do
@@ -29,11 +29,27 @@ function parseArgs {
 	done
 }
 
-parseArgs "$@"
+function quoteMruFilenames {
+    exec 8< <(grep -v '^#' ${HOME}/.vim_mru_files | head -n $MruFileCount)
 
-# Scrape the file list:
-files=$(grep -v '^#' ${HOME}/.vim_mru_files | head -n $MruFileCount)
+    while read -u 8 line; do
+        echo -n "\"$line\" "
+    done
+    
+    exec 8<&-
+}
 
-vim -O${PaneCount} $addArgs $files
 
+if [[ -z $sourceMe ]]; then
+    parseArgs "$@"
+
+    # Scrape the file list:
+    files="$(grep -v '^#' ${HOME}/.vim_mru_files | head -n $MruFileCount)"
+
+    vim -O${PaneCount} $addArgs $(quoteMruFilenames)
+    #cmdline="vim -O${PaneCount} $addArgs $(quoteMruFilenames)"
+    #echo "Command line: $cmdline"
+    #echo "$cmdline" > /dev/clipboard
+    $cmdline
+fi
 
