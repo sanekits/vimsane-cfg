@@ -1,0 +1,18 @@
+#!/bin/bash
+# Push vim configuration to remote machine(s) with rsync
+
+while [[ ! -z "$1" ]]; do
+	tgtAcct="$1"
+	if [[ ! "$tgtAcct" =~ .+@.+ ]]; then
+		echo "Expected acct@host for \$1"
+		exit 1
+	fi
+	echo "Updating $tgtAcct:"
+	ssh ${tgtAcct} 'mkdir -p .vim'
+	for dir in autoload bundle doc eclim plugin vimpush revim myMacros .vimrc .gvimrc; do
+		rsync -av -e ssh $HOME/.vim/${dir} ${tgtAcct}:.vim/
+	done
+	ssh ${tgtAcct} 'ln -sf .vim/.vimrc ./; mkdir -p .vimtmp; ln -sf .vim/.gvimrc ./;mkdir -p bin; ln -sf .vim/revim bin/; ln -sf .vim/vimpush bin/'
+		
+	shift
+done

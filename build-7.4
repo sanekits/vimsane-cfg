@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Build 7.4 from source.
+# We get our source from a github mirror (the original source is in
+# Mercurial)
+#
+# If the source is already present, we'll do a git pull first.
+#
+
+function errExit {
+	echo "ERROR: $@"
+	exit 1
+}
+
+isDebian=false
+if which apt-get &>/dev/null; then
+	isDebian=true
+fi
+
+if [[ -z $sourceMe ]]; then
+	cd $HOME
+	if $isDebian; then
+		pkgList="libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev"
+		sudo apt-get install $pkgList || errExit "apt-get failed"
+	else
+		# yum we assume
+		which yum || errExit "yum not installed"
+		pkgList="ncurses ncurses-devel"
+		yum install -y $pkgList || errExit "yum install failed"
+	fi
+	# Do we have the source?
+	if [[ ! -d vimsrc/.git ]]; then
+		rm -rf vimsrc &>/dev/null
+		
+		git clone  https://github.com/b4winckler/vim.git vimsrc || errExit "git clone failed"
+	else
+		git pull || errExit "git pull failed"
+	fi
+
+	cd vimsrc/src || errExit "can't cd to vimsrc/src"
+	make distclean || errExit "distclean failed"
+	./configure --with-features=huge --enable-gui=gnome2 || errExit "configure failed"
+	make || errExit "make failed"
+	sudo make install || errExit "make install failed"
+
+fi

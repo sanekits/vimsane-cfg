@@ -1,0 +1,4 @@
+# bashdb support:
+# source /usr/share/bashdb/bashdb-trace -L /usr/share/bashdb  # uncomment to include bashdb breakpoints
+# _Dbg_debugger; :  # Uncomment and place this at breakpoint location(s)
+

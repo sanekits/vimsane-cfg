@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Restart vim with the most recent N files from ~/.vim_mru_files.  
+
+
+MruFileCount=8
+
+PaneCount=1
+
+
+
+function parseArgs {
+	while [[ ! -z $1 ]]; do
+		case $1 in
+			-n)
+				MruFileCount=$2
+				shift
+				;;
+
+			-p | -O) # Set number of panes:
+				PaneCount=$2
+				shift
+				;;
+			*)
+				addArgs="$addArgs $1"
+				;;
+		esac
+		shift
+	done
+}
+
+parseArgs "$@"
+
+# Scrape the file list:
+files=$(grep -v '^#' ${HOME}/.vim_mru_files | head -n $MruFileCount)
+
+vim -O${PaneCount} $addArgs $files
+
+
