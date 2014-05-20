@@ -26,6 +26,22 @@ set nocompatible  " Keep this as first line always
 "
 " Split vertically:  
 " vne
+" 
+"
+" Redraw the screen (if ^L isn't working)
+" :redraw!
+"
+"
+" Repeat last command:
+"   @:
+"   @@ { subsequently } 
+"
+" Open quickfix window:
+"   :cw
+"
+" List all matching tags:
+"   :tselect {name}
+"
 "
 "
 "
@@ -304,7 +320,8 @@ augroup BgHighlight
 augroup END
 if &t_Co > 2 || has("gui_running")
 	syntax on
-	colorscheme hemisu
+    "colorscheme pablo
+	colorscheme delek
 else
   colorscheme evening
 endif
@@ -316,6 +333,10 @@ if has("gui_running")
 	nmap <leader>+ :LargerFont<CR> 
 	nmap <leader>= :LargerFont<CR> 
 	nmap <leader>- :SmallerFont<CR> 
+    "set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
 endif
 
 set background=dark
