@@ -34,6 +34,6 @@ parseArgs "$@"
 # Scrape the file list:
 files=$(grep -v '^#' ${HOME}/.vim_mru_files | head -n $MruFileCount)
 
-vim -O${PaneCount} $addArgs $files
+$EDITOR -O${PaneCount} $addArgs $files
 
 

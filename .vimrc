@@ -23,10 +23,17 @@ set nocompatible  " Keep this as first line always
 " 	  :resize 5  (make it 5 lines high)
 " 	  :resize +5 (increase by 5 lines)
 "
+" Change width of a window:
+"   Ctrl+W {count} >
+"   Ctrl+W {count} <
+"
 "
 " Split vertically:  
 " vne
 " 
+" Normalize split sizes, handy when resizing a terminal:
+"
+"   ctrl+w = 
 "
 " Redraw the screen (if ^L isn't working)
 " :redraw!
@@ -38,6 +45,7 @@ set nocompatible  " Keep this as first line always
 "
 " Open quickfix window:
 "   :cw
+"   :copen
 "
 " List all matching tags:
 "   :tselect {name}
@@ -179,6 +187,9 @@ command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
 
+" Run Conque bash in split
+command! Term ConqueTermVSplit bash
+
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
 command! Gopen ! xdg-open %
@@ -280,12 +291,17 @@ nnoremap <leader>f <C-^>
 noremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
+
 " <leader>hh switches from C module to header (FSwitch plugin)
 nmap <leader>hh  :FSHere<CR>
 
 " <leader>w writes the file even if you forgot rootness:
 nmap <leader>w :w !sudo tee %<CR>
 
+"  Expand the current window horizontally +10:
+nmap <leader>> <C-W>10>
+"  Shrink the current window horizontally -10:
+nmap <leader>< <C-W>10<
 
 "folding settings
 set foldmethod=syntax   "fold based on syntax
@@ -296,7 +312,7 @@ set foldlevel=1
 " 'set list' enables the display of whitespace, and 'set listchars' refines
 " the behavior of that.  Use 'set nolist' to turn this off.
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
-set list
+set nolist
 
 " syntax settings for shell syntax
 let is_bash = 1 " our 'sh' Bourne shell is alias to bash
@@ -320,8 +336,8 @@ augroup BgHighlight
 augroup END
 if &t_Co > 2 || has("gui_running")
 	syntax on
-    "colorscheme pablo
-	colorscheme delek
+    colorscheme elflord
+    "colorscheme delek
 else
   colorscheme evening
 endif
@@ -370,4 +386,14 @@ map k gk
 " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
 " sunos, at least.  Probably others too)
 let g:NERDTreeDirArrows=0
+
+"set makeprg=plink\ -d\ big2014.25-620474-20140617093254\ -a\ sundev1\ m_eqstst.mk
+"set makeprg=plink\ m_eqstst.mk
+"set makeprg=mars_remote_build\ eqstst
+"set makeprg=make
+
+set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst'
+
+
+source /bbsrc/princeton/skunk/vim/cursor.vim
 
