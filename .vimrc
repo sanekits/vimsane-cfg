@@ -114,8 +114,8 @@ nnoremap u <Nop>
 
 " in vimdiff, the <leader>c goes to "next change", and
 " <leader>v is "previous change"
-map <leader>c ]c
-map <leader>v [c
+noremap <leader>c ]c
+noremap <leader>v [c
 
 set wildignore=*.swp,*.bak,*.o,*.d
 " Use jk in insert mode to get back to normal mode:
@@ -130,7 +130,7 @@ noremap <S-F5> :buffers<CR>:bd<Space>
 
 " ,t starts insert mode and enters # TODO:
 inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
-nmap <leader>t A<space>#<space>TODO:<space> 
+nnoremap <leader>t A<space>#<space>TODO:<space> 
 
 " bufexplorer gets quick access with ',,'
 nnoremap <silent> <leader>, :BufExplorer<CR>
@@ -143,18 +143,18 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 " Insert mode, make preceding word uppercase:
-imap <leader>U <Esc>mvviwU`va
+inoremap <leader>U <Esc>mvviwU`va
 " Normal mode, make preceding word uppercase:
-nmap <leader>u viwue
-nmap <leader>U viwUe
+nnoremap <leader>u viwue
+nnoremap <leader>U viwUe
 
 " Use <F9> repeatedly to double-width a text block.  (i.e. d o u b l e - w i d t h )
-nmap <F9> a<space><ESC>l
+nnoremap <F9> a<space><ESC>l
 
 " Compile and find next error:
-nmap <F3> :make<CR><CR>:cn<CR>
-imap <F3> <ESC>:w<CR>:make<CR><CR>:cn<CR>
-nmap <F4> :cn<CR>
+nnoremap <F3> :make<CR><CR>:cn<CR>
+inoremap <F3> <ESC>:w<CR>:make<CR><CR>:cn<CR>
+nnoremap <F4> :cn<CR>
 
 
 " In normal mode, hitting Esc turns off search highlights:
@@ -189,22 +189,24 @@ command! Chmodx ! chmod +x %
 
 " Run Conque bash in split
 command! Term ConqueTermVSplit bash
+noremap <leader><F8> :ConqueTermSplit bash<CR>
+noremap <leader><F9> :ConqueTermVSplit bash<CR>
 
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
 command! Gopen ! xdg-open %
-map <leader>g :!xdg-open % <CR><CR>
+noremap <leader>g :!xdg-open % <CR><CR>
 
 " To launch a mark URL, first capture the text in parens, the pass
 " it to xdg-open:
-nmap <leader>x yi):!xdg-open <c-r>" &<cr>
+nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
 " Same thing for stuff that isn't wrapped in parens:
-nmap <leader>X yiW:!xdg-open <c-r>" &<cr>
+nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
 command! Pastebin ! xdg-open http://pastebin.com
-map <leader>p :! xdg-open http://pastebin.com <CR><CR>
+noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
 
 command! Mdownview w | ! firefox  %
 command! Foxview w | ! firefox  %
@@ -245,11 +247,11 @@ vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
 
 " CTRL-V and SHIFT-Insert are Paste system clipboard:
-map <C-V>		"+gP
-map <S-Insert>		"+gP
+noremap <C-V>		"+gP
+noremap <S-Insert>		"+gP
 
-cmap <C-V>		<C-R>+
-cmap <S-Insert>		<C-R>+
+cnoremap <C-V>		<C-R>+
+cnoremap <S-Insert>		<C-R>+
 
 " Pasting blockwise and linewise selections is not possible in Insert and
 " Visual mode without the +virtualedit feature.  They are pasted as if they
@@ -259,12 +261,12 @@ cmap <S-Insert>		<C-R>+
 exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
-imap <S-Insert>		<C-V>
-vmap <S-Insert>		<C-V>
+inoremap <S-Insert>		<C-V>
+vnoremap <S-Insert>		<C-V>
 
 " In insert mode, pasting the 0 register is clunky (Ctrl+R, 0).  Shorten that
 " to Ctrl-P
-imap <C-P> <C-R>0
+inoremap <C-P> <C-R>0
 
 
 set backupdir=~/.vimtmp
@@ -277,10 +279,10 @@ noremap <C-S> :w<CR>
 " Next and prev buffer with F12, F11:
 noremap <F12> :bnext<CR>
 noremap <F11> :bprev<CR>
-map <C-n> :NERDTreeToggle<CR>
-map <C-t> :TlistToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-t> :TlistToggle<CR>
 " Insert newlines from normal mode with Ctrl+Enter:
-map <C-Enter> O<Esc>
+noremap <C-Enter> O<Esc>
 " ctrl-a should select-all:
 nnoremap <C-A> ggVG
 
@@ -293,15 +295,15 @@ let MRU_Window_Height = 25
 
 
 " <leader>hh switches from C module to header (FSwitch plugin)
-nmap <leader>hh  :FSHere<CR>
+nnoremap <leader>hh  :FSHere<CR>
 
 " <leader>w writes the file even if you forgot rootness:
-nmap <leader>w :w !sudo tee %<CR>
+nnoremap <leader>w :w !sudo tee %<CR>
 
 "  Expand the current window horizontally +10:
-nmap <leader>> <C-W>10>
+nnoremap <leader>> <C-W>10>
 "  Shrink the current window horizontally -10:
-nmap <leader>< <C-W>10<
+nnoremap <leader>< <C-W>10<
 
 "folding settings
 set foldmethod=syntax   "fold based on syntax
@@ -321,7 +323,7 @@ let sh_fold_enabled= 7 " enable all kinds of syntax folding
 " Toggle paste mode:
 set pastetoggle=<F2>
 " In normal mode, we get similar effect:
-nmap <F2> i<F2>
+nnoremap <F2> i<F2>
 
 if exists('&selection')
 	set selection=exclusive
@@ -380,8 +382,11 @@ endif
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
 " movement is disorienting.   This is cured by remapping j and k to gj and gk:
-map j gj
-map k gk
+noremap j gj
+noremap k gk
+
+" Switch between .h and .cpp if they're in the same dir:
+noremap <leader>y  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
 " sunos, at least.  Probably others too)
@@ -392,7 +397,9 @@ let g:NERDTreeDirArrows=0
 "set makeprg=mars_remote_build\ eqstst
 "set makeprg=make
 
-set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst'
+"set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst'
+"set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst-all'
+set makeprg=ssh\ ibm9\ '~/bin/buildsrv-send\ eqstst'
 
 
 source /bbsrc/princeton/skunk/vim/cursor.vim
