@@ -2,7 +2,7 @@
 "
 set nocompatible  " Keep this as first line always
 
-set cmdheight=2   " A bit more room for the command line
+set cmdheight=12   " A bit more room for the command line
 
 " Reminders
 " .........
@@ -26,6 +26,24 @@ set cmdheight=2   " A bit more room for the command line
 " 	  :resize +5 (increase by 5 lines)
 "
 
+"===========  Vundle start  ======================
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+"   BufExplorer:
+Plugin 'jlanzarotta/bufexplorer'
+
+"   Powerline went Big City, and vim-airline is its recommended replacement.
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+
+call vundle#end()
+filetype plugin indent on  " required
+
+"==========   Vundle end ========================
 
 "  Disabling pathogen to experiment with Vundle:
 "call pathogen#runtime_append_all_bundles()
@@ -40,8 +58,8 @@ noremap <C-l> <C-w>l
 let mapleader=','
 set t_Co=256
 let g:Powerline_symbols = "fancy"
-set laststatus=2
-color blue
+set laststatus=2 
+
 " Smart tabbing / autoindenting
 set undolevels=100
 set autoindent
@@ -304,7 +322,7 @@ augroup END
 
 
 syntax on
-colorscheme evening
+colorscheme desert
 
 
 if has("gui_running")
