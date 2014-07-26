@@ -32,13 +32,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
-"   BufExplorer:
-Plugin 'jlanzarotta/bufexplorer'
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jlanzarotta/bufexplorer'
 
 call vundle#end()
 filetype plugin indent on  " required
@@ -46,22 +45,6 @@ filetype plugin indent on  " required
 "==========   Vundle end ========================
 
 
-"  Disabling pathogen to experiment with Vundle:
-"call pathogen#runtime_append_all_bundles()
-"call pathogen#helptags()
-"
-
-" =======================   Vundle initialization ==============
-filetype off   " Required by Vundle during init
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage itself, required:
-Plugin 'gmarik/Vundle.vim'
-Plugin 'bufexplorer'
-
-" The following are examples of different formats supported.
-" " Keep Plugin commands between vundle#begin/end.
 
 
 
