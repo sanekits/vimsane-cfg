@@ -46,10 +46,10 @@ if [[ -z $sourceMe ]]; then
     # Scrape the file list:
     files="$(grep -v '^#' ${HOME}/.vim_mru_files | head -n $MruFileCount)"
 
-    vim -O${PaneCount} $addArgs $(quoteMruFilenames)
-    #cmdline="vim -O${PaneCount} $addArgs $(quoteMruFilenames)"
-    #echo "Command line: $cmdline"
-    #echo "$cmdline" > /dev/clipboard
-    $cmdline
+    
+    cmdline="vim -O${PaneCount} $addArgs $(quoteMruFilenames)"
+    echo "Command line: $cmdline"
+    echo "$cmdline" > /dev/clipboard
+    eval $cmdline
 fi
 

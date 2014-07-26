@@ -2,6 +2,8 @@
 "
 set nocompatible  " Keep this as first line always
 
+set cmdheight=2   " A bit more room for the command line
+
 " Reminders
 " .........
 "
@@ -23,8 +25,11 @@ set nocompatible  " Keep this as first line always
 " 	  :resize 5  (make it 5 lines high)
 " 	  :resize +5 (increase by 5 lines)
 "
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+
+
+"  Disabling pathogen to experiment with Vundle:
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
 noremap <C-h> <C-w>h
@@ -84,8 +89,8 @@ nnoremap u <Nop>
 
 " in vimdiff, the <leader>c goes to "next change", and
 " <leader>v is "previous change"
-map <leader>c ]c
-map <leader>v [c
+nnoremap <leader>c ]c
+nnoremap <leader>v [c
 
 set wildignore=*.swp,*.bak,*.o,*.d
 " Use jk in insert mode to get back to normal mode:
@@ -100,7 +105,7 @@ noremap <S-F5> :buffers<CR>:bd<Space>
 
 " ,t starts insert mode and enters # TODO:
 inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
-nmap <leader>t A<space>#<space>TODO:<space> 
+nnoremap <leader>t A<space>#<space>TODO:<space> 
 
 " bufexplorer gets quick access with ',,'
 nnoremap <silent> <leader>, :BufExplorer<CR>
@@ -113,18 +118,18 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 " Insert mode, make preceding word uppercase:
-imap <leader>U <Esc>mvviwU`va
+inoremap <leader>U <Esc>mvviwU`va
 " Normal mode, make preceding word uppercase:
-nmap <leader>u viwue
-nmap <leader>U viwUe
+nnoremap <leader>u viwue
+nnoremap <leader>U viwUe
 
 " Use <F9> repeatedly to double-width a text block.  (i.e. d o u b l e - w i d t h )
-nmap <F9> a<space><ESC>l
+nnoremap <F9> a<space><ESC>l
 
 " Compile and find next error:
-nmap <F3> :make<CR><CR>:cn<CR>
-imap <F3> <ESC>:w<CR>:make<CR><CR>:cn<CR>
-nmap <F4> :cn<CR>
+nnoremap <F3> :make<CR><CR>:cn<CR>
+inoremap <F3> <ESC>:w<CR>:make<CR><CR>:cn<CR>
+nnoremap <F4> :cn<CR>
 
 
 " In normal mode, hitting Esc turns off search highlights:
@@ -160,18 +165,18 @@ command! Chmodx ! chmod +x %
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
 command! Gopen ! xdg-open %
-map <leader>g :!xdg-open % <CR><CR>
+noremap <leader>g :!xdg-open % <CR><CR>
 
 " To launch a mark URL, first capture the text in parens, the pass
 " it to xdg-open:
-nmap <leader>x yi):!xdg-open <c-r>" &<cr>
+nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
 " Same thing for stuff that isn't wrapped in parens:
-nmap <leader>X yiW:!xdg-open <c-r>" &<cr>
+nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
 command! Pastebin ! xdg-open http://pastebin.com
-map <leader>p :! xdg-open http://pastebin.com <CR><CR>
+noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
 
 command! Mdownview w | ! firefox  %
 command! Foxview w | ! firefox  %
@@ -192,8 +197,8 @@ command! MyBackup OpenSession myBackup
 
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
-"  ,d is delete-buffer:
-noremap <leader>d :bd<CR>
+"  ,d is close-window:
+noremap <leader>d :close<CR>
 
 " Don't allow automatic session saving.
 :let g:session_autosave = 'no'
@@ -212,8 +217,8 @@ vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
 
 " CTRL-V and SHIFT-Insert are Paste system clipboard:
-map <C-V>		"+gP
-map <S-Insert>		"+gP
+noremap <C-V>		"+gP
+noremap <S-Insert>		"+gP
 
 cmap <C-V>		<C-R>+
 cmap <S-Insert>		<C-R>+
@@ -226,12 +231,12 @@ cmap <S-Insert>		<C-R>+
 exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
-imap <S-Insert>		<C-V>
+inoremap <S-Insert>		<C-V>
 vmap <S-Insert>		<C-V>
 
 " In insert mode, pasting the 0 register is clunky (Ctrl+R, 0).  Shorten that
 " to Ctrl-P
-imap <C-P> <C-R>0
+inoremap <C-P> <C-R>0
 
 
 set backupdir=~/.vimtmp
@@ -244,10 +249,10 @@ noremap <C-S> :w<CR>
 " Next and prev buffer with F12, F11:
 noremap <F12> :bnext<CR>
 noremap <F11> :bprev<CR>
-map <C-n> :NERDTreeToggle<CR>
-map <C-t> :TlistToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-t> :TlistToggle<CR>
 " Insert newlines from normal mode with Ctrl+Enter:
-map <C-Enter> O<Esc>
+noremap <C-Enter> O<Esc>
 " ctrl-a should select-all:
 nnoremap <C-A> ggVG
 
@@ -259,10 +264,10 @@ noremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
 " <leader>hh switches from C module to header (FSwitch plugin)
-nmap <leader>hh  :FSHere<CR>
+nnoremap <leader>hh  :FSHere<CR>
 
 " <leader>w writes the file even if you forgot rootness:
-nmap <leader>w :w !sudo tee %<CR>
+nnoremap <leader>w :w !sudo tee %<CR>
 
 
 "folding settings
@@ -283,7 +288,7 @@ let sh_fold_enabled= 7 " enable all kinds of syntax folding
 " Toggle paste mode:
 set pastetoggle=<F2>
 " In normal mode, we get similar effect:
-nmap <F2> i<F2>
+nnoremap <F2> i<F2>
 
 if exists('&selection')
 	set selection=exclusive
@@ -296,12 +301,11 @@ augroup BgHighlight
     autocmd WinEnter * set cul
     autocmd WinLeave * set nocul
 augroup END
-if &t_Co > 2 || has("gui_running")
-	syntax on
-	colorscheme hemisu
-else
-  colorscheme evening
-endif
+
+
+syntax on
+colorscheme evening
+
 
 if has("gui_running")
 	" Make font larger (gvim only on Linux)
@@ -310,6 +314,9 @@ if has("gui_running")
 	nmap <leader>+ :LargerFont<CR> 
 	nmap <leader>= :LargerFont<CR> 
 	nmap <leader>- :SmallerFont<CR> 
+   
+
+	set guioptions-=T  " Remove the toolbar
 endif
 
 set background=dark
@@ -337,8 +344,6 @@ endif
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
 " movement is disorienting.   This is cured by remapping j and k to gj and gk:
-map j gj
-map k gk
-
-
+noremap j gj
+noremap k gk
 
