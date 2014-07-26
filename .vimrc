@@ -2,7 +2,8 @@
 "
 set nocompatible  " Keep this as first line always
 
-set cmdheight=2   " A bit more room for the command line
+set cmdheight=10   " A bit more room for the command line
+"set cmdheight=2   " A bit more room for the command line
 
 " Reminders
 " .........
@@ -27,9 +28,26 @@ set cmdheight=2   " A bit more room for the command line
 "
 
 
+
 "  Disabling pathogen to experiment with Vundle:
 "call pathogen#runtime_append_all_bundles()
 "call pathogen#helptags()
+"
+
+" =======================   Vundle initialization ==============
+filetype off   " Required by Vundle during init
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage itself, required:
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bufexplorer'
+
+" The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+
+
+
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
 noremap <C-h> <C-w>h
