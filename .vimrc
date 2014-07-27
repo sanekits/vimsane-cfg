@@ -49,6 +49,7 @@ Plugin 'Valloric/YouCompleteMe'
     " Taglist plugin:
 Plugin 'file:///home/lmatheson/.vim/manual-repos/taglist_46'
 
+Plugin 'Lokaltog/vim-easymotion'
 
 " End of vundle initialization
 call vundle#end()
