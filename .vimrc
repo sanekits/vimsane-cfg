@@ -38,12 +38,30 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
+    "  Note: on my vaiop cygwin, I had to symlink from
+    "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
 
+"  Plugin 'Valloric/YouCompleteMe'  -- someday.  Requires compiled clang  component.
+
+
+" End of vundle initialization
 call vundle#end()
 filetype plugin indent on  " required
 
 "==========   Vundle end ========================
 
+
+"  UltiSnips settings:
+"  ------------------
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<tab>"
+    "let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+    " If you want :UltiSnipsEdit to split your window.
+    "let g:UltiSnipsEditSplit="vertical"
 
 
 
@@ -297,7 +315,7 @@ set foldlevel=1
 " 'set list' enables the display of whitespace, and 'set listchars' refines
 " the behavior of that.  Use 'set nolist' to turn this off.
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
-set list
+set nolist
 
 " syntax settings for shell syntax
 let is_bash = 1 " our 'sh' Bourne shell is alias to bash
