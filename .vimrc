@@ -43,7 +43,11 @@ Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
     "  Note: on my vaiop cygwin, I had to symlink from
     "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
 
-"  Plugin 'Valloric/YouCompleteMe'  -- someday.  Requires compiled clang  component.
+    "-- someday.  Requires compiled clang  component:
+Plugin 'Valloric/YouCompleteMe'  
+
+    " Taglist plugin:
+Plugin 'file:///home/lmatheson/.vim/manual-repos/taglist_46'
 
 
 " End of vundle initialization
@@ -55,7 +59,7 @@ filetype plugin indent on  " required
 
 "  UltiSnips settings:
 "  ------------------
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    " Trigger configuration. 
     let g:UltiSnipsExpandTrigger="<tab>"
     "let g:UltiSnipsJumpForwardTrigger="<c-b>"
     "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
