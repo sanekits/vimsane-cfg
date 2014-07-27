@@ -44,7 +44,7 @@ Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
     "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
 
     "-- someday.  Requires compiled clang  component:
-Plugin 'Valloric/YouCompleteMe'  
+"Plugin 'Valloric/YouCompleteMe'  
 
     " Taglist plugin:
 Plugin 'file:///home/lmatheson/.vim/manual-repos/taglist_46'
@@ -148,8 +148,8 @@ noremap <S-F5> :buffers<CR>:bd<Space>
 inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
 nnoremap <leader>t A<space>#<space>TODO:<space> 
 
-" bufexplorer gets quick access with ',,'
-nnoremap <silent> <leader>, :BufExplorer<CR>
+" bufexplorer gets quick access with ',n'
+nnoremap <silent> <leader>n :BufExplorer<CR>
 
 " Load tags on startup.
 set tags=./tags;/
