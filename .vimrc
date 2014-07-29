@@ -2,6 +2,8 @@
 "
 set nocompatible  " Keep this as first line always
 
+set cmdheight=2   " A bit more room for the command line
+
 " Reminders
 " .........
 "
@@ -53,8 +55,53 @@ set nocompatible  " Keep this as first line always
 "
 "
 "
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+
+"===========  Vundle start  ======================
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+
+"   Powerline went Big City, and vim-airline is its recommended replacement.
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
+    "  Note: on my vaiop cygwin, I had to symlink from
+    "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
+
+    "-- someday.  Requires compiled clang  component:
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/YouCompleteMe'  
+
+    " Taglist plugin:
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
+
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
+
+" End of vundle initialization
+call vundle#end()
+filetype plugin indent on  " required
+
+"==========   Vundle end ========================
+
+
+"  UltiSnips settings:
+"  ------------------
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+    let g:UltiSnipsExpandTrigger="<c-j>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"  "  Hop from $1 to $2, etc in a snippet
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+    " If you want :UltiSnipsEdit to split your window.
+    "let g:UltiSnipsEditSplit="vertical"
+
+
+
+
+set t_Co=256
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
 noremap <C-h> <C-w>h
@@ -63,7 +110,6 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 let mapleader=','
-set t_Co=256
 let g:Powerline_symbols = "fancy"
 set laststatus=2
 color blue
@@ -114,8 +160,8 @@ nnoremap u <Nop>
 
 " in vimdiff, the <leader>c goes to "next change", and
 " <leader>v is "previous change"
-noremap <leader>c ]c
-noremap <leader>v [c
+nnoremap <leader>c ]c
+nnoremap <leader>v [c
 
 set wildignore=*.swp,*.bak,*.o,*.d
 " Use jk in insert mode to get back to normal mode:
@@ -132,8 +178,8 @@ noremap <S-F5> :buffers<CR>:bd<Space>
 inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
 nnoremap <leader>t A<space>#<space>TODO:<space> 
 
-" bufexplorer gets quick access with ',,'
-nnoremap <silent> <leader>, :BufExplorer<CR>
+" bufexplorer gets quick access with ',n'
+nnoremap <silent> <leader>n :BufExplorer<CR>
 
 " Load tags on startup.
 set tags=./tags;/
@@ -152,7 +198,7 @@ nnoremap <leader>U viwUe
 nnoremap <F9> a<space><ESC>l
 
 " Compile and find next error:
-nnoremap <F3> :make<CR><CR>:cn<CR>
+nnoremap <F3> :wall<CR>:make<CR><CR>:cn<CR>
 inoremap <F3> <ESC>:w<CR>:make<CR><CR>:cn<CR>
 nnoremap <F4> :cn<CR>
 
@@ -199,14 +245,14 @@ noremap <leader>g :!xdg-open % <CR><CR>
 
 " To launch a mark URL, first capture the text in parens, the pass
 " it to xdg-open:
-nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
+"nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
 " Same thing for stuff that isn't wrapped in parens:
-nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
+"nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
 command! Pastebin ! xdg-open http://pastebin.com
-noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
+"noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
 
 command! Mdownview w | ! firefox  %
 command! Foxview w | ! firefox  %
@@ -227,8 +273,8 @@ command! MyBackup OpenSession myBackup
 
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
-"  ,d is delete-buffer:
-noremap <leader>d :bd<CR>
+"  ,d to close window:
+noremap <leader>d :close<CR>
 
 " Don't allow automatic session saving.
 :let g:session_autosave = 'no'
@@ -246,7 +292,7 @@ nnoremap s :w<CR>
 vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
 
-" CTRL-V and SHIFT-Insert are Paste system clipboard:
+" -V and SHIFT-Insert are Paste system clipboard:
 noremap <C-V>		"+gP
 noremap <S-Insert>		"+gP
 
@@ -260,6 +306,13 @@ cnoremap <S-Insert>		<C-R>+
 
 exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+
+" Something we really don't like: pasting replaces the contents of the unnamed
+" buffer '*', which is almost always the wrong behavior.  So we're going out
+" on a limb here with the draconian policy of "always paste from 0 register
+" from normal mode". 
+"nnoremap p "0p
+"vnoremap p "0p
 
 inoremap <S-Insert>		<C-V>
 vnoremap <S-Insert>		<C-V>
@@ -336,13 +389,10 @@ augroup BgHighlight
     autocmd WinEnter * set cul
     autocmd WinLeave * set nocul
 augroup END
-if &t_Co > 2 || has("gui_running")
-	syntax on
-    colorscheme elflord
-    "colorscheme delek
-else
-  colorscheme evening
-endif
+
+syntax on
+colorscheme elflord
+
 
 if has("gui_running")
 	" Make font larger (gvim only on Linux)
@@ -360,8 +410,9 @@ endif
 set background=dark
 syntax on
 
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+augroup  fmtOpts
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     " According to http://stackoverflow.com/a/8748154/237059, there's a bug in a
     " plugin which makes 'set formatoptions += {x}' malfunction.  Here's our
     " workaround:
@@ -371,7 +422,7 @@ if has("autocmd")
     "let g:syntastic_cpp_compiler = 'clang++'
     let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
-endif
+augroup  END
 
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This
 " ensures that the comment leader is inserted in unsurprising ways when
@@ -386,7 +437,8 @@ noremap j gj
 noremap k gk
 
 " Switch between .h and .cpp if they're in the same dir:
-noremap <leader>y  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
 
 " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
 " sunos, at least.  Probably others too)
@@ -397,10 +449,11 @@ let g:NERDTreeDirArrows=0
 "set makeprg=mars_remote_build\ eqstst
 "set makeprg=make
 
-"set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst'
+set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst'
 "set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst-all'
-set makeprg=ssh\ ibm9\ '~/bin/buildsrv-send\ eqstst'
+"set makeprg=ssh\ ibm9\ '~/bin/buildsrv-send\ eqstst'
 
 
 source /bbsrc/princeton/skunk/vim/cursor.vim
+set wildmenu
 
