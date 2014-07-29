@@ -25,6 +25,10 @@ set cmdheight=2   " A bit more room for the command line
 " 	  :resize 5  (make it 5 lines high)
 " 	  :resize +5 (increase by 5 lines)
 "
+" To diff two directories:
+"   :DirDiff   <dir1>  <dir2>    "  The DirDiff plugin
+"
+" 
 
 "===========  Vundle start  ======================
 filetype off
@@ -387,4 +391,8 @@ endif
 " movement is disorienting.   This is cured by remapping j and k to gj and gk:
 noremap j gj
 noremap k gk
+
+" wildmenu turns on the fancy visual display of <TAB> matches when doing
+" command-line completion:
+set wildmenu
 
