@@ -29,10 +29,9 @@ set cmdheight=2   " A bit more room for the command line
 "   Ctrl+W {count} >
 "   Ctrl+W {count} <
 "
+" Zoom a window in/out:
+"   Ctrl+@ o     " Thanks to ZoomWin plugin
 "
-" Split vertically:  
-" vne
-" 
 " Normalize split sizes, handy when resizing a terminal:
 "
 "   ctrl+w = 
@@ -52,7 +51,8 @@ set cmdheight=2   " A bit more room for the command line
 " List all matching tags:
 "   :tselect {name}
 "
-"
+" Diff 2 directories:
+"   :DirDiff <dir1> <dir2>
 "
 "
 
@@ -80,6 +80,7 @@ Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
 
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " End of vundle initialization
 call vundle#end()
@@ -443,6 +444,7 @@ nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
 " sunos, at least.  Probably others too)
 let g:NERDTreeDirArrows=0
+set wildmenu
 
 "set makeprg=plink\ -d\ big2014.25-620474-20140617093254\ -a\ sundev1\ m_eqstst.mk
 "set makeprg=plink\ m_eqstst.mk
@@ -455,5 +457,4 @@ set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst'
 
 
 source /bbsrc/princeton/skunk/vim/cursor.vim
-set wildmenu
 
