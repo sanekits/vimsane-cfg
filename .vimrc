@@ -54,6 +54,7 @@ Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
 Plugin 'file:///home/lmatheson/.vim/manual-repos/taglist_46'
 
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'regedarek/ZoomWin'
 
 " End of vundle initialization
 call vundle#end()
