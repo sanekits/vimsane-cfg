@@ -2,3 +2,4 @@
 .VimballRecord
 manual-repos
 bundle
+*.pyc

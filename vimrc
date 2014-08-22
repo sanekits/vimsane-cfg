@@ -1,8 +1,8 @@
 " Les Matheson's .vimrc
 "
 set nocompatible  " Keep this as first line always
-
 set cmdheight=2   " A bit more room for the command line
+let mapleader=','
 
 " Reminders
 " .........
@@ -68,10 +68,21 @@ Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
+  let g:bufExplorerShowRelativePath=1  " Show relative paths.
+  let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
     "  Note: on my vaiop cygwin, I had to symlink from
     "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
+    "
+    "  Use :UltiSnipsEdit to see the snippets available
+    "  Use <c-j> to trigger expansion of a snippet key, e.g.:
+    "       1. Insert 'map' in the code
+    "       2. Press Ctrl+J to expand it as shown in the snippet definition.
+    "       3. Use Ctrl+J again to go to the next param field in the snippet,
+    "       if any.
+    "       4. Use <Ctrl+K> to go backward in param field
 
     "-- someday.  Requires compiled clang  component:
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/YouCompleteMe'  
@@ -81,6 +92,9 @@ Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
 
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
+
+" Use :Bdelete to close a buffer without closing the window too:
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
 
 " End of vundle initialization
 call vundle#end()
@@ -102,7 +116,46 @@ filetype plugin indent on  " required
 
 
 
+" Commenting blocks of code.
+" --------------------------
+    let s:comment_map = {
+    \   "c": '// ',
+    \   "cpp": '// ',
+    \   "go": '// ',
+    \   "java": '// ',
+    \   "javascript": '// ',
+    \   "php": '// ',
+    \   "python": '# ',
+    \   "ruby": '# ',
+    \   "vim": '" ',
+    \   "sh": '# ',
+    \ }
+
+    function! ToggleComment()
+        if has_key(s:comment_map, &filetype)
+            let comment_leader = s:comment_map[&filetype]
+            if getline('.') =~ "^" . comment_leader
+                " Uncomment the line
+                execute "silent s/^" . comment_leader . "//"
+            else
+                " Comment the line
+                execute "silent s/^/" . comment_leader . "/"
+            endif
+        else
+            echo "No comment leader found for filetype"
+        end
+    endfunction
+
+    "  Use <leader>1 (the number 1, not lower-case L) to toggle  comments.  Add
+    "  new file types above as needed.
+    nnoremap <leader>1 :call ToggleComment()<cr>
+    vnoremap <leader>1 :call ToggleComment()<cr>
+
+
 set t_Co=256
+
+" We frequently want to show the contents of the current dir:
+nnoremap <leader>. :e .<CR>
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
 noremap <C-h> <C-w>h
@@ -110,22 +163,25 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-let mapleader=','
-let g:Powerline_symbols = "fancy"
-set laststatus=2
+"let g:Powerline_symbols = "fancy"
+
+" We always want a status line:
+set laststatus=2   
 color blue
+
 " Smart tabbing / autoindenting
 set undolevels=100
 set autoindent
 set copyindent
-"#set smarttab
+
 "" Allow backspace to back over lines
 set backspace=indent,eol,start
-"#set exrc
+
 set shiftwidth=4
 set shiftround
 set tabstop=4
 set expandtab
+
 " Number lines in the margin:
 set number
 set showmatch
@@ -134,9 +190,13 @@ set ignorecase
 set smartcase
 " Highlight search matches:
 set hlsearch
+
+" How to turn off the search highlights and the annoying 'cursorline' option:
+nnoremap <leader><space> :nohlsearch<CR>:set nocursorline<CR>
+
 " Use incremental search:
 set incsearch
-"#set cino=t0
+
 " I like it writing automatically on swapping
 set autowrite
 set wrap
@@ -145,7 +205,7 @@ set updatetime=800
 "set mouse=a
 set showcmd
 set title
-set grepprg=ack-grep
+set grepprg=ack-grep\ <cword>\ *.cpp\ *.h
 
 
 filetype plugin indent on
@@ -199,8 +259,8 @@ nnoremap <leader>U viwUe
 nnoremap <F9> a<space><ESC>l
 
 " Compile and find next error:
-nnoremap <F3> :wall<CR>:make<CR><CR>:cn<CR>
-inoremap <F3> <ESC>:w<CR>:make<CR><CR>:cn<CR>
+nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
+inoremap <F3> <ESC>:w<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 nnoremap <F4> :cn<CR>
 
 
@@ -233,6 +293,15 @@ command! Dirhere e %:p:h
 command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
+
+
+" Copy the current buffer's filename to the w register:
+nnoremap <leader>F :let @w=expand("%:p:t")<CR>
+
+" Replace the current word with contents of the w register:
+nnoremap <leader>r viw"wp
+inoremap <leader>r <C-R>w
+
 
 " Run Conque bash in split
 command! Term ConqueTermVSplit bash
@@ -282,10 +351,10 @@ noremap <leader>d :close<CR>
 
 
 " Lifted from mswin.vim: -----------
-" Use CTRL-Q to do what CTRL-V used to do (block select start)
+" Use CTRL-Q to mimic CTRL-V -- because that's what we're used to 
 noremap <C-Q>		<C-V>
 
-" How could someone use 's' for anything except "save"??
+" How could someone use 92287948's' for anything except "save"??
 nnoremap s :w<CR>
 
 
@@ -294,10 +363,10 @@ vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
 
 " -V and SHIFT-Insert are Paste system clipboard:
-noremap <C-V>		"+gP
+"noremap <C-V>		"+gP
 noremap <S-Insert>		"+gP
 
-cnoremap <C-V>		<C-R>+
+"cnoremap <C-V>		<C-R>+
 cnoremap <S-Insert>		<C-R>+
 
 " Pasting blockwise and linewise selections is not possible in Insert and
@@ -305,8 +374,8 @@ cnoremap <S-Insert>		<C-R>+
 " were characterwise instead.
 " Uses the paste.vim autoload script.
 
-exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+"exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+"exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
 " Something we really don't like: pasting replaces the contents of the unnamed
 " buffer '*', which is almost always the wrong behavior.  So we're going out
@@ -315,8 +384,8 @@ exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 "nnoremap p "0p
 "vnoremap p "0p
 
-inoremap <S-Insert>		<C-V>
-vnoremap <S-Insert>		<C-V>
+"inoremap <S-Insert>		<C-V>
+"vnoremap <S-Insert>		<C-V>
 
 " In insert mode, pasting the 0 register is clunky (Ctrl+R, 0).  Shorten that
 " to Ctrl-P
@@ -351,13 +420,14 @@ let MRU_Window_Height = 25
 " <leader>hh switches from C module to header (FSwitch plugin)
 nnoremap <leader>hh  :FSHere<CR>
 
-" <leader>w writes the file even if you forgot rootness:
-nnoremap <leader>w :w !sudo tee %<CR>
+" <leader>w copies the current word to the w register.  
+nnoremap <leader>w :let @w=expand("<cword>")<CR>
+nnoremap <leader>W :let @w=expand("<cWORD>")<CR>
 
-"  Expand the current window horizontally +10:
-nnoremap <leader>> <C-W>10>
-"  Shrink the current window horizontally -10:
-nnoremap <leader>< <C-W>10<
+"  Expand the current window horizontally +20:
+nnoremap <leader>> <C-W>20>
+"  Shrink the current window horizontally -20:
+nnoremap <leader>< <C-W>20<
 
 "folding settings
 set foldmethod=syntax   "fold based on syntax
@@ -425,6 +495,11 @@ augroup  fmtOpts
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
 augroup  END
 
+" The clang_complete plugin needs the directory name containing libclang.so:
+let g:clang_library_path='/opt/swt/lib'
+let g:clang_complete_auto=1
+
+
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This
 " ensures that the comment leader is inserted in unsurprising ways when
 " writing or editing comment blocks.
@@ -451,9 +526,10 @@ set wildmenu
 "set makeprg=mars_remote_build\ eqstst
 "set makeprg=make
 
-set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst'
-"set makeprg=ssh\ sdv9\ '~/bin/buildsrv-send\ eqstst-all'
-"set makeprg=ssh\ ibm9\ '~/bin/buildsrv-send\ eqstst'
+set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst'
+"set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ test2'
+"set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst-all'
+"set makeprg=ssh\ -t\ ibm9\ '~/bin/buildsrv-send\ eqstst'
 
 
 source /bbsrc/princeton/skunk/vim/cursor.vim
