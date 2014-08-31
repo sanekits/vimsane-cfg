@@ -53,8 +53,10 @@ Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
     " Taglist plugin:
 Plugin 'file:///home/lmatheson/.vim/manual-repos/taglist_46'
 
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'regedarek/ZoomWin'
+Plugin 'Lokaltog/vim-easymotion'    
+Plugin 'regedarek/ZoomWin'   "  Use 'Ctrl+W o'  to zoom or unzoom a window
+"let g:clang_use_library=1  " Test: can we get clang_complete to work on cygwin?
+"Plugin 'Rip-Rip/clang_complete'
 
 " End of vundle initialization
 call vundle#end()
@@ -88,6 +90,8 @@ set t_Co=256
 let g:Powerline_symbols = "fancy"
 set laststatus=2 
 
+
+
 " Smart tabbing / autoindenting
 set undolevels=100
 set autoindent
@@ -116,11 +120,12 @@ set autowrite
 set wrap
 set linebreak  " if you do wrap, do it nicely (caution: this conflicts with 'set list', so you have to turn the latter off if you really want linebreak to work)
 set updatetime=800
-"set mouse=a
+
 set showcmd
 set title
 set grepprg=ack-grep
 
+nnoremap <leader><space> :set nocursorline<CR>
 
 filetype plugin indent on
 set history=1000
@@ -163,6 +168,9 @@ set tags=./tags;/
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" <leader>. -> open file browser in current dir
+nnoremap <leader>. :e.<CR>
+
 " Insert mode, make preceding word uppercase:
 inoremap <leader>U <Esc>mvviwU`va
 " Normal mode, make preceding word uppercase:
@@ -176,6 +184,7 @@ nnoremap <F9> a<space><ESC>l
 nnoremap <F3> :make<CR><CR>:cn<CR>
 inoremap <F3> <ESC>:w<CR>:make<CR><CR>:cn<CR>
 nnoremap <F4> :cn<CR>
+
 
 
 " In normal mode, hitting Esc turns off search highlights:
@@ -210,14 +219,14 @@ command! Chmodx ! chmod +x %
 
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
-command! Gopen ! xdg-open %
-noremap <leader>g :!xdg-open % <CR><CR>
+command! Gopen ! gopen "%"
+noremap <leader>g :!gopen "%" <CR><CR>
 
 " To launch a mark URL, first capture the text in parens, the pass
 " it to xdg-open:
-nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
+nnoremap <leader>x yi):!gopen <c-r>" &<cr>
 " Same thing for stuff that isn't wrapped in parens:
-nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
+nnoremap <leader>X yiW:!gopen <c-r>" &<cr>
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
@@ -237,20 +246,13 @@ command! Revimrc source ~/.vimrc
 " Fix the dang keyboard mapping:
 command! Kbfix !source /home/lmatheson/.Xmodmap
 
-"# Session-opening commands:
-command! Main OpenSession main
-command! MyBackup OpenSession myBackup
 
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
 "  ,d is close-window:
 noremap <leader>d :close<CR>
 
-" Don't allow automatic session saving.
-:let g:session_autosave = 'no'
 
-
-" Lifted from mswin.vim: -----------
 " Use CTRL-Q to do what CTRL-V used to do (block select start)
 noremap <C-Q>		<C-V>
 
@@ -269,20 +271,8 @@ noremap <S-Insert>		"+gP
 cmap <C-V>		<C-R>+
 cmap <S-Insert>		<C-R>+
 
-" Pasting blockwise and linewise selections is not possible in Insert and
-" Visual mode without the +virtualedit feature.  They are pasted as if they
-" were characterwise instead.
-" Uses the paste.vim autoload script.
-
-exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-
 inoremap <S-Insert>		<C-V>
 vmap <S-Insert>		<C-V>
-
-" In insert mode, pasting the 0 register is clunky (Ctrl+R, 0).  Shorten that
-" to Ctrl-P
-inoremap <C-P> <C-R>0
 
 
 set backupdir=~/.vimtmp
@@ -292,13 +282,10 @@ set directory=~/.vimtmp,.
 " Ctrl-S to save the file:
 noremap <C-S> :w<CR>
 
-" Next and prev buffer with F12, F11:
-noremap <F12> :bnext<CR>
-noremap <F11> :bprev<CR>
 noremap <C-n> :NERDTreeToggle<CR>
 noremap <C-t> :TlistToggle<CR>
 " Insert newlines from normal mode with Ctrl+Enter:
-noremap <C-Enter> O<Esc>
+"noremap <C-Enter> O<Esc>
 " ctrl-a should select-all:
 nnoremap <C-A> ggVG
 
@@ -306,7 +293,6 @@ nnoremap <C-A> ggVG
 nnoremap <leader>f <C-^>
 
 " shift-ctrl-m runs the most-recent-files menu
-noremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
 " <leader>hh switches from C module to header (FSwitch plugin)
@@ -354,6 +340,13 @@ colorscheme desert
 
 
 if has("gui_running")
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ 12
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h14
+    elseif has("gui_win32")
+        set guifont=Consolas:h11:cANSI
+    endif
 	" Make font larger (gvim only on Linux)
 	" See plugin/gtk2fontsize.vim
 	"source ~/.vim/plugin/gtk2fontsize.vim
@@ -375,8 +368,8 @@ if has("autocmd")
     " workaround:
     autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
 
-    let g:syntastic_cpp_compiler = 'g++'
-    "let g:syntastic_cpp_compiler = 'clang++'
+    "let g:syntastic_cpp_compiler = 'g++'
+    let g:syntastic_cpp_compiler = 'clang++'
     let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
 endif
@@ -396,4 +389,12 @@ noremap k gk
 " wildmenu turns on the fancy visual display of <TAB> matches when doing
 " command-line completion:
 set wildmenu
+noremap <leader>m :MRU<CR>
+
+
+" Turn off highlighting after a search:
+nnoremap <leader><space> :nohlsearch<CR>:set nocursorline<CR>
+"
+" I don't know who keeps turning on the cursorline option, but its annoying:
+nnoremap <F12> :set nocursorline<CR>
 

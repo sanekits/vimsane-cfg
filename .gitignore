@@ -2,3 +2,5 @@
 bundle
 .tox-index
 tags
+tags
+*.pyc
