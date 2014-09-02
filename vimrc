@@ -90,6 +90,8 @@ Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/
     " Taglist plugin:
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
 
+  " Easy motion uses <leader><leader>{object} as its basic input model.
+  " So ",,j" will highlight lines and ",,w" will do the same for words.
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
@@ -295,6 +297,7 @@ command! Run ! %
 command! Chmodx ! chmod +x %
 
 
+command! Astyle w | !astyle %; rm %.orig
 " Copy the current buffer's filename to the w register:
 nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 
@@ -508,9 +511,9 @@ let g:clang_complete_auto=1
 "set formatoptions += "r"
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
-" movement is disorienting.   This is cured by remapping j and k to gj and gk:
-noremap j gj
-noremap k gk
+" movement can be disorienting.   This is cured by remapping j and k to gj and gk:
+"noremap j gj
+"noremap k gk
 
 " Switch between .h and .cpp if they're in the same dir:
 nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
@@ -523,7 +526,7 @@ set wildmenu
 
 "set makeprg=plink\ -d\ big2014.25-620474-20140617093254\ -a\ sundev1\ m_eqstst.mk
 "set makeprg=plink\ m_eqstst.mk
-"set makeprg=mars_remote_build\ eqstst
+
 "set makeprg=make
 
 set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst'
