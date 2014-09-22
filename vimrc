@@ -22,8 +22,8 @@ let mapleader=','
 " In insert mode, Ctrl-T and Ctrl-D shift the current line right or left
 "
 " To resize a window vertically:
-" 	  :resize 5  (make it 5 lines high)
-" 	  :resize +5 (increase by 5 lines)
+" 	  :res 5  (make it 5 lines high)
+" 	  :res +5 (increase by 5 lines)
 "
 " Change width of a window:
 "   Ctrl+W {count} >
@@ -265,6 +265,9 @@ nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 inoremap <F3> <ESC>:w<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 nnoremap <F4> :cn<CR>
 
+nnoremap <leader>] /\[ \]<cr>
+
+
 
 " In normal mode, hitting Esc turns off search highlights:
 "  BAD MAPPING:  nmap <ESC> :nohl<CR>
@@ -325,7 +328,9 @@ noremap <leader>g :!xdg-open % <CR><CR>
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
 command! Pastebin ! xdg-open http://pastebin.com
-"noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
+
+" <leader>p to reformat paragraph:
+nnoremap <leader>p gqip
 
 command! Mdownview w | ! firefox  %
 command! Foxview w | ! firefox  %
@@ -357,7 +362,9 @@ noremap <leader>d :close<CR>
 " Use CTRL-Q to mimic CTRL-V -- because that's what we're used to 
 noremap <C-Q>		<C-V>
 
-" How could someone use 92287948's' for anything except "save"??
+" How could someone use 's' for anything except "save"??  To substitute
+" chars, we prefer '-' (think "strikeout")
+nnoremap - s
 nnoremap s :w<CR>
 
 
@@ -528,6 +535,7 @@ set wildmenu
 "set makeprg=plink\ m_eqstst.mk
 
 "set makeprg=make
+"set makeprg=~/bin/build-ssh\ sdv61\ eqstst
 
 set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst'
 "set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ test2'
