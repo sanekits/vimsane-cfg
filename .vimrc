@@ -217,21 +217,40 @@ command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
 
+" Copy a URL to the clipboard:
+function! HandleURL()
+  let s:uri = matchstr(getline("."), 'http:\/\/[^ >,;]*')
+
+  if s:uri != ""
+    let @+=s:uri 
+    echo "URL " . @+ . "  has been copied to the clipboard register +"
+  else
+    echo "No URI found in line."
+  endif
+endfunction
+
+map gx :call HandleURL()<cr>
+
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
 command! Gopen ! gopen "%"
 noremap <leader>g :!gopen "%" <CR><CR>
 
-" To launch a mark URL, first capture the text in parens, the pass
-" it to xdg-open:
-nnoremap <leader>x yi):!gopen <c-r>" &<cr>
-" Same thing for stuff that isn't wrapped in parens:
-nnoremap <leader>X yiW:!gopen <c-r>" &<cr>
+" To launch a mark URL, first capture the URL text , then pass
+" it to gopen:
+"nnoremap <leader>x yiW:!gopen <c-r>" &<cr>
+
+" Find/Highlight text in braces[]:
+nnoremap <leader>] /\[[^\]]*\]<cr>
+
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
 command! Pastebin ! xdg-open http://pastebin.com
-noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
+"noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
+
+" Reformat paragraph:
+nnoremap <leader>p gqip
 
 command! Mdownview w | ! firefox  %
 command! Foxview w | ! firefox  %
@@ -397,4 +416,25 @@ nnoremap <leader><space> :nohlsearch<CR>:set nocursorline<CR>
 "
 " I don't know who keeps turning on the cursorline option, but its annoying:
 nnoremap <F12> :set nocursorline<CR>
+
+" For html notes, 'lmx' is "my comments" and lmz is "highlighting the text"
+" The styles can be inserted with UltiSnips ( lmx_styles<ctrl-j> )
+inoremap <F8> <span class='lmx'>lmx:  </span><esc>7hi
+nnoremap <F8> i<span class='lmx'>lmx:  </span><esc>7hi
+inoremap <F9> <span class='lmz'>
+nnoremap <F9> i<span class='lmz'><ESC>
+inoremap <F10> </span>
+nnoremap <F10> i</span><ESC>
+
+"  Calibre-exported text support:
+" Delete the line-level wrapper applied by Calibre:
+nnoremap <C-I> 0xxxxxxxxxxxxxxxxxxxx/<\/p><cr>xxxxj0<ESC>:nohlsearch<CR>
+" Same thing, but for start-of-paragraph, insert a <p/> above
+nmap     <F12> <C-I>kO<p/><ESC>jj
+"  Find a start-of-paragraph:
+nmap   <C-P> /[0-9]\+<\/p<CR>
+
+
+
+
 

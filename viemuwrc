@@ -1,0 +1,24 @@
+" .viemuwrc : init file for ViEmu.  This should be placed in the Windows HOME dir, where it
+" is found on startup by ViEmu.
+
+"  Note: you have to turn off the ViEmu "pass insert mode to Word" option to get jk to
+" work correctly.
+"
+"  
+"  Word built-ins:
+"   
+"   Ctrl+Alt+M:  Insert comment
+"
+" vim: set filetype=vim :
+
+imap jk <ESC> 
+
+nmap <C-Z> u
+
+"  We don't use s for substitute.
+nmap - s  
+
+nmap s :w<CR>
+
+
+
