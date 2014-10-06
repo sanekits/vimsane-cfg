@@ -39,6 +39,10 @@ let mapleader=','
 " Redraw the screen (if ^L isn't working)
 " :redraw!
 "
+" Capture the result of a command to register:
+"   : let @u=system("ls /")    
+"    { put the results of the ls into the u register }
+"
 "
 " Repeat last command:
 "   @:
@@ -164,6 +168,14 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+" <leader>a/z are used for faster up/down:
+nnoremap <leader>a 10k
+nnoremap <leader>z 10j
+vnoremap <leader>a 10k
+vnoremap <leader>z 10j
+
+
 
 "let g:Powerline_symbols = "fancy"
 
