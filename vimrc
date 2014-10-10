@@ -318,8 +318,6 @@ nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 
 " Replace the current word with contents of the w register:
 nnoremap <leader>r viw"wp
-inoremap <leader>r <C-R>w
-
 
 " Run Conque bash in split
 command! Term ConqueTermVSplit bash
