@@ -170,10 +170,10 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " <leader>a/z are used for faster up/down:
-nnoremap <leader>a 10k
-nnoremap <leader>z 10j
-vnoremap <leader>a 10k
-vnoremap <leader>z 10j
+nnoremap <leader>a 15k
+nnoremap <leader>z 15j
+vnoremap <leader>a 15k
+vnoremap <leader>z 15j
 
 
 
@@ -318,8 +318,6 @@ nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 
 " Replace the current word with contents of the w register:
 nnoremap <leader>r viw"wp
-inoremap <leader>r <C-R>w
-
 
 " Run Conque bash in split
 command! Term ConqueTermVSplit bash
@@ -494,6 +492,7 @@ if has("gui_running")
 	nmap <leader>+ :LargerFont<CR> 
 	nmap <leader>= :LargerFont<CR> 
 	nmap <leader>- :SmallerFont<CR> 
+	set guifont=Monospace\ 12
     "set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
