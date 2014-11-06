@@ -108,6 +108,9 @@ filetype plugin indent on  " required
 
 "==========   Vundle end ========================
 
+" Fix the markdown mapping for 'md' extension:
+au BufRead,BufNewFile *.md set filetype=markdown
+
 
 "  UltiSnips settings:
 "  ------------------
