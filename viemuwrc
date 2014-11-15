@@ -4,6 +4,8 @@
 "  Note: you have to turn off the ViEmu "pass insert mode to Word" option to get jk to
 " work correctly.
 "
+"  Also, there's no <leader> in viemu, but you can still map key sequences and invoke the
+" timer.
 "  
 "  Word built-ins:
 "   
@@ -13,12 +15,21 @@
 
 imap jk <ESC> 
 
-nmap <C-Z> u
+" Note the syntax for mapping Ctrl-z: viemu does not seem to support the <CTRL_Z>
+" style:
+nnoremap <C-Z> u
+
+nnorenmap u jk
 
 "  We don't use s for substitute.
 nmap - s  
 
 nmap s :w<CR>
+
+nmap ,z 10j
+nmap ,a 10k
+
+
 
 
 

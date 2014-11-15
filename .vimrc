@@ -76,6 +76,9 @@ filetype plugin indent on  " required
     "let g:UltiSnipsEditSplit="vertical"
 
 
+" Fix the filetype mapping of .md, which comes up as modula2 by
+" default:
+au BufRead,BufNewFile *.md set filetype=markdown
 
 
 
