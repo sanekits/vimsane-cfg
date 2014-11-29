@@ -551,10 +551,12 @@ set wildmenu
 "set makeprg=make
 "set makeprg=~/bin/build-ssh\ sdv61\ eqstst
 
-set makeprg=ssh\ -t\ sdv9\ '~/bin/buildsrv-send\ eqstst'
+"set makeprg=ssh\ -t\ sdv9\ '~/bin/buildsrv-send\ eqstst'
 "set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ test2'
 "set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst-all'
 "set makeprg=ssh\ -t\ ibm9\ '~/bin/buildsrv-send\ eqstst'
+set makeprg=plink\ -a\ sundev1\ m_eqstst.mk;\ plink\ -a\ sundev1\ eqstst.mk
+
 
 
 source /bbsrc/princeton/skunk/vim/cursor.vim
