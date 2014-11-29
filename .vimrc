@@ -79,6 +79,7 @@ filetype plugin indent on  " required
 " Fix the filetype mapping of .md, which comes up as modula2 by
 " default:
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.markdown set filetype=markdown
 
 
 
@@ -268,6 +269,8 @@ command! Revimrc source ~/.vimrc
 " Fix the dang keyboard mapping:
 command! Kbfix !source /home/lmatheson/.Xmodmap
 
+" Riddlesnap takes a quick git snapshot of the state of riddle dir
+command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
 
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
