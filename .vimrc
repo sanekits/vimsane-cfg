@@ -28,6 +28,7 @@ set cmdheight=2   " A bit more room for the command line
 " To diff two directories:
 "   :DirDiff   <dir1>  <dir2>    "  The DirDiff plugin
 "
+" Tip: the 'has' command in vim can be used to test for a feature, e.g. 'if has("python") ...'
 " 
 
 "===========  Vundle start  ======================
@@ -43,9 +44,14 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
-    "  Note: on my vaiop cygwin, I had to symlink from
-    "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
+
+if has("python")
+    Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
+        "  Note: on my vaiop cygwin, I had to symlink from
+        "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
+        "  If python isn't compiled into vim, UltiSnips will not work.   On Cygwin,
+        "  you have to build vim manually:  http://stackoverflow.com/a/14059666/237059
+endif
 
     "-- someday.  Requires compiled clang  component:
 "Plugin 'Valloric/YouCompleteMe'  
@@ -76,10 +82,6 @@ filetype plugin indent on  " required
     "let g:UltiSnipsEditSplit="vertical"
 
 
-" Fix the filetype mapping of .md, which comes up as modula2 by
-" default:
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.markdown set filetype=markdown
 
 
 
@@ -361,7 +363,10 @@ augroup END
 
 
 syntax on
+" Note on MoboXterm, I had to symlink from ~/.vim/colors to /usr/share/vim/vim74/colors 
+" to get  any colorscheme to work.  This symlink is masked by .gitignore in .vim
 colorscheme desert
+
 
 
 if has("gui_running")
@@ -397,6 +402,12 @@ if has("autocmd")
     let g:syntastic_cpp_compiler = 'clang++'
     let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
+
+    " Fix the filetype mapping of .md, which comes up as modula2 by
+    " default:
+    au BufRead,BufNewFile *.md set filetype=markdown
+    au BufRead,BufNewFile *.markdown set filetype=markdown
+    au BufRead,BufNewFile *.chap set filetype=diff
 endif
 
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This
