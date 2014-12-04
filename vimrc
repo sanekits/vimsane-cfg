@@ -557,7 +557,7 @@ set wildmenu
 "set makeprg=ssh\ -t\ ibm9\ '~/bin/buildsrv-send\ eqstst'
 "
 " Compile m_eqstst.sundev1.so:
-"set makeprg=plink\ -a\ sundev1\ m_eqstst.mk;\ plink\ -a\ sundev1\ eqstst.mk
+"set makeprg=./build
 
 " Compile current module (convert  .h to .cpp automatically:)
 set makeprg=./compile-module\ %
