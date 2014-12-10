@@ -111,6 +111,11 @@ filetype plugin indent on  " required
 " Fix the markdown mapping for 'md' extension:
 au BufRead,BufNewFile *.md set filetype=markdown
 
+au BufRead,BufNewFile *.jrnl  set filetype=jrnl
+
+" Experimenting with .vim/syntax/cel.vim
+"au BufRead,BufNewFile *.stc setfiletype cel
+
 
 "  UltiSnips settings:
 "  ------------------

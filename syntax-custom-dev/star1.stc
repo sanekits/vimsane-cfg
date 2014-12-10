@@ -1,4 +1,4 @@
-# : vim:  set filetype=cel :
+# sample .stc file for 'cel' file type
 600000 "My Star"
 {
   RA 24.406489
