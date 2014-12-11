@@ -13,7 +13,7 @@ endif
 scriptencoding utf-8
 
 
-"syn match diffComment	"^#.*"
+syn match diffComment	"^#.*"
 
 " TODOs:
 syn match jrnlTodoOther         "\[.\].*$"
@@ -29,8 +29,10 @@ syn match jrnlTodoOpen          "\[\ \].*$"
 " syn match diffCommon	"^Common subdirectories: .*"
 
 " riddle tokens:
-syn match ridDefines    "## defines/.*"
-syn match ridDepends    "## depends/.*"
+syn match symName       ".*" contained display
+syn match ridDefines    "## defines/" nextgroup=symName
+syn match ridDepends    "## depends/" nextgroup=symName
+syn match ridPromises   "## promises/" nextgroup=symName
 
 
 syn match diffRemoved	"^-.*"
@@ -44,6 +46,8 @@ syn match diffLine	"^@.*" contains=diffSubname
 syn match diffLine	"^\<\d\+\>.*"
 syn match diffLine	"^\*\*\*\*.*"
 syn match diffLine	"^---$"
+
+
 
 "Some versions of diff have lines like "#c#" and "#d#" (where # is a number)
 syn match diffLine	"^\d\+\(,\d\+\)\=[cda]\d\+\>.*"
@@ -63,12 +67,13 @@ hi def link jrnlTodoOther	Comment
 hi def link jrnlTodoActive	Statement
 
 hi def link ridDefines          Statement
-hi def link ridDepends          Constant
+hi def link ridDepends          PreProc
+hi def link ridPromises         Special
 
 
 hi def link diffOldFile		diffFile
 hi def link diffNewFile		diffFile
-hi def link diffFile		Type
+hi def link diffFile		Statement
 hi def link diffOnly		Constant
 hi def link diffIdentical	Constant
 hi def link diffDiffer		Constant
@@ -79,7 +84,7 @@ hi def link diffCommon		Constant
 hi def link diffRemoved		Special
 hi def link diffChanged		PreProc
 hi def link diffAdded		Identifier
-hi def link diffLine		Statement
+hi def link diffLine		Type
 hi def link diffSubname		PreProc
 hi def link diffComment		Comment
 
