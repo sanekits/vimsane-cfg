@@ -403,11 +403,6 @@ if has("autocmd")
     let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
 
-    " Fix the filetype mapping of .md, which comes up as modula2 by
-    " default:
-    au BufRead,BufNewFile *.md set filetype=markdown
-    au BufRead,BufNewFile *.markdown set filetype=markdown
-    au BufRead,BufNewFile *.chap set filetype=diff
 endif
 
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This

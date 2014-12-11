@@ -1,5 +1,9 @@
 @ This is a journal file
 
+## defines/some-symbol
+## depends/some-other
+
+
 # Comments should get highlighted.
 #
 

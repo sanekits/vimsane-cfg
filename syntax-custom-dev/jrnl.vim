@@ -13,6 +13,9 @@ endif
 scriptencoding utf-8
 
 
+"syn match diffComment	"^#.*"
+
+" TODOs:
 syn match jrnlTodoOther         "\[.\].*$"
 syn match jrnlTodoActive        "\[\.\].*$"
 syn match jrnlTodoOpen          "\[\ \].*$"
@@ -25,6 +28,9 @@ syn match jrnlTodoOpen          "\[\ \].*$"
 " syn match diffNoEOL	"^No newline at end of file .*"
 " syn match diffCommon	"^Common subdirectories: .*"
 
+" riddle tokens:
+syn match ridDefines    "## defines/.*"
+syn match ridDepends    "## depends/.*"
 
 
 syn match diffRemoved	"^-.*"
@@ -49,13 +55,16 @@ syn match diffFile	"^==== .*$"
 syn match diffOldFile	"^\*\*\* .*"
 syn match diffNewFile	"^--- .*"
 
-syn match diffComment	"^#.*"
 
 " Define the default highlighting.
 " Only used when an item doesn't have highlighting yet
 hi def link jrnlTodoOpen        Identifier
 hi def link jrnlTodoOther	Comment
 hi def link jrnlTodoActive	Statement
+
+hi def link ridDefines          Statement
+hi def link ridDepends          Constant
+
 
 hi def link diffOldFile		diffFile
 hi def link diffNewFile		diffFile
