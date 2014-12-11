@@ -1,0 +1,1 @@
+../syntax-custom-dev/jrnl.vim

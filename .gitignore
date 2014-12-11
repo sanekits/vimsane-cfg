@@ -1,7 +1,8 @@
-.netrwhist
-bundle
-.tox-index
-tags
-tags
 *.pyc
+.netrwhist
+.tox-index
+.VimballRecord
+bundle
 colors
+manual-repos
+tags

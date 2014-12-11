@@ -1,0 +1,13 @@
+@ This is a journal file
+
+# Comments should get highlighted.
+#
+
+ [ ] Open TODO
+ [.] Active TODO
+ [x] Closed TODO
+ [-] Deferred TODO
+
+
+Some regular text.  Nothing special.
+

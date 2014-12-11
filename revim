@@ -7,6 +7,7 @@ MruFileCount=8
 
 PaneCount=1
 
+
 addArgs=""
 
 function parseArgs {
