@@ -160,6 +160,8 @@ inoremap JK <ESC>
 noremap <F5> :buffers<CR>:buffer<Space>
 noremap <S-F5> :buffers<CR>:bd<Space>
 
+
+
 " ,t starts insert mode and enters # TODO:
 inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
 nnoremap <leader>t A<space>#<space>TODO:<space> 
@@ -282,6 +284,9 @@ noremap <leader>d :close<CR>
 
 " Use CTRL-Q to do what CTRL-V used to do (block select start)
 noremap <C-Q>		<C-V>
+
+" We don't like 's' for substitute, so remap it to '-':
+nnoremap - s
 
 " How could someone use 's' for anything except "save"??
 nnoremap s :w<CR>

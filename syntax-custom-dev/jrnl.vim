@@ -13,7 +13,7 @@ endif
 scriptencoding utf-8
 
 
-"syn match diffComment	"^#.*"
+syn match diffComment	"^#.*"
 
 " TODOs:
 syn match jrnlTodoOther         "\[.\].*$"
@@ -29,8 +29,9 @@ syn match jrnlTodoOpen          "\[\ \].*$"
 " syn match diffCommon	"^Common subdirectories: .*"
 
 " riddle tokens:
-syn match ridDefines    "## defines/.*"
-syn match ridDepends    "## depends/.*"
+syn match ridDefines    "## defines/"
+syn match ridDepends    "## depends/"
+syn match ridPromises   "## promises/"
 
 
 syn match diffRemoved	"^-.*"
@@ -64,6 +65,7 @@ hi def link jrnlTodoActive	Statement
 
 hi def link ridDefines          Statement
 hi def link ridDepends          Constant
+hi def link ridPromises         PreProc
 
 
 hi def link diffOldFile		diffFile
