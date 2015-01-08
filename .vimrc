@@ -198,6 +198,7 @@ nnoremap <F4> :cn<CR>
 " In normal mode, hitting Esc turns off search highlights:
 "  BAD MAPPING:  nmap <ESC> :nohl<CR>
 
+" Change to directory containing current file:
 noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
@@ -451,7 +452,16 @@ nmap     <F12> <C-I>kO<p/><ESC>jj
 "  Find a start-of-paragraph:
 nmap   <C-P> /[0-9]\+<\/p<CR>
 
+" Invoke print-symbol-summary -p for the word under cursor
+function! PrintSymbolPath()
+    let l:xpath=expand("<cWORD>")
+    let l:sumfile=system( "print-symbol-summary " . l:xpath . " -p")
+    exec ":sp " l:sumfile
+endfunction
 
+
+" Run print-symbol-summary {text-under-cursor} -p
+command! Sym call PrintSymbolPath()
 
 
 
