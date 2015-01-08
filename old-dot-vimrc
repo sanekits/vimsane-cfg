@@ -22,6 +22,39 @@ set cmdheight=2   " A bit more room for the command line
 " In insert mode, Ctrl-T and Ctrl-D shift the current line right or left
 "
 " To resize a window vertically:
+" 	  :res 5  (make it 5 lines high)
+" 	  :res +5 (increase by 5 lines)
+"
+" Change width of a window:
+"   Ctrl+W {count} >
+"   Ctrl+W {count} <
+"
+" Zoom a window in/out:
+"   Ctrl+@ o     " Thanks to ZoomWin plugin
+"
+" Normalize split sizes, handy when resizing a terminal:
+"
+"   ctrl+w = 
+"
+" Redraw the screen (if ^L isn't working)
+" :redraw!
+"
+" Capture the result of a command to register:
+"   : let @u=system("ls /")    
+"    { put the results of the ls into the u register }
+"
+"
+" Repeat last command:
+"   @:
+"   @@ { subsequently } 
+"
+" Open quickfix window:
+"   :cw
+"   :copen
+"
+" List all matching tags:
+"   :tselect {name}
+"
 " 	  :resize 5  (make it 5 lines high)
 " 	  :resize +5 (increase by 5 lines)
 "
@@ -52,6 +85,26 @@ if has("python")
         "  If python isn't compiled into vim, UltiSnips will not work.   On Cygwin,
         "  you have to build vim manually:  http://stackoverflow.com/a/14059666/237059
 endif
+"
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
+  let g:bufExplorerShowRelativePath=1  " Show relative paths.
+  let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
+    "  Note: on my vaiop cygwin, I had to symlink from
+    "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
+    "
+    "  Use :UltiSnipsEdit to see the snippets available
+    "  Use <c-j> to trigger expansion of a snippet key, e.g.:
+    "       1. Insert 'map' in the code
+    "       2. Press Ctrl+J to expand it as shown in the snippet definition.
+    "       3. Use Ctrl+J again to go to the next param field in the snippet,
+    "       if any.
+    "       4. Use <Ctrl+K> to go backward in param field
 
     "-- someday.  Requires compiled clang  component:
 "Plugin 'Valloric/YouCompleteMe'  
@@ -59,16 +112,28 @@ endif
     " Taglist plugin:
 Plugin 'file:///home/lmatheson/.vim/manual-repos/taglist_46'
 
+
 Plugin 'Lokaltog/vim-easymotion'    
 Plugin 'regedarek/ZoomWin'   "  Use 'Ctrl+W o'  to zoom or unzoom a window
 "let g:clang_use_library=1  " Test: can we get clang_complete to work on cygwin?
 "Plugin 'Rip-Rip/clang_complete'
+"
+"
+"
 
 " End of vundle initialization
 call vundle#end()
 filetype plugin indent on  " required
 
 "==========   Vundle end ========================
+
+
+
+
+
+
+
+
 
 
 "  UltiSnips settings:
@@ -84,6 +149,46 @@ filetype plugin indent on  " required
 
 
 
+" Commenting blocks of code.
+" --------------------------
+    let s:comment_map = {
+    \   "c": '// ',
+    \   "cpp": '// ',
+    \   "go": '// ',
+    \   "java": '// ',
+    \   "javascript": '// ',
+    \   "php": '// ',
+    \   "python": '# ',
+    \   "ruby": '# ',
+    \   "vim": '" ',
+    \   "sh": '# ',
+    \ }
+
+    function! ToggleComment()
+        if has_key(s:comment_map, &filetype)
+            let comment_leader = s:comment_map[&filetype]
+            if getline('.') =~ "^" . comment_leader
+                " Uncomment the line
+                execute "silent s/^" . comment_leader . "//"
+            else
+                " Comment the line
+                execute "silent s/^/" . comment_leader . "/"
+            endif
+        else
+            echo "No comment leader found for filetype"
+        end
+    endfunction
+
+    "  Use <leader>1 (the number 1, not lower-case L) to toggle  comments.  Add
+    "  new file types above as needed.
+    nnoremap <leader>1 :call ToggleComment()<cr>
+    vnoremap <leader>1 :call ToggleComment()<cr>
+
+
+set t_Co=256
+
+" <leader>. -> open file browser in current dir
+nnoremap <leader>. :e .<CR>
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
 noremap <C-h> <C-w>h
@@ -95,6 +200,13 @@ let mapleader=','
 set t_Co=256
 let g:Powerline_symbols = "fancy"
 set laststatus=2 
+
+
+
+
+
+
+
 
 
 
@@ -110,6 +222,7 @@ set shiftwidth=4
 set shiftround
 set tabstop=4
 set expandtab
+"
 " Number lines in the margin:
 set number
 set showmatch
@@ -118,6 +231,10 @@ set ignorecase
 set smartcase
 " Highlight search matches:
 set hlsearch
+
+
+
+
 " Use incremental search:
 set incsearch
 "#set cino=t0
@@ -132,7 +249,6 @@ set title
 set grepprg=ack-grep
 
 nnoremap <leader><space> :set nocursorline<CR>
-
 filetype plugin indent on
 set history=1000
 set undolevels=1000
@@ -249,6 +365,23 @@ noremap <leader>g :!gopen "%" <CR><CR>
 " it to gopen:
 "nnoremap <leader>x yiW:!gopen <c-r>" &<cr>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 " Find/Highlight text in braces[]:
 nnoremap <leader>] /\[[^\]]*\]<cr>
 
@@ -333,6 +466,33 @@ nnoremap <leader>hh  :FSHere<CR>
 
 " <leader>w writes the file even if you forgot rootness:
 nnoremap <leader>w :w !sudo tee %<CR>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 "folding settings

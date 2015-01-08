@@ -1,6 +1,7 @@
 " Les Matheson's .vimrc
 "
 set nocompatible  " Keep this as first line always
+
 set cmdheight=2   " A bit more room for the command line
 let mapleader=','
 
@@ -55,10 +56,14 @@ let mapleader=','
 " List all matching tags:
 "   :tselect {name}
 "
-" Diff 2 directories:
-"   :DirDiff <dir1> <dir2>
+" 	  :resize 5  (make it 5 lines high)
+" 	  :resize +5 (increase by 5 lines)
 "
+" To diff two directories:
+"   :DirDiff   <dir1>  <dir2>    "  The DirDiff plugin
 "
+" Tip: the 'has' command in vim can be used to test for a feature, e.g. 'if has("python") ...'
+" 
 
 "===========  Vundle start  ======================
 filetype off
@@ -68,15 +73,29 @@ Plugin 'gmarik/Vundle.vim'
 
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
+Plugin 'manual-repos/vim-airline'
+Plugin 'manual-repos/syntastic'
+Plugin 'manual-repos/nerdtree'
+Plugin 'manual-repos/bufexplorer'
+Plugin 'manual-repos/vim-snippets'
+
+if has("python")
+    Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
+        "  Note: on my vaiop cygwin, I had to symlink from
+        "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
+        "  If python isn't compiled into vim, UltiSnips will not work.   On Cygwin,
+        "  you have to build vim manually:  http://stackoverflow.com/a/14059666/237059
+endif
+"
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
   let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
     "  Note: on my vaiop cygwin, I had to symlink from
     "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
     "
@@ -92,11 +111,11 @@ Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/YouCompleteMe'  
 
     " Taglist plugin:
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
 
   " Easy motion uses <leader><leader>{object} as its basic input model.
   " So ",,j" will highlight lines and ",,w" will do the same for words.
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " Use :Bdelete to close a buffer without closing the window too:
@@ -168,7 +187,7 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
 
 set t_Co=256
 
-" We frequently want to show the contents of the current dir:
+" <leader>. -> open file browser in current dir
 nnoremap <leader>. :e .<CR>
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
@@ -257,6 +276,8 @@ inoremap JK <ESC>
 noremap <F5> :buffers<CR>:buffer<Space>
 noremap <S-F5> :buffers<CR>:bd<Space>
 
+
+
 " ,t starts insert mode and enters # TODO:
 inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
 nnoremap <leader>t A<space>#<space>TODO:<space> 
@@ -270,6 +291,9 @@ set tags=./tags;/
 "  Don't ever, ever, ever beep or flash at me:
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
+
+
+
 
 " Insert mode, make preceding word uppercase:
 inoremap <leader>U <Esc>mvviwU`va
@@ -292,6 +316,7 @@ nnoremap <leader>] /\[ \]<cr>
 " In normal mode, hitting Esc turns off search highlights:
 "  BAD MAPPING:  nmap <ESC> :nohl<CR>
 
+" Change to directory containing current file:
 noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
@@ -319,6 +344,20 @@ command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
 
+" Copy a URL to the clipboard:
+function! HandleURL()
+  let s:uri = matchstr(getline("."), 'http:\/\/[^ >,;]*')
+
+  if s:uri != ""
+    let @+=s:uri 
+    echo "URL " . @+ . "  has been copied to the clipboard register +"
+  else
+    echo "No URI found in line."
+  endif
+endfunction
+
+map gx :call HandleURL()<cr>
+
 
 command! Astyle w | !astyle %; rm %.orig
 " Copy the current buffer's filename to the w register:
@@ -342,10 +381,14 @@ noremap <leader>g :!xdg-open % <CR><CR>
 "nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
 " Same thing for stuff that isn't wrapped in parens:
 "nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
+"
+" Find/Highlight text in braces[]:
+nnoremap <leader>] /\[[^\]]*\]<cr>
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
 command! Pastebin ! xdg-open http://pastebin.com
+"noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
 
 " <leader>p to reformat paragraph:
 nnoremap <leader>p gqip
@@ -363,20 +406,15 @@ command! Revimrc source ~/.vimrc
 " Fix the dang keyboard mapping:
 command! Kbfix !source /home/lmatheson/.Xmodmap
 
-"# Session-opening commands:
-command! Main OpenSession main
-command! MyBackup OpenSession myBackup
+" Riddlesnap takes a quick git snapshot of the state of riddle dir
+command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
 
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
 "  ,d to close window:
 noremap <leader>d :close<CR>
 
-" Don't allow automatic session saving.
-:let g:session_autosave = 'no'
 
-
-" Lifted from mswin.vim: -----------
 " Use CTRL-Q to mimic CTRL-V -- because that's what we're used to 
 noremap <C-Q>		<C-V>
 
@@ -390,7 +428,7 @@ nnoremap s :w<CR>
 vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
 
-" -V and SHIFT-Insert are Paste system clipboard:
+" CTRL-V and SHIFT-Insert are Paste system clipboard:
 "noremap <C-V>		"+gP
 noremap <S-Insert>		"+gP
 
@@ -492,8 +530,18 @@ augroup END
 syntax on
 colorscheme elflord
 
+" Note on MoboXterm, I had to symlink from ~/.vim/colors to /usr/share/vim/vim74/colors 
+" to get  any colorscheme to work.  This symlink is masked by .gitignore in .vim
+"colorscheme desert
 
 if has("gui_running")
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ 12
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h14
+    elseif has("gui_win32")
+        set guifont=Consolas:h10:cANSI
+    endif
 	" Make font larger (gvim only on Linux)
 	" See plugin/gtk2fontsize.vim
 	"source ~/.vim/plugin/gtk2fontsize.vim
@@ -548,6 +596,8 @@ nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
 " sunos, at least.  Probably others too)
 let g:NERDTreeDirArrows=0
+" wildmenu turns on the fancy visual display of <TAB> matches when doing
+" command-line completion:
 set wildmenu
 
 "set makeprg=plink\ -d\ big2014.25-620474-20140617093254\ -a\ sundev1\ m_eqstst.mk
@@ -565,13 +615,42 @@ set wildmenu
 "set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst-all'
 "set makeprg=ssh\ -t\ ibm9\ '~/bin/buildsrv-send\ eqstst'
 "
-" Compile m_eqstst.sundev1.so:
-"set makeprg=./build
+" I don't know who keeps turning on the cursorline option, but its annoying:
+nnoremap <F12> :set nocursorline<CR>
+
+" For html notes, 'lmx' is "my comments" and lmz is "highlighting the text"
+" The styles can be inserted with UltiSnips ( lmx_styles<ctrl-j> )
+inoremap <F8> <span class='lmx'>lmx:  </span><esc>7hi
+nnoremap <F8> i<span class='lmx'>lmx:  </span><esc>7hi
+inoremap <F9> <span class='lmz'>
+nnoremap <F9> i<span class='lmz'><ESC>
+inoremap <F10> </span>
+nnoremap <F10> i</span><ESC>
+
+"  Calibre-exported text support:
+" Delete the line-level wrapper applied by Calibre:
+nnoremap <C-I> 0xxxxxxxxxxxxxxxxxxxx/<\/p><cr>xxxxj0<ESC>:nohlsearch<CR>
+" Same thing, but for start-of-paragraph, insert a <p/> above
+nmap     <F12> <C-I>kO<p/><ESC>jj
+"  Find a start-of-paragraph:
+nmap   <C-P> /[0-9]\+<\/p<CR>
+
+function! EditSymfileUnderCursor()
+    " cWORD gets the WORD at cursor:
+    let l:xpath=expand("<cWORD>")
+    " Invoke print-symbol-summary -p for the word under cursor.  That
+    " script is in riddle/bin:
+    let l:sumfile=system( "print-symbol-summary " . l:xpath . " -p")
+    " Split the window, load the file:
+    exec ":sp " l:sumfile  
+endfunction
 
 " Compile current module (convert  .h to .cpp automatically:)
 set makeprg=./compile-module\ %
 
+" Position the cursor on a riddle symbol and use this to split/open the .summ:
+nnoremap <leader>z :call EditSymfileUnderCursor()<CR>
 
 
-" source /bbsrc/princeton/skunk/vim/cursor.vim  # not appropriate in Windows
+
 
