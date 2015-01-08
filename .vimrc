@@ -160,6 +160,8 @@ inoremap JK <ESC>
 noremap <F5> :buffers<CR>:buffer<Space>
 noremap <S-F5> :buffers<CR>:bd<Space>
 
+
+
 " ,t starts insert mode and enters # TODO:
 inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
 nnoremap <leader>t A<space>#<space>TODO:<space> 
@@ -196,6 +198,7 @@ nnoremap <F4> :cn<CR>
 " In normal mode, hitting Esc turns off search highlights:
 "  BAD MAPPING:  nmap <ESC> :nohl<CR>
 
+" Change to directory containing current file:
 noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
@@ -282,6 +285,9 @@ noremap <leader>d :close<CR>
 
 " Use CTRL-Q to do what CTRL-V used to do (block select start)
 noremap <C-Q>		<C-V>
+
+" We don't like 's' for substitute, so remap it to '-':
+nnoremap - s
 
 " How could someone use 's' for anything except "save"??
 nnoremap s :w<CR>
@@ -446,7 +452,19 @@ nmap     <F12> <C-I>kO<p/><ESC>jj
 "  Find a start-of-paragraph:
 nmap   <C-P> /[0-9]\+<\/p<CR>
 
+function! EditSymfileUnderCursor()
+    " cWORD gets the WORD at cursor:
+    let l:xpath=expand("<cWORD>")
+    " Invoke print-symbol-summary -p for the word under cursor.  That
+    " script is in riddle/bin:
+    let l:sumfile=system( "print-symbol-summary " . l:xpath . " -p")
+    " Split the window, load the file:
+    exec ":sp " l:sumfile  
+endfunction
 
+
+" Position the cursor on a riddle symbol and use this to split/open the .summ:
+nnoremap <leader>z :call EditSymfileUnderCursor()<CR>
 
 
 

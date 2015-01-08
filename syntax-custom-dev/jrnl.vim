@@ -29,10 +29,16 @@ syn match jrnlTodoOpen          "\[\ \].*$"
 " syn match diffCommon	"^Common subdirectories: .*"
 
 " riddle tokens:
+
 syn match symName       ".*" contained display
 syn match ridDefines    "## defines/" nextgroup=symName
 syn match ridDepends    "## depends/" nextgroup=symName
 syn match ridPromises   "## promises/" nextgroup=symName
+
+" syn match ridDefines    "## defines/"
+" syn match ridDepends    "## depends/"
+" syn match ridPromises   "## promises/"
+
 
 
 syn match diffRemoved	"^-.*"
@@ -67,8 +73,13 @@ hi def link jrnlTodoOther	Comment
 hi def link jrnlTodoActive	Statement
 
 hi def link ridDefines          Statement
+<<<<<<< HEAD
 hi def link ridDepends          PreProc
 hi def link ridPromises         Special
+=======
+hi def link ridDepends          Constant
+hi def link ridPromises         PreProc
+>>>>>>> 59af3cbe4248a73b41e38aa84117e85a522ecb1d
 
 
 hi def link diffOldFile		diffFile
