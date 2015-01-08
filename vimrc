@@ -649,7 +649,7 @@ endfunction
 set makeprg=./compile-module\ %
 
 " Position the cursor on a riddle symbol and use this to split/open the .summ:
-nnoremap <leader>z :call EditSymfileUnderCursor()<CR>
+nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 
 
