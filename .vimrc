@@ -452,16 +452,19 @@ nmap     <F12> <C-I>kO<p/><ESC>jj
 "  Find a start-of-paragraph:
 nmap   <C-P> /[0-9]\+<\/p<CR>
 
-" Invoke print-symbol-summary -p for the word under cursor
-function! PrintSymbolPath()
+function! EditSymfileUnderCursor()
+    " cWORD gets the WORD at cursor:
     let l:xpath=expand("<cWORD>")
+    " Invoke print-symbol-summary -p for the word under cursor.  That
+    " script is in riddle/bin:
     let l:sumfile=system( "print-symbol-summary " . l:xpath . " -p")
-    exec ":sp " l:sumfile
+    " Split the window, load the file:
+    exec ":sp " l:sumfile  
 endfunction
 
 
-" Run print-symbol-summary {text-under-cursor} -p
-command! Sym call PrintSymbolPath()
+" Position the cursor on a riddle symbol and use this to split/open the .summ:
+nnoremap <leader>z :call EditSymfileUnderCursor()<CR>
 
 
 
