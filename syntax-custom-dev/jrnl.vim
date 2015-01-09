@@ -73,13 +73,9 @@ hi def link jrnlTodoOther	Comment
 hi def link jrnlTodoActive	Statement
 
 hi def link ridDefines          Statement
-<<<<<<< HEAD
+
 hi def link ridDepends          PreProc
 hi def link ridPromises         Special
-=======
-hi def link ridDepends          Constant
-hi def link ridPromises         PreProc
->>>>>>> 59af3cbe4248a73b41e38aa84117e85a522ecb1d
 
 
 hi def link diffOldFile		diffFile
