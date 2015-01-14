@@ -600,21 +600,6 @@ let g:NERDTreeDirArrows=0
 " command-line completion:
 set wildmenu
 
-"set makeprg=plink\ -d\ big2014.25-620474-20140617093254\ -a\ sundev1\ m_eqstst.mk
-"set makeprg=plink\ m_eqstst.mk
-
-"set makeprg=make
-"set makeprg=~/bin/build-ssh\ sdv61\ eqstst
-
-
-"set makeprg=ssh\ -t\ sdv9\ '~/bin/buildsrv-send\ eqstst'
-
-"set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst'
-
-"set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ test2'
-"set makeprg=ssh\ -t\ sdv61\ '~/bin/buildsrv-send\ eqstst-all'
-"set makeprg=ssh\ -t\ ibm9\ '~/bin/buildsrv-send\ eqstst'
-"
 " I don't know who keeps turning on the cursorline option, but its annoying:
 nnoremap <F12> :set nocursorline<CR>
 
@@ -654,3 +639,6 @@ nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 
 
+"set makeprg=make
+"
+set makeprg=./build
