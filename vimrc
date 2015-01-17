@@ -640,5 +640,7 @@ nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 
 "set makeprg=make
-"
-set makeprg=./build
+
+" --failpause means 'pause upon failure so I can read the outputr'
+set makeprg=./build\ --failpause
+
