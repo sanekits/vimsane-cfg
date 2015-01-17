@@ -3,7 +3,16 @@
 ## defines/some-symbol
 
 ## depends/some-other
-
+ 
+     - Something old
+     + Something new
++ something new
+@ something else
+< Something out
+  
+> Something in
+>
+! With a bang
 
 # Comments should get highlighted.
 #

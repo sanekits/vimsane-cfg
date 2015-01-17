@@ -20,13 +20,6 @@ syn match jrnlTodoOther         "\[.\].*$"
 syn match jrnlTodoActive        "\[\.\].*$"
 syn match jrnlTodoOpen          "\[\ \].*$"
 
-" syn match diffOnly	"^Only in .*"
-" syn match diffIdentical	"^Files .* and .* are identical$"
-" syn match diffDiffer	"^Files .* and .* differ$"
-" syn match diffBDiffer	"^Binary files .* and .* differ$"
-" syn match diffIsA	"^File .* is a .* while file .* is a .*"
-" syn match diffNoEOL	"^No newline at end of file .*"
-" syn match diffCommon	"^Common subdirectories: .*"
 
 " riddle tokens:
 
@@ -41,11 +34,11 @@ syn match ridPromises   "## promises/" nextgroup=symName
 
 
 
-syn match diffRemoved	"^-.*"
-syn match diffRemoved	"^<.*"
-syn match diffAdded	"^+.*"
-syn match diffAdded	"^>.*"
-syn match diffChanged	"^! .*"
+syn match diffRemoved	"^ *-.*"
+syn match diffRemoved	"^ *<.*"
+syn match diffAdded	"^ *+.*"
+syn match diffAdded	"^ *>.*"
+syn match diffChanged	"^ *! .*"
 
 syn match diffSubname	" @@..*"ms=s+3 contained
 syn match diffLine	"^@.*" contains=diffSubname
