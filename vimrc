@@ -246,7 +246,9 @@ set updatetime=800
 "set mouse=a
 set showcmd
 set title
-set grepprg=ack-grep\ <cword>\ *.cpp\ *.h
+"set grepprg=ack-grep\ <cword>\ *.cpp\ *.h
+
+set grepprg=ack
 
 
 filetype plugin indent on
