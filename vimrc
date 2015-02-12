@@ -208,7 +208,6 @@ vnoremap <leader>z 15j
 
 " We always want a status line:
 set laststatus=2   
-color blue
 
 " Smart tabbing / autoindenting
 set undolevels=100
@@ -531,6 +530,9 @@ augroup END
 
 syntax on
 colorscheme elflord
+if &diff
+    colorscheme blue
+endif
 
 " Note on MoboXterm, I had to symlink from ~/.vim/colors to /usr/share/vim/vim74/colors 
 " to get  any colorscheme to work.  This symlink is masked by .gitignore in .vim
