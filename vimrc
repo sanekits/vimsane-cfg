@@ -317,8 +317,8 @@ nnoremap <leader>] /\[ \]<cr>
 " In normal mode, hitting Esc turns off search highlights:
 "  BAD MAPPING:  nmap <ESC> :nohl<CR>
 
-" Change to directory containing current file:
-noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" Change to directory containing current file, for current window only:
+noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
 let g:load_doxygen_syntax=1
@@ -338,8 +338,8 @@ command! Gitadd cd %:p:h | ! git add %
 " Gitsync adds the current file to git and commits+pushes, all in one step:
 command! Gitsync ! cd %:p:h ; git add % ; git commit % -m "Gitsync from vim" ;  git push origin
 
-"# Cd to the directory of current buffer 
-command! Cd cd %:p:h | pwd
+"# Change the directory of the current window based on loaded file path:
+command! Lcd lcd %:p:h 
 command! Dirhere e %:p:h 
 command! Ddd w | ! nohup dddbash % &
 command! Run ! %
