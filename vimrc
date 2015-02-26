@@ -645,6 +645,13 @@ set makeprg=./compile-module\ %
 nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 
+" The vimdiff colors are truly horrid.  Here's a fix attempt from
+" http://stackoverflow.com/questions/1862423/how-to-tell-which-commit-a-tag-points-to-in-git
+
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 
 "set makeprg=make
