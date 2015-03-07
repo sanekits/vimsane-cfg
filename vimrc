@@ -115,7 +115,7 @@ endif
 
   " Easy motion uses <leader><leader>{object} as its basic input model.
   " So ",,j" will highlight lines and ",,w" will do the same for words.
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " Use :Bdelete to close a buffer without closing the window too:
