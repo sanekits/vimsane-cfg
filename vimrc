@@ -69,15 +69,32 @@ let mapleader=','
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" How to setup plugins for a new machine (if Internet is available):
+
+" 1.  
+"   $   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"    (This downloads Vundle, which is a bootstrapish requirement)
+
+" 2.  Then from within vim, run :PluginInstall
+"
+"    Other plugins are identified by their github relative paths (e.g.
+"    'bling/vim-airline' belongs to github user vim.)  You can also use a full
+"    full clone-worthy path.
 Plugin 'gmarik/Vundle.vim'
 
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
-Plugin 'manual-repos/vim-airline'
-Plugin 'manual-repos/syntastic'
-Plugin 'manual-repos/nerdtree'
-Plugin 'manual-repos/bufexplorer'
-Plugin 'manual-repos/vim-snippets'
+" Plugin 'manual-repos/vim-airline'
+Plugin 'bling/vim-airline'
+" Plugin 'manual-repos/syntastic'
+Plugin 'scrooloose/syntastic'
+" Plugin 'manual-repos/nerdtree'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'manual-repos/bufexplorer'
+Plugin 'corntrace/bufexplorer'
+" Plugin 'manual-repos/vim-snippets'
+Plugin 'honza/vim-snippets'
+Plugin 'vim-scripts/ZoomWin'
 
 if has("python")
     Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
@@ -116,10 +133,9 @@ endif
   " Easy motion uses <leader><leader>{object} as its basic input model.
   " So ",,j" will highlight lines and ",,w" will do the same for words.
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " Use :Bdelete to close a buffer without closing the window too:
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
 
 " End of vundle initialization
 call vundle#end()
@@ -393,18 +409,18 @@ command! Pastebin ! xdg-open http://pastebin.com
 " <leader>p to reformat paragraph:
 nnoremap <leader>p gqip
 
-command! Mdownview w | ! firefox  %
-command! Foxview w | ! firefox  %
-command! Term w | !terminator &
+"command! Mdownview w | ! firefox  %
+"command! Foxview w | ! firefox  %
+"command! Term w | !terminator &
 command! La w | ! ls -a %:p:h
-command! Multimarkdown w | ! multimarkdown % > /tmp/%:p:t.html && firefox /tmp/%:p:t.html &
+"command! Multimarkdown w | ! multimarkdown % > /tmp/%:p:t.html && firefox /tmp/%:p:t.html &
 command! Lirt w | ! ls -lirt %:p:h
 "# Write a root-owned file:
 command! Sudowrite w !sudo tee %
 "# Reload .vimrc
 command! Revimrc source ~/.vimrc
 " Fix the dang keyboard mapping:
-command! Kbfix !source /home/lmatheson/.Xmodmap
+"command! Kbfix !source /home/lmatheson/.Xmodmap
 
 " Riddlesnap takes a quick git snapshot of the state of riddle dir
 command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
@@ -586,8 +602,8 @@ let g:clang_complete_auto=1
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
 " movement can be disorienting.   This is cured by remapping j and k to gj and gk:
-"noremap j gj
-"noremap k gk
+noremap j gj
+noremap k gk
 
 " Switch between .h and .cpp if they're in the same dir:
 nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
