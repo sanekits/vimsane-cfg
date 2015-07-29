@@ -576,7 +576,7 @@ augroup  fmtOpts
 
     let g:syntastic_cpp_compiler = 'g++'
     "let g:syntastic_cpp_compiler = 'clang++'
-    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+    "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
 augroup  END
 
