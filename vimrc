@@ -73,8 +73,8 @@ Plugin 'gmarik/Vundle.vim'
 
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
-Plugin 'manual-repos/vim-airline'
-Plugin 'manual-repos/syntastic'
+" Plugin 'manual-repos/vim-airline'
+" Plugin 'manual-repos/syntastic'
 Plugin 'manual-repos/nerdtree'
 Plugin 'manual-repos/bufexplorer'
 Plugin 'manual-repos/vim-snippets'
@@ -574,7 +574,7 @@ augroup  fmtOpts
     " workaround:
     autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
 
-    let g:syntastic_cpp_compiler = 'g++'
+    "let g:syntastic_cpp_compiler = 'g++'
     "let g:syntastic_cpp_compiler = 'clang++'
     "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
