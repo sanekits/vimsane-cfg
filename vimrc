@@ -73,7 +73,7 @@ Plugin 'gmarik/Vundle.vim'
 
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
-" Plugin 'manual-repos/vim-airline'
+Plugin 'manual-repos/vim-airline'
 " Plugin 'manual-repos/syntastic'
 Plugin 'manual-repos/nerdtree'
 Plugin 'manual-repos/bufexplorer'
