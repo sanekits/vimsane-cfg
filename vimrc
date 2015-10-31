@@ -119,7 +119,7 @@ Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " Use :Bdelete to close a buffer without closing the window too:
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
 
 " End of vundle initialization
 call vundle#end()
