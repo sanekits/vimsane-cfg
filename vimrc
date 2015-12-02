@@ -157,11 +157,13 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
     \   "go": '// ',
     \   "java": '// ',
     \   "javascript": '// ',
+    \   "make": '# ',
     \   "php": '// ',
     \   "python": '# ',
     \   "ruby": '# ',
     \   "vim": '" ',
     \   "sh": '# ',
+    \   "plaintex": '% ',
     \ }
 
     function! ToggleComment()
