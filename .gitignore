@@ -6,3 +6,4 @@ bundle
 colors
 manual-repos
 tags
+*.un~

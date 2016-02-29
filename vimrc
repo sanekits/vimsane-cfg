@@ -148,6 +148,8 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 au BufRead,BufNewFile *.jrnl  setfiletype jrnl
 
+let g:tex_flavor = "latex"
+
 " Experimenting with .vim/syntax/cel.vim
 "au BufRead,BufNewFile *.stc setfiletype cel
 
@@ -176,6 +178,7 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
     \   "php": '// ',
     \   "python": '# ',
     \   "ruby": '# ',
+    \   "tex": '%',
     \   "vim": '" ',
     \   "sh": '# ',
     \ }
@@ -262,12 +265,13 @@ set updatetime=800
 "set mouse=a
 set showcmd
 set title
-set grepprg=ack-grep\ <cword>\ *.cpp\ *.h
+set grepprg=ack-grep
 
 
 filetype plugin indent on
 set history=1000
 set undolevels=1000
+set undofile
 
 " We don't like a simple 'u' for undo, it's to easy to hit accidentally and
 " make a mess. Our 'undo' is Ctrl+Z, like CUA
@@ -526,6 +530,35 @@ set nolist
 let is_bash = 1 " our 'sh' Bourne shell is alias to bash
 let sh_fold_enabled= 7 " enable all kinds of syntax folding
 
+" Doing ':Shell ls /' will load the ls output into a new
+" buffer for edit/display.  Note that you can't pass wildcards to the args,
+" haven't figured out why.
+command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+function! s:RunShellCommand(cmdline)
+  let isfirst = 1
+  let words = []
+  for word in split(a:cmdline)
+    if isfirst
+      let isfirst = 0  " don't change first word (shell command)
+    else
+      if word[0] =~ '\v[%#<]'
+        let word = expand(word)
+      endif
+      let word = shellescape(word, 1)
+    endif
+    call add(words, word)
+  endfor
+  let expanded_cmdline = join(words)
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call setline(1, 'Cmd:  ' . a:cmdline)
+  call setline(2, 'Expanded:  ' . expanded_cmdline)
+  call append(line('$'), substitute(getline(2), '.', '=', 'g'))
+  silent execute '$read !'. expanded_cmdline
+  1
+endfunction
+
+
 " Toggle paste mode:
 set pastetoggle=<F2>
 " In normal mode, we get similar effect:
@@ -647,7 +680,7 @@ function! EditSymfileUnderCursor()
 endfunction
 
 " Compile current module (convert  .h to .cpp automatically:)
-set makeprg=./compile-module\ %
+"set makeprg=./compile-module\ %
 
 " Position the cursor on a riddle symbol and use this to split/open the .summ:
 nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
@@ -658,5 +691,6 @@ nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 "set makeprg=make
 
 " --failpause means 'pause upon failure so I can read the outputr'
-set makeprg=./build\ --failpause
+"set makeprg=./build\ --failpause
+set makeprg=./build\ %
 
