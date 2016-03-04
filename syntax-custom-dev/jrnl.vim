@@ -18,7 +18,7 @@ syn match diffComment	"^#.*"
 " TODOs:
 syn match jrnlTodoOther         "\[.\].*$"
 syn match jrnlTodoActive        "\[\.\].*$"
-syn match jrnlTodoActive        "?.*$"
+syn match jrnlTodoActive        "^ *?.*$"
 syn match jrnlTodoOpen          "\[\ \].*$"
 
 
