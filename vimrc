@@ -52,6 +52,8 @@ let mapleader=','
 " Open quickfix window:
 "   :cw
 "   :copen
+"   :cold  << Go to previous quickfix contents
+"   :cnew  >> Go to newer quickfix contents
 "
 " List all matching tags:
 "   :tselect {name}
