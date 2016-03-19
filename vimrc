@@ -327,15 +327,7 @@ noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 " Fix C# triple-slash comment headers:
 let g:load_doxygen_syntax=1
 
-" SVN commands:
-command! Svnadd !svn add %
-command! Svnup !svn update
-command! SvnCommitNomsg !svn commit -m "" %
-command! Svnstat !svn status
-command! Svndiff !svndiff %
 
-" Purge local .pyc files
-command! Pyclean !rm *.pyc
 
 " GIT commands:
 command! Gitadd cd %:p:h | ! git add %
@@ -348,6 +340,14 @@ command! Dirhere e %:p:h
 command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
+
+" Filelist invokes filelist-append.sh to add one or more files/groups to
+" ./.filelist:
+"  e.g.:  
+"       :Filelist cpp h
+"  
+command! -nargs=1 Filelist execute "!filelist-append.sh" '<args>' | args .filelist
+
 
 " Copy a URL to the clipboard:
 function! HandleURL()
