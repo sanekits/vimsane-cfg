@@ -17,6 +17,7 @@ syn match diffComment	"^#.*"
 
 " TODOs:
 syn match jrnlTodoOther         "\[.\].*$"
+syn match jrnlTodoPriority      "\[\*\].*$"
 syn match jrnlTodoActive        "\[\.\].*$"
 syn match jrnlTodoActive        "^ *?.*$"
 syn match jrnlTodoOpen          "\[\ \].*$"
@@ -65,6 +66,7 @@ syn match diffNewFile	"^--- .*"
 hi def link jrnlTodoOpen        Identifier
 hi def link jrnlTodoOther	Comment
 hi def link jrnlTodoActive	Statement
+hi def link jrnlTodoPriority    Constant
 
 hi def link ridDefines          Statement
 hi def link ridDepends          Constant
