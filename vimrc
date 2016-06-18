@@ -716,10 +716,10 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Re
 "set makeprg=make
 
 " Generic build using local script:
-"set makeprg=./build
+set makeprg=./build
 
 " For eqstst, building a single module on linux:
-set makeprg=./xbuild.sh\ %
+"set makeprg=./xbuild.sh\ %
 "
 " --failpause means 'pause upon failure so I can read the outputr'
 "set makeprg=./build\ --failpause
