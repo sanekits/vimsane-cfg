@@ -156,6 +156,7 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
     let s:comment_map = {
     \   "c": '// ',
     \   "cpp": '// ',
+    \   "csc2": '# ',
     \   "go": '// ',
     \   "java": '// ',
     \   "javascript": '// ',
