@@ -616,7 +616,7 @@ if has("gui_running")
 	nmap <leader>+ :LargerFont<CR> 
 	nmap <leader>= :LargerFont<CR> 
 	nmap <leader>- :SmallerFont<CR> 
-	set guifont=Monospace\ 12
+	set guifont=Monospace\ 11
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
