@@ -342,6 +342,14 @@ command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
 
+function! s:ToxCore(dirFragment)
+    let s:dirn=systemlist('rbuzz_rcd ' . a:dirFragment . " 1")[0]
+    exe "lcd " . s:dirn
+    echo "Changed dir to [" . s:dirn . "]"
+endfunction
+
+command! -nargs=1 Tox call s:ToxCore(<f-args>)
+
 " Filelist invokes filelist-append.sh to add one or more files/groups to
 " ./.filelist:
 "  e.g.:  
