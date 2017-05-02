@@ -296,6 +296,8 @@ inoremap JK <ESC>
 noremap <F5> :buffers<CR>:buffer<Space>
 noremap <S-F5> :buffers<CR>:bd<Space>
 
+nnoremap fu <C-U>
+nnoremap fd <C-D>
 
 
 " ,t starts insert mode and enters # TODO:
