@@ -589,7 +589,7 @@ if has("gui_running")
     if has("gui_gtk2")
         set guifont=Inconsolata\ 12
     elseif has("gui_macvim")
-        set guifont=Menlo\ Regular:h14
+        set guifont=Menlo\ Regular:h16
     elseif has("gui_win32")
         set guifont=Consolas:h10:cANSI
     endif
@@ -599,7 +599,7 @@ if has("gui_running")
 	nmap <leader>+ :LargerFont<CR> 
 	nmap <leader>= :LargerFont<CR> 
 	nmap <leader>- :SmallerFont<CR> 
-	set guifont=Monospace\ 12
+	set guifont=Monospace\ 14
     "set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
@@ -675,7 +675,7 @@ function! EditSymfileUnderCursor()
     " cWORD gets the WORD at cursor:
     let l:xpath=expand("<cWORD>")
     " Invoke print-symbol-summary -p for the word under cursor.  That
-    " script is in riddle/bin:
+    " script is in riddle/bin: 
     let l:sumfile=system( "print-symbol-summary " . l:xpath . " -p")
     " Split the window, load the file:
     exec ":sp " l:sumfile  
@@ -690,9 +690,9 @@ nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 
 
-"set makeprg=make
+set makeprg=make
 
 " --failpause means 'pause upon failure so I can read the outputr'
 "set makeprg=./build\ --failpause
-set makeprg=./build\ %
+"set makeprg=./build
 

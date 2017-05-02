@@ -18,8 +18,8 @@ syn match diffComment	"^#.*"
 " TODOs:
 syn match jrnlTodoOther         "\[.\].*$"
 syn match jrnlTodoActive        "\[\.\].*$"
+syn match jrnlTodoActive        "^ *?.*$"
 syn match jrnlTodoOpen          "\[\ \].*$"
-
 
 " riddle tokens:
 
@@ -63,7 +63,7 @@ syn match diffNewFile	"^--- .*"
 " Only used when an item doesn't have highlighting yet
 hi def link jrnlTodoOpen        Identifier
 hi def link jrnlTodoOther	Comment
-hi def link jrnlTodoActive	Statement
+hi def link jrnlTodoActive	Type
 
 hi def link ridDefines          Statement
 
