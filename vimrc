@@ -298,6 +298,11 @@ set tags=./tags;/
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" Page up, page down:
+nnoremap fu <C-U>   
+nnoremap fd <C-D>   
+vnoremap fu <C-U>   
+vnoremap fd <C-D>   
 
 
 
