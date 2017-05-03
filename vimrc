@@ -71,10 +71,22 @@ let mapleader=','
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" How to setup plugins for a new machine (if Internet is available):
+
+" 1.  
+"   $   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"    (This downloads Vundle, which is a bootstrapish requirement)
+
+" 2.  Then from within vim, run :PluginInstall
+"
+"    Other plugins are identified by their github relative paths (e.g.
+"    'bling/vim-airline' belongs to github user vim.)  You can also use a full
+"    full clone-worthy path.
 Plugin 'gmarik/Vundle.vim'
 
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
+
 Plugin 'manual-repos/vim-airline'
 " Plugin 'manual-repos/syntastic'
 Plugin 'manual-repos/nerdtree'
@@ -134,6 +146,8 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 au BufRead,BufNewFile *.jrnl  setfiletype jrnl
 
+let g:tex_flavor = "latex"
+
 " Experimenting with .vim/syntax/cel.vim
 "au BufRead,BufNewFile *.stc setfiletype cel
 
@@ -164,6 +178,7 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
     \   "php": '// ',
     \   "python": '# ',
     \   "ruby": '# ',
+    \   "tex": '%',
     \   "vim": '" ',
     \   "sh": '# ',
     \   "plaintex": '% ',
@@ -250,14 +265,13 @@ set updatetime=800
 "set mouse=a
 set showcmd
 set title
-"set grepprg=ack-grep\ <cword>\ *.cpp\ *.h
-
 set grepprg=ack
 
 
 filetype plugin indent on
 set history=1000
 set undolevels=1000
+set undofile
 
 " We don't like a simple 'u' for undo, it's to easy to hit accidentally and
 " make a mess. Our 'undo' is Ctrl+Z, like CUA
@@ -416,18 +430,18 @@ command! Pastebin ! xdg-open http://pastebin.com
 " <leader>p to reformat paragraph:
 nnoremap <leader>p gqip
 
-command! Mdownview w | ! firefox  %
-command! Foxview w | ! firefox  %
-command! Term w | !terminator &
+"command! Mdownview w | ! firefox  %
+"command! Foxview w | ! firefox  %
+"command! Term w | !terminator &
 command! La w | ! ls -a %:p:h
-command! Multimarkdown w | ! multimarkdown % > /tmp/%:p:t.html && firefox /tmp/%:p:t.html &
+"command! Multimarkdown w | ! multimarkdown % > /tmp/%:p:t.html && firefox /tmp/%:p:t.html &
 command! Lirt w | ! ls -lirt %:p:h
 "# Write a root-owned file:
 command! Sudowrite w !sudo tee %
 "# Reload .vimrc
 command! Revimrc source ~/.vimrc
 " Fix the dang keyboard mapping:
-command! Kbfix !source /home/lmatheson/.Xmodmap
+"command! Kbfix !source /home/lmatheson/.Xmodmap
 
 " Riddlesnap takes a quick git snapshot of the state of riddle dir
 command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
@@ -533,6 +547,35 @@ set nolist
 let is_bash = 1 " our 'sh' Bourne shell is alias to bash
 let sh_fold_enabled= 7 " enable all kinds of syntax folding
 
+" Doing ':Shell ls /' will load the ls output into a new
+" buffer for edit/display.  Note that you can't pass wildcards to the args,
+" haven't figured out why.
+command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+function! s:RunShellCommand(cmdline)
+  let isfirst = 1
+  let words = []
+  for word in split(a:cmdline)
+    if isfirst
+      let isfirst = 0  " don't change first word (shell command)
+    else
+      if word[0] =~ '\v[%#<]'
+        let word = expand(word)
+      endif
+      let word = shellescape(word, 1)
+    endif
+    call add(words, word)
+  endfor
+  let expanded_cmdline = join(words)
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call setline(1, 'Cmd:  ' . a:cmdline)
+  call setline(2, 'Expanded:  ' . expanded_cmdline)
+  call append(line('$'), substitute(getline(2), '.', '=', 'g'))
+  silent execute '$read !'. expanded_cmdline
+  1
+endfunction
+
+
 " Toggle paste mode:
 set pastetoggle=<F2>
 " In normal mode, we get similar effect:
@@ -619,7 +662,7 @@ if has("gui_running")
     if has("gui_gtk2")
         set guifont=Inconsolata\ 12
     elseif has("gui_macvim")
-        set guifont=Menlo\ Regular:h14
+        set guifont=Menlo\ Regular:h16
     elseif has("gui_win32")
         set guifont=Consolas:h10:cANSI
     endif
@@ -667,8 +710,8 @@ let g:clang_complete_auto=1
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
 " movement can be disorienting.   This is cured by remapping j and k to gj and gk:
-"noremap j gj
-"noremap k gk
+noremap j gj
+noremap k gk
 
 " Switch between .h and .cpp if they're in the same dir:
 nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
@@ -705,14 +748,14 @@ function! EditSymfileUnderCursor()
     " cWORD gets the WORD at cursor:
     let l:xpath=expand("<cWORD>")
     " Invoke print-symbol-summary -p for the word under cursor.  That
-    " script is in riddle/bin:
+    " script is in riddle/bin: 
     let l:sumfile=system( "print-symbol-summary " . l:xpath . " -p")
     " Split the window, load the file:
     exec ":sp " l:sumfile  
 endfunction
 
 " Compile current module (convert  .h to .cpp automatically:)
-set makeprg=./compile-module\ %
+"set makeprg=./compile-module\ %
 
 " Position the cursor on a riddle symbol and use this to split/open the .summ:
 nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
@@ -727,7 +770,7 @@ highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Re
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 
-"set makeprg=make
+set makeprg=make
 
 " Generic build using local script:
 "set makeprg=./build
@@ -738,6 +781,5 @@ set makeprg=xbd5\ make\ --ccache\ -tS\ --check=gcc-wall\ xapapp3.tsk
 "
 " --failpause means 'pause upon failure so I can read the outputr'
 "set makeprg=./build\ --failpause
-
-
+"set makeprg=./build
 

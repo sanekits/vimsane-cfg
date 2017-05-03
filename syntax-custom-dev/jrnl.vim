@@ -21,10 +21,8 @@ syn match jrnlTodoOther         "^ *x .*$"
 syn match jrnlTodoPriority      "\[\*\].*$"
 syn match jrnlTodoPriority      "^ *\* .*$"
 syn match jrnlTodoActive        "\[\.\].*$"
-syn match jrnlTodoActive        "^ *?.*$"
 syn match jrnlTodoActive        "^ *\. .*$"
 syn match jrnlTodoOpen          "\[\ \].*$"
-
 
 " riddle tokens:
 
@@ -72,9 +70,9 @@ hi def link jrnlTodoActive	Statement
 hi def link jrnlTodoPriority    Constant
 
 hi def link ridDefines          Statement
-hi def link ridDepends          Constant
-hi def link ridPromises         PreProc
 
+hi def link ridDepends          PreProc
+hi def link ridPromises         Special
 
 
 hi def link diffOldFile		diffFile
