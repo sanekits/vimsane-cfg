@@ -230,7 +230,6 @@ vnoremap <leader>z 15j
 set laststatus=2   
 
 " Smart tabbing / autoindenting
-set undolevels=100
 set autoindent
 set copyindent
 
@@ -272,6 +271,7 @@ filetype plugin indent on
 set history=1000
 set undolevels=1000
 set undofile
+set undodir=~/.vimundo/
 
 " We don't like a simple 'u' for undo, it's to easy to hit accidentally and
 " make a mess. Our 'undo' is Ctrl+Z, like CUA
