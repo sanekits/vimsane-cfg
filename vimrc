@@ -52,6 +52,8 @@ let mapleader=','
 " Open quickfix window:
 "   :cw
 "   :copen
+"   :cold  << Go to previous quickfix contents
+"   :cnew  >> Go to newer quickfix contents
 "
 " List all matching tags:
 "   :tselect {name}
@@ -84,17 +86,12 @@ Plugin 'gmarik/Vundle.vim'
 
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
-" Plugin 'manual-repos/vim-airline'
-Plugin 'bling/vim-airline'
+
+Plugin 'manual-repos/vim-airline'
 " Plugin 'manual-repos/syntastic'
-Plugin 'scrooloose/syntastic'
-" Plugin 'manual-repos/nerdtree'
-Plugin 'scrooloose/nerdtree'
-" Plugin 'manual-repos/bufexplorer'
-Plugin 'corntrace/bufexplorer'
-" Plugin 'manual-repos/vim-snippets'
-Plugin 'honza/vim-snippets'
-Plugin 'vim-scripts/ZoomWin'
+Plugin 'manual-repos/nerdtree'
+Plugin 'manual-repos/bufexplorer'
+Plugin 'manual-repos/vim-snippets'
 
 if has("python")
     Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
@@ -132,7 +129,8 @@ endif
 
   " Easy motion uses <leader><leader>{object} as its basic input model.
   " So ",,j" will highlight lines and ",,w" will do the same for words.
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " Use :Bdelete to close a buffer without closing the window too:
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
@@ -172,15 +170,18 @@ let g:tex_flavor = "latex"
     let s:comment_map = {
     \   "c": '// ',
     \   "cpp": '// ',
+    \   "csc2": '# ',
     \   "go": '// ',
     \   "java": '// ',
     \   "javascript": '// ',
+    \   "make": '# ',
     \   "php": '// ',
     \   "python": '# ',
     \   "ruby": '# ',
     \   "tex": '%',
     \   "vim": '" ',
     \   "sh": '# ',
+    \   "plaintex": '% ',
     \ }
 
     function! ToggleComment()
@@ -227,10 +228,8 @@ vnoremap <leader>z 15j
 
 " We always want a status line:
 set laststatus=2   
-color blue
 
 " Smart tabbing / autoindenting
-set undolevels=100
 set autoindent
 set copyindent
 
@@ -265,13 +264,14 @@ set updatetime=800
 "set mouse=a
 set showcmd
 set title
-set grepprg=ack-grep
+set grepprg=ack
 
 
 filetype plugin indent on
 set history=1000
 set undolevels=1000
 set undofile
+set undodir=~/.vimundo/
 
 " We don't like a simple 'u' for undo, it's to easy to hit accidentally and
 " make a mess. Our 'undo' is Ctrl+Z, like CUA
@@ -296,10 +296,6 @@ inoremap JK <ESC>
 noremap <F5> :buffers<CR>:buffer<Space>
 noremap <S-F5> :buffers<CR>:bd<Space>
 
-nnoremap fu <C-U>
-nnoremap fd <C-D>
-vnoremap fu <C-U>
-vnoremap fd <C-D>
 
 
 " ,t starts insert mode and enters # TODO:
@@ -316,6 +312,11 @@ set tags=./tags;/
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" Page up, page down:
+nnoremap fu <C-U>   
+nnoremap fd <C-D>   
+vnoremap fu <C-U>   
+vnoremap fd <C-D>   
 
 
 
@@ -340,33 +341,41 @@ nnoremap <leader>] /\[ \]<cr>
 " In normal mode, hitting Esc turns off search highlights:
 "  BAD MAPPING:  nmap <ESC> :nohl<CR>
 
-" Change to directory containing current file:
-noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" Change to directory containing current file, for current window only:
+noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
 let g:load_doxygen_syntax=1
 
-" SVN commands:
-command! Svnadd !svn add %
-command! Svnup !svn update
-command! SvnCommitNomsg !svn commit -m "" %
-command! Svnstat !svn status
-command! Svndiff !svndiff %
 
-" Purge local .pyc files
-command! Pyclean !rm *.pyc
 
 " GIT commands:
 command! Gitadd cd %:p:h | ! git add %
 " Gitsync adds the current file to git and commits+pushes, all in one step:
 command! Gitsync ! cd %:p:h ; git add % ; git commit % -m "Gitsync from vim" ;  git push origin
 
-"# Cd to the directory of current buffer 
-command! Cd cd %:p:h | pwd
+"# Change the directory of the current window based on loaded file path:
+command! Lcd lcd %:p:h 
 command! Dirhere e %:p:h 
 command! Ddd w | ! nohup dddbash % &
 command! Run ! %
 command! Chmodx ! chmod +x %
+
+function! s:ToxCore(dirFragment)
+    let s:dirn=systemlist('rbuzz_rcd ' . a:dirFragment . " 1")[0]
+    exe "lcd " . s:dirn
+    echo "Changed dir to [" . s:dirn . "]"
+endfunction
+
+command! -nargs=1 Tox call s:ToxCore(<f-args>)
+
+" Filelist invokes filelist-append.sh to add one or more files/groups to
+" ./.filelist:
+"  e.g.:  
+"       :Filelist cpp h
+"  
+command! -nargs=1 Filelist execute "!filelist-append.sh" '<args>' | args .filelist
+
 
 " Copy a URL to the clipboard:
 function! HandleURL()
@@ -383,7 +392,11 @@ endfunction
 map gx :call HandleURL()<cr>
 
 
+" The Astyle command will reformat the file
 command! Astyle w | !astyle %; rm %.orig
+
+" In visual mode, F8 will reformat the highlighted text:
+vnoremap <F8> :!astyle<CR>
 " Copy the current buffer's filename to the w register:
 nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 
@@ -582,6 +595,64 @@ augroup END
 
 syntax on
 colorscheme elflord
+if &diff
+    colorscheme blue
+endif
+
+" Doing ':Shell ls /' will load the ls output into a new
+" buffer for edit/display.  Note that you can't pass wildcards to the args,
+" haven't figured out why.
+command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+function! s:RunShellCommand(cmdline)
+  let isfirst = 1
+  let words = []
+  for word in split(a:cmdline)
+    if isfirst
+      let isfirst = 0  " don't change first word (shell command)
+    else
+      if word[0] =~ '\v[%#<]'
+        let word = expand(word)
+      endif
+      let word = shellescape(word, 1)
+    endif
+    call add(words, word)
+  endfor
+  let expanded_cmdline = join(words)
+  botright new
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call setline(1, 'Cmd:  ' . a:cmdline)
+  call setline(2, 'Expanded:  ' . expanded_cmdline)
+  call append(line('$'), substitute(getline(2), '.', '=', 'g'))
+  silent execute '$read !'. expanded_cmdline
+  1
+endfunction
+
+
+
+" command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+" function! s:RunShellCommand(cmdline)
+"   let isfirst = 1
+"   let words = []
+"   for word in split(a:cmdline)
+"     if isfirst
+"       let isfirst = 0  " don't change first word (shell command)
+"     else
+"       if word[0] =~ '\v[%#<]'
+"         let word = expand(word)
+"       endif
+"       let word = shellescape(word, 1)
+"     endif
+"     call add(words, word)
+"   endfor
+"   let expanded_cmdline = join(words)
+"   botright new
+"   setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+"   call setline(1, 'You entered:  ' . a:cmdline)
+"   call setline(2, 'Expanded to:  ' . expanded_cmdline)
+"   call append(line('$'), substitute(getline(2), '.', '=', 'g'))
+"   silent execute '$read !'. expanded_cmdline
+"   1
+" endfunction
 
 " Note on MoboXterm, I had to symlink from ~/.vim/colors to /usr/share/vim/vim74/colors 
 " to get  any colorscheme to work.  This symlink is masked by .gitignore in .vim
@@ -601,8 +672,8 @@ if has("gui_running")
 	nmap <leader>+ :LargerFont<CR> 
 	nmap <leader>= :LargerFont<CR> 
 	nmap <leader>- :SmallerFont<CR> 
-	set guifont=Monospace\ 14
-    "set guioptions-=m  "remove menu bar
+	set guifont=Monospace\ 10
+    set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=L  "remove left-hand scroll bar
@@ -619,9 +690,9 @@ augroup  fmtOpts
     " workaround:
     autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
 
-    let g:syntastic_cpp_compiler = 'g++'
+    "let g:syntastic_cpp_compiler = 'g++'
     "let g:syntastic_cpp_compiler = 'clang++'
-    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+    "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     "au BufNewFile,BufRead *.cpp set syntax=cpp11
 augroup  END
 
@@ -690,10 +761,24 @@ endfunction
 nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 
+" The vimdiff colors are truly horrid.  Here's a fix attempt from
+" http://stackoverflow.com/questions/1862423/how-to-tell-which-commit-a-tag-points-to-in-git
+
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 
 set makeprg=make
 
+" Generic build using local script:
+"set makeprg=./build
+set makeprg=xbd5\ make\ --ccache\ -tS\ --check=gcc-wall\ xapapp3.tsk
+
+" For eqstst, building a single module on linux:
+"set makeprg=./xbuild.sh\ %
+"
 " --failpause means 'pause upon failure so I can read the outputr'
 "set makeprg=./build\ --failpause
 "set makeprg=./build
