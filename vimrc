@@ -91,10 +91,10 @@ Plugin 'manual-repos/vim-airline'
 " Plugin 'manual-repos/syntastic'
 Plugin 'manual-repos/nerdtree'
 Plugin 'manual-repos/bufexplorer'
-Plugin 'manual-repos/vim-snippets'
+"Plugin 'manual-repos/vim-snippets'
 
 if has("python")
-    Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
+"    Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
         "  Note: on my vaiop cygwin, I had to symlink from
         "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
         "  If python isn't compiled into vim, UltiSnips will not work.   On Cygwin,
@@ -129,7 +129,7 @@ endif
 
   " Easy motion uses <leader><leader>{object} as its basic input model.
   " So ",,j" will highlight lines and ",,w" will do the same for words.
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
 Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " Use :Bdelete to close a buffer without closing the window too:
