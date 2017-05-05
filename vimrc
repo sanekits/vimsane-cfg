@@ -298,6 +298,8 @@ noremap <S-F5> :buffers<CR>:bd<Space>
 
 nnoremap fu <C-U>
 nnoremap fd <C-D>
+vnoremap fu <C-U>
+vnoremap fd <C-D>
 
 
 " ,t starts insert mode and enters # TODO:
