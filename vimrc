@@ -112,7 +112,8 @@ endif
 
 
   " vim-airline color tweaking...
-  g:airline_theme='dark'
+  ": AirlineTheme 'kolor'
+  let g:airline_theme='kolor'
 
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
