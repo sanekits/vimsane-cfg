@@ -80,7 +80,7 @@ call vundle#begin()
 " 2.  Then from within vim, run :PluginInstall
 "
 "    Other plugins are identified by their github relative paths (e.g.
-"    'bling/vim-airline' belongs to github user vim.)  You can also use a full
+"    'vim-airline/vim-airline' belongs to github user vim.)  You can also use a full
 "    full clone-worthy path.
 Plugin 'gmarik/Vundle.vim'
 
@@ -88,9 +88,11 @@ Plugin 'gmarik/Vundle.vim'
 "   Powerline went Big City, and vim-airline is its recommended replacement.
 
 Plugin 'manual-repos/vim-airline'
+Plugin 'manual-repos/vim-airline-themes'
 " Plugin 'manual-repos/syntastic'
 Plugin 'manual-repos/nerdtree'
 Plugin 'manual-repos/bufexplorer'
+Plugin 'manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
 "Plugin 'manual-repos/vim-snippets'
 
 if has("python")
@@ -107,6 +109,10 @@ endif
 " Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
   let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+
+
+  " vim-airline color tweaking...
+  g:airline_theme='dark'
 
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
