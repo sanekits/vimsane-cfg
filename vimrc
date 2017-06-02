@@ -313,7 +313,7 @@ nnoremap <leader>t A<space>#<space>TODO:<space>
 nnoremap <silent> <leader>n :BufExplorer<CR>
 
 " Load tags on startup.
-set tags=./tags;/
+set tags=tags;/
 
 "  Don't ever, ever, ever beep or flash at me:
 set noerrorbells visualbell t_vb=
