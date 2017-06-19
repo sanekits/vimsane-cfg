@@ -354,6 +354,12 @@ noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 " Fix C# triple-slash comment headers:
 let g:load_doxygen_syntax=1
 
+" Gtags helpers:
+"==============
+    
+"invoke Gtags [cursor-symbol] to find definition:
+map <C-]> :GtagsCursor<CR>  
+
 
 
 " GIT commands:
