@@ -789,4 +789,5 @@ set makeprg=./build
 " --failpause means 'pause upon failure so I can read the outputr'
 "set makeprg=./build\ --failpause
 "set makeprg=./build
+command! Roundtrip cd ~/riddle | ! bin/roundtrip
 
