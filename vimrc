@@ -87,6 +87,7 @@ Plugin 'gmarik/Vundle.vim'
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
 
+Plugin 'manual-repos/QFGrep'
 Plugin 'manual-repos/vim-airline'
 Plugin 'manual-repos/vim-airline-themes'
 " Plugin 'manual-repos/syntastic'
@@ -313,7 +314,7 @@ nnoremap <leader>t A<space>#<space>TODO:<space>
 nnoremap <silent> <leader>n :BufExplorer<CR>
 
 " Load tags on startup.
-set tags=./tags;/
+set tags=tags;/
 
 "  Don't ever, ever, ever beep or flash at me:
 set noerrorbells visualbell t_vb=
@@ -353,6 +354,12 @@ noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
 let g:load_doxygen_syntax=1
+
+" Gtags helpers:
+"==============
+    
+"invoke Gtags [cursor-symbol] to find definition:
+map <C-]> :GtagsCursor<CR>  
 
 
 
@@ -679,7 +686,7 @@ if has("gui_running")
 	nmap <leader>+ :LargerFont<CR> 
 	nmap <leader>= :LargerFont<CR> 
 	nmap <leader>- :SmallerFont<CR> 
-	set guifont=Monospace\ 10
+	set guifont=Monospace\ 11
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
