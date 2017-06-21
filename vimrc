@@ -5,6 +5,8 @@ set nocompatible  " Keep this as first line always
 set cmdheight=2   " A bit more room for the command line
 let mapleader=','
 
+let $VIMHOME=expand('<sfile>:p:h')
+
 " Reminders
 " .........
 "
@@ -66,7 +68,6 @@ let mapleader=','
 "
 " Tip: the 'has' command in vim can be used to test for a feature, e.g. 'if has("python") ...'
 " 
-
 "===========  Vundle start  ======================
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -77,7 +78,9 @@ call vundle#begin()
 "   $   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "    (This downloads Vundle, which is a bootstrapish requirement)
 
-" 2.  Then from within vim, run :PluginInstall
+" 2.  edit/replace the absolute file paths for 'manual-repos' below as needed
+"
+" 3.  Then from within vim, run :PluginInstall
 "
 "    Other plugins are identified by their github relative paths (e.g.
 "    'vim-airline/vim-airline' belongs to github user vim.)  You can also use a full
@@ -87,14 +90,15 @@ Plugin 'gmarik/Vundle.vim'
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
 
-Plugin 'manual-repos/xterm-color-table.vim'
-Plugin 'manual-repos/QFGrep'
-Plugin 'manual-repos/vim-airline'
-Plugin 'manual-repos/vim-airline-themes'
-" Plugin 'manual-repos/syntastic'
-Plugin 'manual-repos/nerdtree'
-Plugin 'manual-repos/bufexplorer'
-Plugin 'manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
+
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/xterm-color-table.vim'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/QFGrep'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline-themes'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
 "Plugin 'manual-repos/vim-snippets'
 
 if has("python")
@@ -104,6 +108,8 @@ if has("python")
         "  If python isn't compiled into vim, UltiSnips will not work.   On Cygwin,
         "  you have to build vim manually:  http://stackoverflow.com/a/14059666/237059
 endif
+
+
 "
 " Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
 " Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
@@ -344,6 +350,15 @@ inoremap <F3> <ESC>:w<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 nnoremap <F4> :cn<CR>
 
 nnoremap <leader>] /\[ \]<cr>
+
+" map grok wrapper....
+" Full text search:
+nnoremap <leader>oga :!env grok <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+" definition search:
+nnoremap <leader>ogd :!env grok -d <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+" symbol reference search:
+nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+
 
 
 
@@ -775,6 +790,9 @@ endfunction
 " Position the cursor on a riddle symbol and use this to split/open the .summ:
 nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
+source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
+
+hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
 " The vimdiff colors are truly horrid.  Here's a fix attempt from
 " http://stackoverflow.com/questions/1862423/how-to-tell-which-commit-a-tag-points-to-in-git
@@ -797,4 +815,6 @@ set makeprg=./build
 " --failpause means 'pause upon failure so I can read the outputr'
 "set makeprg=./build\ --failpause
 "set makeprg=./build
+
+
 
