@@ -476,6 +476,10 @@ command! Revimrc source ~/.vimrc
 " Riddlesnap takes a quick git snapshot of the state of riddle dir
 command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
 
+
+" Run gvim with the current file
+command! Gvim !gvim %
+
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
 "  ,d to close window:
@@ -604,6 +608,7 @@ function! s:RunShellCommand(cmdline)
   silent execute '$read !'. expanded_cmdline
   1
 endfunction
+
 
 
 " Toggle paste mode:
