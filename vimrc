@@ -93,7 +93,7 @@ Plugin 'manual-repos/vim-airline-themes'
 " Plugin 'manual-repos/syntastic'
 Plugin 'manual-repos/nerdtree'
 Plugin 'manual-repos/bufexplorer'
-Plugin 'manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
+"Plugin 'manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
 "Plugin 'manual-repos/vim-snippets'
 
 if has("python")
