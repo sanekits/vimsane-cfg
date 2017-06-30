@@ -87,6 +87,7 @@ Plugin 'gmarik/Vundle.vim'
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
 
+Plugin 'manual-repos/xterm-color-table.vim'
 Plugin 'manual-repos/QFGrep'
 Plugin 'manual-repos/vim-airline'
 Plugin 'manual-repos/vim-airline-themes'
