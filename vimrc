@@ -5,6 +5,8 @@ set nocompatible  " Keep this as first line always
 set cmdheight=2   " A bit more room for the command line
 let mapleader=','
 
+let $VIMHOME=expand('<sfile>:p:h')
+
 " Reminders
 " .........
 "
@@ -66,7 +68,6 @@ let mapleader=','
 "
 " Tip: the 'has' command in vim can be used to test for a feature, e.g. 'if has("python") ...'
 " 
-
 "===========  Vundle start  ======================
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -77,7 +78,9 @@ call vundle#begin()
 "   $   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "    (This downloads Vundle, which is a bootstrapish requirement)
 
-" 2.  Then from within vim, run :PluginInstall
+" 2.  edit/replace the absolute file paths for 'manual-repos' below as needed
+"
+" 3.  Then from within vim, run :PluginInstall
 "
 "    Other plugins are identified by their github relative paths (e.g.
 "    'vim-airline/vim-airline' belongs to github user vim.)  You can also use a full
@@ -87,6 +90,7 @@ Plugin 'gmarik/Vundle.vim'
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
 
+
 Plugin 'manual-repos/xterm-color-table.vim'
 Plugin 'manual-repos/QFGrep'
 Plugin 'manual-repos/vim-airline'
@@ -95,6 +99,16 @@ Plugin 'manual-repos/vim-airline-themes'
 Plugin 'manual-repos/nerdtree'
 Plugin 'manual-repos/bufexplorer'
 "Plugin 'manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
+
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/xterm-color-table.vim'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/QFGrep'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline-themes'
+"" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
+
 "Plugin 'manual-repos/vim-snippets'
 
 if has("python")
@@ -104,6 +118,8 @@ if has("python")
         "  If python isn't compiled into vim, UltiSnips will not work.   On Cygwin,
         "  you have to build vim manually:  http://stackoverflow.com/a/14059666/237059
 endif
+
+
 "
 " Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
 " Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
@@ -345,6 +361,15 @@ nnoremap <F4> :cn<CR>
 
 nnoremap <leader>] /\[ \]<cr>
 
+" map grok wrapper....
+" Full text search:
+nnoremap <leader>oga :!env grok <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+" definition search:
+nnoremap <leader>ogd :!env grok -d <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+" symbol reference search:
+nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+
+
 
 
 " In normal mode, hitting Esc turns off search highlights:
@@ -360,7 +385,7 @@ let g:load_doxygen_syntax=1
 "==============
     
 "invoke Gtags [cursor-symbol] to find definition:
-map <C-]> :GtagsCursor<CR>  
+"map <C-[> :GtagsCursor<CR>  
 
 
 
@@ -461,6 +486,10 @@ command! Revimrc source ~/.vimrc
 " Riddlesnap takes a quick git snapshot of the state of riddle dir
 command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
 
+
+" Run gvim with the current file
+command! Gvim !gvim %
+
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
 "  ,d to close window:
@@ -476,16 +505,6 @@ nnoremap - s
 nnoremap s :w<CR>
 
 
-" CTRL-C and CTRL-Insert are Copy
-vnoremap <C-C> "+y
-vnoremap <C-Insert> "+y
-
-" CTRL-V and SHIFT-Insert are Paste system clipboard:
-"noremap <C-V>		"+gP
-noremap <S-Insert>		"+gP
-
-"cnoremap <C-V>		<C-R>+
-cnoremap <S-Insert>		<C-R>+
 
 " Pasting blockwise and linewise selections is not possible in Insert and
 " Visual mode without the +virtualedit feature.  They are pasted as if they
@@ -505,9 +524,6 @@ cnoremap <S-Insert>		<C-R>+
 "inoremap <S-Insert>		<C-V>
 "vnoremap <S-Insert>		<C-V>
 
-" In insert mode, pasting the 0 register is clunky (Ctrl+R, 0).  Shorten that
-" to Ctrl-P
-inoremap <C-P> <C-R>0
 
 
 set backupdir=~/.vimtmp
@@ -589,6 +605,7 @@ function! s:RunShellCommand(cmdline)
   silent execute '$read !'. expanded_cmdline
   1
 endfunction
+
 
 
 " Toggle paste mode:
@@ -751,9 +768,8 @@ nnoremap <F9> i<span class='lmz'><ESC>
 inoremap <F10> </span>
 nnoremap <F10> i</span><ESC>
 
-"  Calibre-exported text support:
-" Delete the line-level wrapper applied by Calibre:
-nnoremap <C-I> 0xxxxxxxxxxxxxxxxxxxx/<\/p><cr>xxxxj0<ESC>:nohlsearch<CR>
+
+
 " Same thing, but for start-of-paragraph, insert a <p/> above
 nmap     <F12> <C-I>kO<p/><ESC>jj
 "  Find a start-of-paragraph:
@@ -775,6 +791,9 @@ endfunction
 " Position the cursor on a riddle symbol and use this to split/open the .summ:
 nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
+source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
+
+hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
 " The vimdiff colors are truly horrid.  Here's a fix attempt from
 " http://stackoverflow.com/questions/1862423/how-to-tell-which-commit-a-tag-points-to-in-git
@@ -798,4 +817,6 @@ set makeprg=./build
 "set makeprg=./build\ --failpause
 "set makeprg=./build
 command! Roundtrip cd ~/riddle | ! bin/roundtrip
+
+
 
