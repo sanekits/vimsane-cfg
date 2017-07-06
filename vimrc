@@ -375,7 +375,7 @@ let g:load_doxygen_syntax=1
 "==============
     
 "invoke Gtags [cursor-symbol] to find definition:
-map <C-]> :GtagsCursor<CR>  
+map <C-[> :GtagsCursor<CR>  
 
 
 
@@ -495,16 +495,6 @@ nnoremap - s
 nnoremap s :w<CR>
 
 
-" CTRL-C and CTRL-Insert are Copy
-vnoremap <C-C> "+y
-vnoremap <C-Insert> "+y
-
-" CTRL-V and SHIFT-Insert are Paste system clipboard:
-"noremap <C-V>		"+gP
-noremap <S-Insert>		"+gP
-
-"cnoremap <C-V>		<C-R>+
-cnoremap <S-Insert>		<C-R>+
 
 " Pasting blockwise and linewise selections is not possible in Insert and
 " Visual mode without the +virtualedit feature.  They are pasted as if they
@@ -524,9 +514,6 @@ cnoremap <S-Insert>		<C-R>+
 "inoremap <S-Insert>		<C-V>
 "vnoremap <S-Insert>		<C-V>
 
-" In insert mode, pasting the 0 register is clunky (Ctrl+R, 0).  Shorten that
-" to Ctrl-P
-inoremap <C-P> <C-R>0
 
 
 set backupdir=~/.vimtmp
@@ -771,9 +758,8 @@ nnoremap <F9> i<span class='lmz'><ESC>
 inoremap <F10> </span>
 nnoremap <F10> i</span><ESC>
 
-"  Calibre-exported text support:
-" Delete the line-level wrapper applied by Calibre:
-nnoremap <C-I> 0xxxxxxxxxxxxxxxxxxxx/<\/p><cr>xxxxj0<ESC>:nohlsearch<CR>
+
+
 " Same thing, but for start-of-paragraph, insert a <p/> above
 nmap     <F12> <C-I>kO<p/><ESC>jj
 "  Find a start-of-paragraph:
