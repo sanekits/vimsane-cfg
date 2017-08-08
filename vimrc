@@ -792,6 +792,7 @@ endfunction
 " Position the cursor on a riddle symbol and use this to split/open the .summ:
 nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
+" If vim errors on startup, symlink: 'cd; ln ~/.vim/all_color_codes.vim ./'
 source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
 
 hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
