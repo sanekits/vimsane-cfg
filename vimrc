@@ -774,7 +774,7 @@ set makeprg=make
 
 " Generic build using local script:
 "set makeprg=./build
-set makeprg=xbd5\ make\ --ccache\ -tS\ --check=gcc-wall\ xapapp3.tsk
+"set makeprg=xbd5\ make\ --ccache\ -tS\ --check=gcc-wall\ xapapp3.tsk
 
 " For eqstst, building a single module on linux:
 "set makeprg=./xbuild.sh\ %
