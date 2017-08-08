@@ -107,6 +107,7 @@ Plugin 'manual-repos/bufexplorer'
 "" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
+Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-peekaboo'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
 
 "Plugin 'manual-repos/vim-snippets'
