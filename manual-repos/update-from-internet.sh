@@ -32,13 +32,13 @@ function installOrUpdate {
     local base=$(basename $1)
     url="$(makeSourceUrl $repo)" 
     echo -n "Installing ${repo} [url=${url}]:"
-    if $local; then
+    if $xlocal; then
         echo " in local mode."
     else
         echo " in internet-enabled mode."
     fi
     mkdir -p ../bundle
-    if $local ; then
+    if $xlocal ; then
        if  [[ ! -d $repo ]]; then
            ( errExit "Can't find $PWD/$repo.  This must be manually copied from an existing source first in --local mode." ) || return
 
