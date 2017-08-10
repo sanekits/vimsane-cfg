@@ -23,6 +23,7 @@ function installOrUpdate {
     local repo=$1
     local base=$(basename $1)
     url="$(makeSourceUrl $repo)" 
+    mkdir -p ../bundle
     if [[ ! -d $repo ]]; then
        ( 
          git clone "$(makeSourceUrl $repo)" ./${repo} || errExit "Can't clone $url"

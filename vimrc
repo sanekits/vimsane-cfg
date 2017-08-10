@@ -85,7 +85,6 @@ call vundle#begin()
 "    Other plugins are identified by their github relative paths (e.g.
 "    'vim-airline/vim-airline' belongs to github user vim.)  You can also use a full
 "    full clone-worthy path.
-Plugin 'gmarik/Vundle.vim'
 
 
 "   Powerline went Big City, and vim-airline is its recommended replacement.
