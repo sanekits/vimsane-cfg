@@ -92,12 +92,12 @@ Plugin 'gmarik/Vundle.vim'
 
 source $VIMHOME/manual-repos/plugin-list.vim  " Use external plugins list
 
-Plugin 'manual-repos/xterm-color-table.vim'
-Plugin 'manual-repos/QFGrep'
-Plugin 'manual-repos/vim-airline'
-Plugin 'manual-repos/vim-airline-themes'
+"Plugin 'manual-repos/xterm-color-table.vim'
+" Plugin 'manual-repos/QFGrep'
+" Plugin 'manual-repos/vim-airline'
+" Plugin 'manual-repos/vim-airline-themes'
 " Plugin 'manual-repos/syntastic'
-Plugin 'manual-repos/bufexplorer'
+" Plugin 'manual-repos/bufexplorer'
 "Plugin 'manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
 
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/xterm-color-table.vim'
@@ -107,7 +107,7 @@ Plugin 'manual-repos/bufexplorer'
 "" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-peekaboo'
+" Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-peekaboo'
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
 
 "Plugin 'manual-repos/vim-snippets'
@@ -156,7 +156,7 @@ endif
   " Easy motion uses <leader><leader>{object} as its basic input model.
   " So ",,j" will highlight lines and ",,w" will do the same for words.
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
-Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
+"Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
 
 " Use :Bdelete to close a buffer without closing the window too:
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
@@ -266,6 +266,7 @@ set shiftwidth=4
 set shiftround
 set tabstop=4
 set expandtab
+set textwidth=256
 
 " Number lines in the margin:
 set number

@@ -16,21 +16,28 @@ function parseReposFromPluginList {
 }
 
 function makeSourceUrl {
-    echo "git@github.com:${1}"
+    echo "https://github.com/${1}"
 }
 
 function installOrUpdate {
     local repo=$1
+    local base=$(basename $1)
     url="$(makeSourceUrl $repo)" 
     if [[ ! -d $repo ]]; then
        ( 
          git clone "$(makeSourceUrl $repo)" ./${repo} || errExit "Can't clone $url"
+         # Vundle doesn't like repos that are more than one level deep:
+         ln -sf ${repo} ${base}
        ) 
     else
        (
         cd $repo  && git pull  || errExit "Can't pull $url"
        )
     fi
+    (
+        cd ../bundle && ln -sf ../manual-repos/${base}
+    )
+    echo "${repo} updated successfully."
 }
 
 if [[ -z $sourceMe ]]; then
