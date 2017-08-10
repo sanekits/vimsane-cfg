@@ -38,7 +38,12 @@ function installOrUpdate {
         echo " in internet-enabled mode."
     fi
     mkdir -p ../bundle
-    if ! $local ; then
+    if $local ; then
+       if  [[ ! -d $repo ]]; then
+           ( errExit "Can't find $PWD/$repo.  This must be manually copied from an existing source first in --local mode." ) || return
+
+       fi
+    else
        # clone or update from internet:
        if  [[ ! -d $repo ]]; then
           ( git clone "$(makeSourceUrl $repo)" ./${repo} || errExit "Can't clone $url" )
