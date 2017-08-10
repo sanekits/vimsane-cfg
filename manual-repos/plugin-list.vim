@@ -8,18 +8,18 @@
 "   ------------------
 "       >> Setting up a new machine:
 "           - [internet connected?] Run manual-repos/update-from-internet.sh
-"           - [no internet?] manually copy the entire manual-repos/ tree to the target machine from a working machine, 
+"           - [no internet?] manually copy the plugin subdirs in manual-repos/* to the target machine from a working machine, 
 "                 then run "./update-from-internet.sh --local"
 "           - !! Don't use vundle's PluginInstall, but do use PluginList after vim restart
 "           
 "       >> Adding a plugin:
 "           - Add an entry to manual-repos/plugin-list.vim
-"           - [no internet? ] Manually clone the [user/reponame] dir under manual-repos
-"           - Re-run manual-repos/update-from-internet.sh (with --local if !internet)
+"           - [no internet? ] Manually clone the source  repo into manual-repos/[user]/[product]
+"           - Re-run manual-repos/update-from-internet.sh (with --local if  no internet)
 "
 "       >> Uninstalling vundle plugins:
 "            - Comment out from plugin-list.vim
-"            - rm the dirs in .vim/bundle and the symlinks+source dirs  in manual-repos/
+"            - rm the symlink in .vim/bundle and the symlinks+source dirs  in manual-repos/
 "            - Run :PluginClean
 "
 Plugin 'manual-repos/Vundle.vim' " @gmarik/Vundle.vim
