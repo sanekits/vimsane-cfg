@@ -8,7 +8,8 @@
 "   ------------------
 "       >> Setting up a new machine:
 "           - [internet connected?] Run manual-repos/update-from-internet.sh
-"           - [no internet?] manually copy the entire manual-repos/ tree to the target machine from a working machine.
+"           - [no internet?] manually copy the entire manual-repos/ tree to the target machine from a working machine, 
+"                 then run ./update-from-internet.sh
 "           - !! Don't use vundle's PluginInstall, but do use PluginList after vim restart
 "           
 "       >> Adding a plugin:
