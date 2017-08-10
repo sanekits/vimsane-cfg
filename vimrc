@@ -72,93 +72,9 @@ let $VIMHOME=expand('<sfile>:p:h')
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" How to setup plugins for a new machine (if Internet is available):
-
-" 1.  
-"   $   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"    (This downloads Vundle, which is a bootstrapish requirement)
-
-" 2.  edit/replace the absolute file paths for 'manual-repos' below as needed
-"
-" 3.  Then from within vim, run :PluginInstall
-"
-"    Other plugins are identified by their github relative paths (e.g.
-"    'vim-airline/vim-airline' belongs to github user vim.)  You can also use a full
-"    full clone-worthy path.
-
-
-"   Powerline went Big City, and vim-airline is its recommended replacement.
+" Plugin managment: see this include file...
 
 source $VIMHOME/manual-repos/plugin-list.vim  " Use external plugins list
-
-"Plugin 'manual-repos/xterm-color-table.vim'
-" Plugin 'manual-repos/QFGrep'
-" Plugin 'manual-repos/vim-airline'
-" Plugin 'manual-repos/vim-airline-themes'
-" Plugin 'manual-repos/syntastic'
-" Plugin 'manual-repos/bufexplorer'
-"Plugin 'manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
-
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/xterm-color-table.vim'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/QFGrep'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline-themes'
-"" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
-" Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-peekaboo'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/w0rp/ale'  " ALE: Asynchronous Lint Engine
-
-"Plugin 'manual-repos/vim-snippets'
-
-if has("python")
-"    Plugin 'SirVer/ultisnips' " Depends on honza/vim-snippets
-        "  Note: on my vaiop cygwin, I had to symlink from
-        "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
-        "  If python isn't compiled into vim, UltiSnips will not work.   On Cygwin,
-        "  you have to build vim manually:  http://stackoverflow.com/a/14059666/237059
-endif
-
-
-"
-" Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-airline'
-" Plugin 'file:///home/lmatheson4/.vim/manual-repos/syntastic'
-" Plugin 'file:///home/lmatheson4/.vim/manual-repos/nerdtree'
-" Plugin 'file:///home/lmatheson4/.vim/manual-repos/bufexplorer'
-  let g:bufExplorerShowRelativePath=1  " Show relative paths.
-  let g:bufExplorerSortBy='mru'        " Sort by most recently used.
-
-
-  " vim-airline color tweaking...
-  ": AirlineTheme 'kolor'
-  let g:airline_theme='kolor'
-
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-snippets'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/ultisnips' " Depends on honza/vim-snippets
-    "  Note: on my vaiop cygwin, I had to symlink from
-    "  bundle/vim-snippets/UltiSnips to ~/.vim/UltiSnips to get this working.
-    "
-    "  Use :UltiSnipsEdit to see the snippets available
-    "  Use <c-j> to trigger expansion of a snippet key, e.g.:
-    "       1. Insert 'map' in the code
-    "       2. Press Ctrl+J to expand it as shown in the snippet definition.
-    "       3. Use Ctrl+J again to go to the next param field in the snippet,
-    "       if any.
-    "       4. Use <Ctrl+K> to go backward in param field
-
-    "-- someday.  Requires compiled clang  component:
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/YouCompleteMe'  
-
-    " Taglist plugin:
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
-
-  " Easy motion uses <leader><leader>{object} as its basic input model.
-  " So ",,j" will highlight lines and ",,w" will do the same for words.
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-easymotion'
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/ZoomWin'
-
-" Use :Bdelete to close a buffer without closing the window too:
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
 
 " End of vundle initialization
 call vundle#end()
