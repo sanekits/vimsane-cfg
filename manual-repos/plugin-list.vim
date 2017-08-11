@@ -31,6 +31,7 @@ Plugin 'manual-repos/bufexplorer' " @jlanzarotta/bufexplorer
 
 Plugin 'manual-repos/QFGrep' " @sk1418/QFGrep
 Plugin 'manual-repos/vim-airline' " @Stabledog/vim-airline
+
 Plugin 'manual-repos/vim-airline-themes' " @vim-airline/vim-airline-themes
   " vim-airline color tweaking...
   ": AirlineTheme 'kolor'
