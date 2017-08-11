@@ -23,6 +23,11 @@
 "            - Run :PluginClean
 "
 Plugin 'manual-repos/Vundle.vim' " @gmarik/Vundle.vim
+Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
+    set background=dark
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+
 Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
 Plugin 'manual-repos/xterm-color-table.vim' " @guns/xterm-color-table.vim
 Plugin 'manual-repos/bufexplorer' " @jlanzarotta/bufexplorer

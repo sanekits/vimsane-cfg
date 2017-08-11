@@ -543,7 +543,8 @@ augroup BgHighlight
 augroup END
 
 syntax on
-colorscheme elflord
+"colorscheme elflord
+colorscheme solarized
 if &diff
     colorscheme blue
 endif
