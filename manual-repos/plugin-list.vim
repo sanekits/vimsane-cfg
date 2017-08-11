@@ -36,6 +36,7 @@ Plugin 'manual-repos/vim-airline-themes' " @vim-airline/vim-airline-themes
   ": AirlineTheme 'kolor'
   let g:airline_theme='kolor'
 Plugin 'manual-repos/vim-peekaboo' " @junegunn/vim-peekaboo
+Plugin 'manual-repos/vim-signature' " @kshenoy/vim-signature 
 
 " Plugin 'manual-repos/syntastic'
 "Plugin 'manual-repos/vim-snippets'
