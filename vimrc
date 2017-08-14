@@ -544,7 +544,8 @@ augroup END
 
 syntax on
 "colorscheme elflord
-colorscheme solarized
+"colorscheme solarized
+colorscheme koehler
 if &diff
     colorscheme blue
 endif
