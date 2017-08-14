@@ -544,10 +544,11 @@ augroup END
 
 syntax on
 "colorscheme elflord
-colorscheme solarized
-if &diff
-    colorscheme blue
-endif
+"colorscheme solarized
+colorscheme industry
+" if &diff
+"     colorscheme blue
+" endif
 
 " Doing ':Shell ls /' will load the ls output into a new
 " buffer for edit/display.  Note that you can't pass wildcards to the args,
