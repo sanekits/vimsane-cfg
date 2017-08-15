@@ -668,9 +668,6 @@ noremap k gk
 nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 
-" See http://superuser.com/a/418915 for this NERDtree workaround (needed on
-" sunos, at least.  Probably others too)
-let g:NERDTreeDirArrows=0
 " wildmenu turns on the fancy visual display of <TAB> matches when doing
 " command-line completion:
 set wildmenu

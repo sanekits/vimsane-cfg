@@ -29,6 +29,12 @@ Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
     let g:solarized_termtrans=1
 
 Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
+    " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
+    " sunos, at least.  Probably others too)
+    "let g:NERDTreeDirArrows=0
+    set encoding=utf-8
+    noremap <C-n> :NERDTreeToggle<CR>
+
 Plugin 'manual-repos/xterm-color-table.vim' " @guns/xterm-color-table.vim
 Plugin 'manual-repos/bufexplorer' " @jlanzarotta/bufexplorer
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
