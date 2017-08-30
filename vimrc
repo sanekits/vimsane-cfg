@@ -68,6 +68,10 @@ let $VIMHOME=expand('<sfile>:p:h')
 "
 " Tip: the 'has' command in vim can be used to test for a feature, e.g. 'if has("python") ...'
 " 
+"
+" Tip: run one or more ex commands on startup, from shell:
+"   $ vim -c "set makeprg=bin/build" -c "set nowrap" *.c *.h
+"
 "===========  Vundle start  ======================
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -208,6 +212,8 @@ set showcmd
 set title
 set grepprg=ack
 
+" Grep for the current word in current dir
+nnoremap gR :grep '\b<cword>\b' *<CR>
 
 filetype plugin indent on
 set history=1000
