@@ -93,6 +93,8 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
 
 let g:tex_flavor = "latex"
 
+set iskeyword="@,58-57,_,192-255,#"
+
 " Experimenting with .vim/syntax/cel.vim
 "au BufRead,BufNewFile *.stc setfiletype cel
 
