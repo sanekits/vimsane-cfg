@@ -1,4 +1,4 @@
-set iskeyword=@,48-57,192-255,#
+set iskeyword=@,48-57,192-255,#,_
 set grepprg=bin/grep-chapters
-set iskeyword+=_
+"set iskeyword+=_
 
