@@ -2,7 +2,7 @@
 "
 set nocompatible  " Keep this as first line always
 
-set cmdheight=2   " A bit more room for the command line
+set cmdheight=3   " A bit more room for the command line
 let mapleader=','
 
 let $VIMHOME=expand('<sfile>:p:h')
