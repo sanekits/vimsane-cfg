@@ -93,6 +93,22 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
 
 let g:tex_flavor = "latex"
 
+function! Get_visual_selection()
+	" From https://stackoverflow.com/a/6271254/237059
+    " Grab the current visual selection and return it
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+" Execute (with shell) the command text currently selected:
+vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
 
 " Experimenting with .vim/syntax/cel.vim
 "au BufRead,BufNewFile *.stc setfiletype cel
