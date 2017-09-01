@@ -233,6 +233,8 @@ set grepprg=ack
 nnoremap gR :grep '\b<cword>\b' *<CR>
 
 filetype plugin indent on
+set breakindent
+set breakindentopt=shift:1
 set history=1000
 set undolevels=1000
 set undofile
