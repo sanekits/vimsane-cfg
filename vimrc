@@ -266,8 +266,8 @@ noremap <S-F5> :buffers<CR>:bd<Space>
 
 
 " ,t starts insert mode and enters # TODO:
-inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
-nnoremap <leader>t A<space>#<space>TODO:<space> 
+#inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
+#nnoremap <leader>t A<space>#<space>TODO:<space> 
 
 " bufexplorer gets quick access with ',n'
 nnoremap <silent> <leader>n :BufExplorer<CR>
