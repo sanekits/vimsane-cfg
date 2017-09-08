@@ -47,7 +47,7 @@ Plugin 'manual-repos/vim-airline-themes' " @vim-airline/vim-airline-themes
   " vim-airline color tweaking...
   ": AirlineTheme 'kolor'
   let g:airline_theme='kolor'
-
+Plugin 'manual-repos/vim-airline-clock' " @enricobacis/vim-airline-clock
 Plugin 'manual-repos/vim-peekaboo' " @junegunn/vim-peekaboo
 Plugin 'manual-repos/vim-signature' " @kshenoy/vim-signature 
 nmap <leader>` :SignatureListGlobalMarks<CR>  " vim-signature mapping
