@@ -74,6 +74,9 @@ let $VIMHOME=expand('<sfile>:p:h')
 "
 "===========  Vundle start  ======================
 filetype off
+
+set macmeta " Interpret option key as alt on macos
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin managment: see this include file...
@@ -171,6 +174,9 @@ nnoremap <leader>a 15k
 nnoremap <leader>z 15j
 vnoremap <leader>a 15k
 vnoremap <leader>z 15j
+
+nmap <M-8> :colorscheme morning<CR>
+nmap <C-M-8> :colorscheme industry<CR>
 
 
 " We always want a status line:
