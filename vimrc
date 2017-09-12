@@ -113,21 +113,6 @@ vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
 " Execute (with vim ex commandline) the command text currently selected:
 vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
-" Experimenting with .vim/syntax/cel.vim
-"au BufRead,BufNewFile *.stc setfiletype cel
-
-
-"  UltiSnips settings:
-"  ------------------
-    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-    let g:UltiSnipsExpandTrigger="<c-j>"
-    let g:UltiSnipsJumpForwardTrigger="<c-j>"  "  Hop from $1 to $2, etc in a snippet
-    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-    " If you want :UltiSnipsEdit to split your window.
-    "let g:UltiSnipsEditSplit="vertical"
-
-
 
 
 " Commenting blocks of code.
@@ -187,9 +172,6 @@ nnoremap <leader>z 15j
 vnoremap <leader>a 15k
 vnoremap <leader>z 15j
 
-
-
-"let g:Powerline_symbols = "fancy"
 
 " We always want a status line:
 set laststatus=2   
@@ -481,8 +463,7 @@ noremap <C-S> :w<CR>
 " Next and prev buffer with F12, F11:
 noremap <F12> :bnext<CR>
 noremap <F11> :bprev<CR>
-noremap <C-n> :NERDTreeToggle<CR>
-noremap <C-t> :TlistToggle<CR>
+
 " Insert newlines from normal mode with Ctrl+Enter:
 noremap <C-Enter> O<Esc>
 " ctrl-a should select-all:

@@ -33,7 +33,7 @@ Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree
     " sunos, at least.  Probably others too)
     "let g:NERDTreeDirArrows=0
     set encoding=utf-8
-    noremap <C-n> :NERDTreeToggle<CR>
+    "noremap <C-n> :NERDTreeToggle<CR>
 
 Plugin 'manual-repos/xterm-color-table.vim' " @guns/xterm-color-table.vim
 Plugin 'manual-repos/bufexplorer' " @jlanzarotta/bufexplorer
@@ -89,5 +89,15 @@ let g:clang_complete_auto=1
 
 " Use :Bdelete to close a buffer without closing the window too:
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/vim-bbye'
+
+"  UltiSnips settings:
+"  ------------------
+    " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"     let g:UltiSnipsExpandTrigger="<c-j>"
+"     let g:UltiSnipsJumpForwardTrigger="<c-j>"  "  Hop from $1 to $2, etc in a snippet
+"     let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+    " If you want :UltiSnipsEdit to split your window.
+    "let g:UltiSnipsEditSplit="vertical"
 
 
