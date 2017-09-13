@@ -75,7 +75,9 @@ let $VIMHOME=expand('<sfile>:p:h')
 "===========  Vundle start  ======================
 filetype off
 
-set macmeta " Interpret option key as alt on macos
+if exists("&macmeta")
+    set macmeta " Interpret option key as alt on macos
+endif
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
