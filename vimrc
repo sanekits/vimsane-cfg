@@ -28,6 +28,8 @@ let $VIMHOME=expand('<sfile>:p:h')
 " 	  :res 5  (make it 5 lines high)
 " 	  :res +5 (increase by 5 lines)
 "
+" Enter ex mode: Q
+"
 " Change width of a window:
 "   Ctrl+W {count} >
 "   Ctrl+W {count} <
