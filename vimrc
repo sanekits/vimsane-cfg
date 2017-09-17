@@ -288,8 +288,8 @@ inoremap <leader>U <Esc>mvviwU`va
 nnoremap <leader>u viwue
 nnoremap <leader>U viwUe
 
-" Use <F9> repeatedly to double-width a text block.  (i.e. d o u b l e - w i d t h )
-nnoremap <F9> a<space><ESC>l
+" Use <Ctrl+F9> repeatedly to double-width a text block.  (i.e. d o u b l e - w i d t h )
+nnoremap <C-F9> a<space><ESC>l
 
 " Compile and find next error:
 nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
@@ -470,9 +470,7 @@ set directory=~/.vimtmp,.
 " Ctrl-S to save the file:
 noremap <C-S> :w<CR>
 
-" Next and prev buffer with F12, F11:
-noremap <F12> :bnext<CR>
-noremap <F11> :bprev<CR>
+nnoremap <F10> :messages<CR>
 
 " Insert newlines from normal mode with Ctrl+Enter:
 noremap <C-Enter> O<Esc>
@@ -666,24 +664,9 @@ nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " command-line completion:
 set wildmenu
 
-" I don't know who keeps turning on the cursorline option, but its annoying:
-nnoremap <F12> :set nocursorline<CR>
-
-" For html notes, 'lmx' is "my comments" and lmz is "highlighting the text"
-" The styles can be inserted with UltiSnips ( lmx_styles<ctrl-j> )
-inoremap <F8> <span class='lmx'>lmx:  </span><esc>7hi
-nnoremap <F8> i<span class='lmx'>lmx:  </span><esc>7hi
-inoremap <F9> <span class='lmz'>
-nnoremap <F9> i<span class='lmz'><ESC>
-inoremap <F10> </span>
-nnoremap <F10> i</span><ESC>
 
 
 
-" Same thing, but for start-of-paragraph, insert a <p/> above
-nmap     <F12> <C-I>kO<p/><ESC>jj
-"  Find a start-of-paragraph:
-nmap   <C-P> /[0-9]\+<\/p<CR>
 
 function! EditSymfileUnderCursor()
     " cWORD gets the WORD at cursor:
@@ -694,6 +677,7 @@ function! EditSymfileUnderCursor()
     " Split the window, load the file:
     exec ":sp " l:sumfile  
 endfunction
+
 
 " Compile current module (convert  .h to .cpp automatically:)
 "set makeprg=./compile-module\ %
