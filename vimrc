@@ -562,7 +562,7 @@ augroup END
 syntax on
 "colorscheme elflord
 "colorscheme solarized
-colorscheme industry
+colorscheme morning
 " if &diff
 "     colorscheme blue
 " endif
@@ -712,6 +712,18 @@ set makeprg=make
 "set makeprg=./build\ --failpause
 "set makeprg=./build
 
+" Loop through our taskrc's if they exist
+function! LoadTaskRcs()
+    let l:rcdir= expand( "~/.taskrc" )
+    let l:myRcs=split( globpath( l:rcdir,'*.vim'),'\n')
+    if len(l:myRcs) == 0
+        return 0
+    endif
+    for rcs in myRcs
+        execute "source " . rcs
+    endfor
+    return 0
+endfunction
 
-
+call LoadTaskRcs()
 
