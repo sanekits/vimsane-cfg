@@ -372,8 +372,8 @@ map gx :call HandleURL()<cr>
 " The Astyle command will reformat the file
 command! Astyle w | !astyle %; rm %.orig
 
-" In visual mode, F8 will reformat the highlighted text:
-vnoremap <F8> :!astyle<CR>
+" In visual mode, Shift-F8 will reformat the highlighted text:
+vnoremap <S-F8> :!astyle<CR>
 " Copy the current buffer's filename to the w register:
 nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 
@@ -381,9 +381,9 @@ nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 nnoremap <leader>r viw"wp
 
 " Run Conque bash in split
-command! Term ConqueTermVSplit bash
-noremap <leader><F8> :ConqueTermSplit bash<CR>
-noremap <leader><F9> :ConqueTermVSplit bash<CR>
+"command! Term ConqueTermVSplit bash
+" noremap <leader><F8> :ConqueTermSplit bash<CR>
+" noremap <leader><F9> :ConqueTermVSplit bash<CR>
 
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
