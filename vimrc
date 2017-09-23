@@ -197,7 +197,7 @@ set shiftwidth=4
 set shiftround
 set tabstop=4
 set expandtab
-set textwidth=256
+set textwidth=0
 
 " Number lines in the margin:
 set number
