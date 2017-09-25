@@ -28,6 +28,9 @@ Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
 
+Plugin 'manual-repos/ctrlp.vim'  " @ctrlpvim/ctrlp.vim
+
+
 Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
     " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
     " sunos, at least.  Probably others too)
