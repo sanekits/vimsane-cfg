@@ -75,11 +75,11 @@ endif
     "       if any.
     "       4. Use <Ctrl+K> to go backward in param field
 
-    "-- someday.  Requires compiled clang  component:
-"Plugin 'file:///home/lmatheson4/.vim/manual-repos/YouCompleteMe'  
-" The clang_complete plugin needs the directory name containing libclang.so:
-let g:clang_library_path='/opt/swt/lib'
-let g:clang_complete_auto=1
+"-- someday.  Requires compiled clang  component:
+Plugin 'manual-repos/YouCompleteMe'  " @Valloric/YouCompleteMe
+    " The clang_complete plugin needs the directory name containing libclang.so:
+    let g:clang_library_path='/opt/swt/lib'
+    let g:clang_complete_auto=1
 
     " Taglist plugin:
 "Plugin 'file:///home/lmatheson4/.vim/manual-repos/taglist_46'
