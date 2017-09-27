@@ -29,6 +29,8 @@ Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
     let g:solarized_termtrans=1
 
 Plugin 'manual-repos/ctrlp.vim'  " @ctrlpvim/ctrlp.vim
+    let g:ctrlp_show_hidden=1
+    let g:ctrlp_root_markers=['.taskrc','.git']
 
 
 Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
