@@ -713,8 +713,8 @@ set makeprg=make
 "set makeprg=./build
 
 " Loop through our taskrc's if they exist
-function! LoadTaskRcs()
-    let l:rcdir= expand( "~/.taskrc" )
+function! LoadTaskRcs(baseDir)
+    let l:rcdir= expand(a:baseDir)
     let l:myRcs=split( globpath( l:rcdir,'*.vim'),'\n')
     if len(l:myRcs) == 0
         return 0
@@ -725,5 +725,6 @@ function! LoadTaskRcs()
     return 0
 endfunction
 
-call LoadTaskRcs()
+call LoadTaskRcs("~/.taskrc")
+call LoadTaskRcs(".taskrc")
 
