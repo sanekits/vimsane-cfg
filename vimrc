@@ -331,6 +331,8 @@ command! Gitadd cd %:p:h | ! git add %
 " Gitsync adds the current file to git and commits+pushes, all in one step:
 command! Gitsync ! cd %:p:h ; git add % ; git commit % -m "Gitsync from vim" ;  git push origin
 
+command! Gitstatus ! git status
+
 "# Change the directory of the current window based on loaded file path:
 command! Lcd lcd %:p:h 
 command! Dirhere e %:p:h 

@@ -38,6 +38,8 @@ Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree
     " sunos, at least.  Probably others too)
     "let g:NERDTreeDirArrows=0
     set encoding=utf-8
+    let NERDTreeShowHidden=1    " Show hidden files
+
     "noremap <C-n> :NERDTreeToggle<CR>
 
 Plugin 'manual-repos/xterm-color-table.vim' " @guns/xterm-color-table.vim
