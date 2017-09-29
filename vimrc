@@ -328,8 +328,10 @@ let g:load_doxygen_syntax=1
 
 " GIT commands:
 command! Gitadd cd %:p:h | ! git add %
-
 " Make a script executable:
+
+command! Gitstatus ! git status
+
 command! Chmodx ! chmod +x %
 
 function! s:ToxCore(dirFragment)
