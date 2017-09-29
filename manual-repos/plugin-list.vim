@@ -31,6 +31,9 @@ Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
 Plugin 'manual-repos/ctrlp.vim'  " @ctrlpvim/ctrlp.vim
     let g:ctrlp_show_hidden=1
     let g:ctrlp_root_markers=['.taskrc','.git']
+    let g:ctrlp_types=['buf','fil','tag']
+
+
 
 
 Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
