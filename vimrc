@@ -423,8 +423,6 @@ command! Gvim !gvim %
 
 "  ,q is quit without saving:
 noremap <leader>q :qa!<CR>
-"  ,d to close window:
-noremap <leader>d :close<CR>
 
 
 " Use CTRL-Q to mimic CTRL-V -- because that's what we're used to 
