@@ -1,20 +1,20 @@
 " Les Matheson's .vimrc
 "
-set nocompatible  " Keep this as first line always
+
+let $VIMHOME=expand('<sfile>:p:h')
+
+source $VIMHOME/vimsane.vim
+
 
 set cmdheight=3   " A bit more room for the command line
 let mapleader=','
 
-let $VIMHOME=expand('<sfile>:p:h')
 
 " Reminders
 " .........
 "
-" This section just provides reminders of commands that are handy but have not yet
-" earned themselves a vimrc definition:
-"
 "    Reformat sentence:  gqis
-"    "        paragraph: gqip
+"            paragraph: gqip
 "
 "    Change line width:  set textwidth=nnn
 "
@@ -328,14 +328,8 @@ let g:load_doxygen_syntax=1
 
 " GIT commands:
 command! Gitadd cd %:p:h | ! git add %
-" Gitsync adds the current file to git and commits+pushes, all in one step:
-command! Gitsync ! cd %:p:h ; git add % ; git commit % -m "Gitsync from vim" ;  git push origin
 
-"# Change the directory of the current window based on loaded file path:
-command! Lcd lcd %:p:h 
-command! Dirhere e %:p:h 
-command! Ddd w | ! nohup dddbash % &
-command! Run ! %
+" Make a script executable:
 command! Chmodx ! chmod +x %
 
 function! s:ToxCore(dirFragment)
@@ -727,4 +721,6 @@ endfunction
 
 call LoadTaskRcs("~/.taskrc")
 call LoadTaskRcs(".taskrc")
+
+echom "VIMHOME is " . $VIMHOME
 
