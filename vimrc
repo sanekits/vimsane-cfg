@@ -6,7 +6,7 @@ let $VIMHOME=expand('<sfile>:p:h')
 source $VIMHOME/vimsane.vim
 
 
-set cmdheight=3   " A bit more room for the command line
+set cmdheight=2   " A bit more room for the command line
 let mapleader=','
 
 
