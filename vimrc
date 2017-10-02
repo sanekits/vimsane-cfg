@@ -3,7 +3,9 @@
 
 let $VIMHOME=expand('<sfile>:p:h')
 
-source $VIMHOME/vimsane.vim
+if filereadable(expand("$VIMHOME/vimsane.vim"))
+    source $VIMHOME/vimsane.vim
+endif
 
 
 set cmdheight=2   " A bit more room for the command line
@@ -722,5 +724,5 @@ endfunction
 call LoadTaskRcs("~/.taskrc")
 call LoadTaskRcs(".taskrc")
 
-echom "VIMHOME is " . $VIMHOME
+
 
