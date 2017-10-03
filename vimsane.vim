@@ -1,4 +1,5 @@
 " vimsane.vim
+set nocompatible  " Keep this as second line always
 "
 " vimsane is a pre-packaged Vim installation available to 
 " those who want to learn the Vim editor.  Vim can be 
@@ -102,7 +103,9 @@
 " 	  :resize 5  (make it 5 lines high)
 " 	  :resize +5 (increase by 5 lines)
 
-set nocompatible  " Keep this as first line always
+
+imap jk <ESC>
+set cmdheight=2
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
 noremap <C-h> <C-w>h  
@@ -127,10 +130,18 @@ function! LoadTaskRcs(baseDir)
     return 0
 endfunction
 
+" Capture the path of our own script for later refresh.
+let g:vimsane_script_path = expand('<sfile>:p')
+
+command! VsRefresh execute 'source ' . g:vimsane_script_path
+
 " We first search the user's ~/.taskrc directory for *.vim,
 " and then we search ./.taskrc.
 call LoadTaskRcs("~/.taskrc")
 call LoadTaskRcs(".taskrc")
+"
+
+echo "Vimsane loaded from " . g:vimsane_script_path
 
 let g:vimsane_loaded=1
 
