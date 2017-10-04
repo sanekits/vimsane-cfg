@@ -81,6 +81,7 @@ filetype off
 
 if exists("&macmeta")
     set macmeta " Interpret option key as alt on macos
+    nnoremap å :echo "macmeta is on"<CR>
 endif
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -170,10 +171,10 @@ set t_Co=256
 nnoremap <leader>. :e .<CR>
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " <leader>a/z are used for faster up/down:
 nnoremap <leader>a 15k
@@ -257,14 +258,14 @@ inoremap JK <ESC>
 inoremap jj <Nop>
 inoremap JK <ESC>
 "# Display a menu of buffers with F5:
-noremap <F5> :buffers<CR>:buffer<Space>
-noremap <S-F5> :buffers<CR>:bd<Space>
+nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap <S-F5> :buffers<CR>:bd<Space>
 
 
 
 " ,t starts insert mode and enters # TODO:
 "inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
-"nnoremap <leader>t A<space>#<space>TODO:<space> 
+"nmap <leader>t A<space>#<space>TODO:<space> 
 
 " bufexplorer gets quick access with ',n'
 nnoremap <silent> <leader>n :BufExplorer<CR>
@@ -315,7 +316,7 @@ nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| l
 "  BAD MAPPING:  nnoremap <ESC> :nohl<CR>
 
 " Change to directory containing current file, for current window only:
-noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
 let g:load_doxygen_syntax=1
@@ -366,7 +367,6 @@ endfunction
 
 
 
-
 " The Astyle command will reformat the file
 command! Astyle w | !astyle %; rm %.orig
 
@@ -386,13 +386,13 @@ nnoremap <leader>r viw"wp
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
 command! Gopen ! xdg-open %
-noremap <leader>g :!xdg-open % <CR><CR>
+nnoremap <leader>g :!xdg-open % <CR><CR>
 
 " To launch a mark URL, first capture the text in parens, the pass
 " it to xdg-open:
-"nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
+"nmap <leader>x yi):!xdg-open <c-r>" &<cr>
 " Same thing for stuff that isn't wrapped in parens:
-"nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
+"nmap <leader>X yiW:!xdg-open <c-r>" &<cr>
 "
 " Find/Highlight text in braces[]:
 nnoremap <leader>] /\[[^\]]*\]<cr>
@@ -426,11 +426,11 @@ command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
 command! Gvim !gvim %
 
 "  ,q is quit without saving:
-noremap <leader>q :qa!<CR>
+nnoremap <leader>q :qa!<CR>
 
 
 " Use CTRL-Q to mimic CTRL-V -- because that's what we're used to 
-noremap <C-Q>		<C-V>
+nnoremap <C-Q>		<C-V>
 
 " How could someone use 's' for anything except "save"??  To substitute
 " chars, we prefer '-' (think "strikeout")
@@ -445,17 +445,17 @@ nnoremap s :w<CR>
 " Uses the paste.vim autoload script.
 
 "exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-"exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+"exe 'vmap <script> <C-V>' paste#paste_cmd['v']
 
 " Something we really don't like: pasting replaces the contents of the unnamed
 " buffer '*', which is almost always the wrong behavior.  So we're going out
 " on a limb here with the draconian policy of "always paste from 0 register
 " from normal mode". 
-"nnoremap p "0p
-"vnoremap p "0p
+"nmap p "0p
+"vmap p "0p
 
 "inoremap <S-Insert>		<C-V>
-"vnoremap <S-Insert>		<C-V>
+"vmap <S-Insert>		<C-V>
 
 
 
@@ -464,12 +464,12 @@ set directory=~/.vimtmp,.
 
 
 " Ctrl-S to save the file:
-noremap <C-S> :w<CR>
+nnoremap <C-S> :w<CR>
 
 nnoremap <F10> :messages<CR>
 
 " Insert newlines from normal mode with Ctrl+Enter:
-noremap <C-Enter> O<Esc>
+nnoremap <C-Enter> O<Esc>
 " ctrl-a should select-all:
 nnoremap <C-A> ggVG
 
@@ -477,7 +477,7 @@ nnoremap <C-A> ggVG
 nnoremap <leader>f <C-^>
 
 " shift-ctrl-m runs the most-recent-files menu
-noremap <leader>m :MRU<CR>
+nnoremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
 
@@ -649,8 +649,8 @@ let g:clang_complete_auto=1
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
 " movement can be disorienting.   This is cured by remapping j and k to gj and gk:
-noremap j gj
-noremap k gk
+nnoremap j gj
+nnoremap k gk
 
 " Switch between .h and .cpp if they're in the same dir:
 nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
