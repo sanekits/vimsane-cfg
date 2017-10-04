@@ -81,6 +81,7 @@ filetype off
 
 if exists("&macmeta")
     set macmeta " Interpret option key as alt on macos
+    nmap å :echo "macmeta is on"<CR>
 endif
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -117,10 +118,10 @@ function! Get_visual_selection()
 endfunction
 
 " Execute (with shell) the command text currently selected:
-vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
+vmap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
 
 " Execute (with vim ex commandline) the command text currently selected:
-vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
+vmap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
 
 
@@ -160,26 +161,26 @@ vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
     "  Use <leader>1 (the number 1, not lower-case L) to toggle  comments.  Add
     "  new file types above as needed.
-    nnoremap <leader>1 :call ToggleComment()<cr>
-    vnoremap <leader>1 :call ToggleComment()<cr>
+    nmap <leader>1 :call ToggleComment()<cr>
+    vmap <leader>1 :call ToggleComment()<cr>
 
 
 set t_Co=256
 
 " <leader>. -> open file browser in current dir
-nnoremap <leader>. :e .<CR>
+nmap <leader>. :e .<CR>
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
 
 " <leader>a/z are used for faster up/down:
-nnoremap <leader>a 15k
-nnoremap <leader>z 15j
-vnoremap <leader>a 15k
-vnoremap <leader>z 15j
+nmap <leader>a 15k
+nmap <leader>z 15j
+vmap <leader>a 15k
+vmap <leader>z 15j
 
 nmap <M-8> :colorscheme morning<CR>
 nmap <C-M-8> :colorscheme industry<CR>
@@ -211,7 +212,7 @@ set smartcase
 set hlsearch
 
 " How to turn off the search highlights and the annoying 'cursorline' option:
-nnoremap <leader><space> :nohlsearch<CR>:set nocursorline<CR>
+nmap <leader><space> :nohlsearch<CR>:set nocursorline<CR>
 
 " Use incremental search:
 set incsearch
@@ -227,7 +228,7 @@ set title
 set grepprg=ack
 
 " Grep for the current word in current dir
-nnoremap gR :grep '\b<cword>\b' *<CR>
+nmap gR :grep '\b<cword>\b' *<CR>
 
 filetype plugin indent on
 set breakindent
@@ -239,15 +240,15 @@ set undodir=~/.vimundo/
 
 " We don't like a simple 'u' for undo, it's to easy to hit accidentally and
 " make a mess. Our 'undo' is Ctrl+Z, like CUA
-nnoremap <C-Z> u
+nmap <C-Z> u
 inoremap <C-Z> <ESC>u
-vnoremap <C-Z> u
-nnoremap u <Nop>
+vmap <C-Z> u
+nmap u <Nop>
 
 " in vimdiff, the <leader>c goes to "next change", and
 " <leader>v is "previous change"
-nnoremap <leader>c ]c
-nnoremap <leader>v [c
+nmap <leader>c ]c
+nmap <leader>v [c
 
 set wildignore=*.swp,*.bak,*.o,*.d
 " Use jk in insert mode to get back to normal mode:
@@ -257,17 +258,17 @@ inoremap JK <ESC>
 inoremap jj <Nop>
 inoremap JK <ESC>
 "# Display a menu of buffers with F5:
-noremap <F5> :buffers<CR>:buffer<Space>
-noremap <S-F5> :buffers<CR>:bd<Space>
+nmap <F5> :buffers<CR>:buffer<Space>
+nmap <S-F5> :buffers<CR>:bd<Space>
 
 
 
 " ,t starts insert mode and enters # TODO:
 "inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
-"nnoremap <leader>t A<space>#<space>TODO:<space> 
+"nmap <leader>t A<space>#<space>TODO:<space> 
 
 " bufexplorer gets quick access with ',n'
-nnoremap <silent> <leader>n :BufExplorer<CR>
+nmap <silent> <leader>n :BufExplorer<CR>
 
 " Load tags on startup.
 set tags=tags;/
@@ -277,36 +278,36 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 " Page up, page down:
-nnoremap fu <C-U>   
-nnoremap fd <C-D>   
-vnoremap fu <C-U>   
-vnoremap fd <C-D>   
+nmap fu <C-U>   
+nmap fd <C-D>   
+vmap fu <C-U>   
+vmap fd <C-D>   
 
 
 
 " Insert mode, make preceding word uppercase:
 inoremap <leader>U <Esc>mvviwU`va
 " Normal mode, make preceding word uppercase:
-nnoremap <leader>u viwue
-nnoremap <leader>U viwUe
+nmap <leader>u viwue
+nmap <leader>U viwUe
 
 " Use <Ctrl+F9> repeatedly to double-width a text block.  (i.e. d o u b l e - w i d t h )
-nnoremap <C-F9> a<space><ESC>l
+nmap <C-F9> a<space><ESC>l
 
 " Compile and find next error:
-nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
+nmap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 inoremap <F3> <ESC>:w<CR>:make!<CR><CR>:cn<CR>:cw<CR>
-nnoremap <F4> :cn<CR>
+nmap <F4> :cn<CR>
 
-nnoremap <leader>] /\[ \]<cr>
+nmap <leader>] /\[ \]<cr>
 
 " map grok wrapper....
 " Full text search:
-nnoremap <leader>oga :!env grok <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+nmap <leader>oga :!env grok <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
 " definition search:
-nnoremap <leader>ogd :!env grok -d <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+nmap <leader>ogd :!env grok -d <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
 " symbol reference search:
-nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
+nmap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| less -ir<CR>
 
 
 
@@ -315,7 +316,7 @@ nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| l
 "  BAD MAPPING:  nmap <ESC> :nohl<CR>
 
 " Change to directory containing current file, for current window only:
-noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
+nmap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Fix C# triple-slash comment headers:
 let g:load_doxygen_syntax=1
@@ -364,19 +365,19 @@ function! HandleURL()
   endif
 endfunction
 
-map gx :call HandleURL()<cr>
+nmap gx :call HandleURL()<cr>
 
 
 " The Astyle command will reformat the file
 command! Astyle w | !astyle %; rm %.orig
 
 " In visual mode, Shift-F8 will reformat the highlighted text:
-vnoremap <S-F8> :!astyle<CR>
+vmap <S-F8> :!astyle<CR>
 " Copy the current buffer's filename to the w register:
-nnoremap <leader>F :let @w=expand("%:p:t")<CR>
+nmap <leader>F :let @w=expand("%:p:t")<CR>
 
 " Replace the current word with contents of the w register:
-nnoremap <leader>r viw"wp
+nmap <leader>r viw"wp
 
 " Run Conque bash in split
 "command! Term ConqueTermVSplit bash
@@ -386,16 +387,16 @@ nnoremap <leader>r viw"wp
 " Gopen opens the active document with shell handler.   This is also
 " mapped to <leader>g
 command! Gopen ! xdg-open %
-noremap <leader>g :!xdg-open % <CR><CR>
+nmap <leader>g :!xdg-open % <CR><CR>
 
 " To launch a mark URL, first capture the text in parens, the pass
 " it to xdg-open:
-"nnoremap <leader>x yi):!xdg-open <c-r>" &<cr>
+"nmap <leader>x yi):!xdg-open <c-r>" &<cr>
 " Same thing for stuff that isn't wrapped in parens:
-"nnoremap <leader>X yiW:!xdg-open <c-r>" &<cr>
+"nmap <leader>X yiW:!xdg-open <c-r>" &<cr>
 "
 " Find/Highlight text in braces[]:
-nnoremap <leader>] /\[[^\]]*\]<cr>
+nmap <leader>] /\[[^\]]*\]<cr>
 
 " Sometimes you just need a pastebin in a browser, and you need
 " it now:
@@ -403,7 +404,7 @@ command! Pastebin ! xdg-open http://pastebin.com
 "noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
 
 " <leader>p to reformat paragraph:
-nnoremap <leader>p gqip
+nmap <leader>p gqip
 
 "command! Mdownview w | ! firefox  %
 "command! Foxview w | ! firefox  %
@@ -426,16 +427,16 @@ command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
 command! Gvim !gvim %
 
 "  ,q is quit without saving:
-noremap <leader>q :qa!<CR>
+nmap <leader>q :qa!<CR>
 
 
 " Use CTRL-Q to mimic CTRL-V -- because that's what we're used to 
-noremap <C-Q>		<C-V>
+nmap <C-Q>		<C-V>
 
 " How could someone use 's' for anything except "save"??  To substitute
 " chars, we prefer '-' (think "strikeout")
-nnoremap - s
-nnoremap s :w<CR>
+nmap - s
+nmap s :w<CR>
 
 
 
@@ -445,17 +446,17 @@ nnoremap s :w<CR>
 " Uses the paste.vim autoload script.
 
 "exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-"exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+"exe 'vmap <script> <C-V>' paste#paste_cmd['v']
 
 " Something we really don't like: pasting replaces the contents of the unnamed
 " buffer '*', which is almost always the wrong behavior.  So we're going out
 " on a limb here with the draconian policy of "always paste from 0 register
 " from normal mode". 
-"nnoremap p "0p
-"vnoremap p "0p
+"nmap p "0p
+"vmap p "0p
 
 "inoremap <S-Insert>		<C-V>
-"vnoremap <S-Insert>		<C-V>
+"vmap <S-Insert>		<C-V>
 
 
 
@@ -464,34 +465,34 @@ set directory=~/.vimtmp,.
 
 
 " Ctrl-S to save the file:
-noremap <C-S> :w<CR>
+nmap <C-S> :w<CR>
 
-nnoremap <F10> :messages<CR>
+nmap <F10> :messages<CR>
 
 " Insert newlines from normal mode with Ctrl+Enter:
-noremap <C-Enter> O<Esc>
+nmap <C-Enter> O<Esc>
 " ctrl-a should select-all:
-nnoremap <C-A> ggVG
+nmap <C-A> ggVG
 
 " <leader>f goes to the alternate file
-nnoremap <leader>f <C-^>
+nmap <leader>f <C-^>
 
 " shift-ctrl-m runs the most-recent-files menu
-noremap <leader>m :MRU<CR>
+nmap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
 
 " <leader>hh switches from C module to header (FSwitch plugin)
-nnoremap <leader>hh  :FSHere<CR>
+nmap <leader>hh  :FSHere<CR>
 
 " <leader>w copies the current word to the w register.  
-nnoremap <leader>w :let @w=expand("<cword>")<CR>
-nnoremap <leader>W :let @w=expand("<cWORD>")<CR>
+nmap <leader>w :let @w=expand("<cword>")<CR>
+nmap <leader>W :let @w=expand("<cWORD>")<CR>
 
 "  Expand the current window horizontally +20:
-nnoremap <leader>> <C-W>20>
+nmap <leader>> <C-W>20>
 "  Shrink the current window horizontally -20:
-nnoremap <leader>< <C-W>20<
+nmap <leader>< <C-W>20<
 
 "folding settings
 set foldmethod=syntax   "fold based on syntax
@@ -541,7 +542,7 @@ endfunction
 " Toggle paste mode:
 set pastetoggle=<F2>
 " In normal mode, we get similar effect:
-nnoremap <F2> i<F2>
+nmap <F2> i<F2>
 
 if exists('&selection')
 	set selection=exclusive
@@ -649,11 +650,11 @@ let g:clang_complete_auto=1
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
 " movement can be disorienting.   This is cured by remapping j and k to gj and gk:
-noremap j gj
-noremap k gk
+nmap j gj
+nmap k gk
 
 " Switch between .h and .cpp if they're in the same dir:
-nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+nmap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 
 " wildmenu turns on the fancy visual display of <TAB> matches when doing
@@ -679,7 +680,7 @@ endfunction
 "set makeprg=./compile-module\ %
 
 " Position the cursor on a riddle symbol and use this to split/open the .summ:
-nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
+nmap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 " If vim errors on startup, symlink: 'cd; ln ~/.vim/all_color_codes.vim ./'
 source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
