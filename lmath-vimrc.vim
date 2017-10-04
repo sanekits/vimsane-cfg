@@ -1,4 +1,4 @@
-" Vimsane-core .vimrc
+" ~/.vim/lmath-vimrc.vim
 "
 set nocompatible
 
@@ -7,9 +7,7 @@ let g:vimrc_script_path = expand('<sfile>:p')
 
 let $VIMHOME=expand('<sfile>:p:h')
 
-" if filereadable(expand("$VIMHOME/vimsane.vim"))
-"     source $VIMHOME/vimsane.vim
-" endif
+source $VIMHOME/vimsane.vim
 
 
 set cmdheight=2   " A bit more room for the command line

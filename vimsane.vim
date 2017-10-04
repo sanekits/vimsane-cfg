@@ -102,41 +102,49 @@
 " 	  :resize 5  (make it 5 lines high)
 " 	  :resize +5 (increase by 5 lines)
 
-set nocompatible  " Keep this as second line always
+set nocompatible  " Keep this at the top of the file. We don't do vi compatibility
 
 " Capture the path of our own script for later refresh.
 let g:vimsane_script_path = expand('<sfile>:p')
 let $VIMHOME=expand('<sfile>:p:h')
 
 
+" You can use 'jk' to leave insert mode, without reaching up to hit ESC:
 imap jk <ESC>
+
+" Height of the command window in lines:
 set cmdheight=2
 
-" Window switching is easier if you just take over the Ctrl+Dir sequence:
-noremap <C-h> <C-w>h  
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" The 'leader' is a single comma.  We use this as a prefix for various command
+" extensions to avoid "polluting the namespace" of key maps.
+let mapleader=','
+
+" Window switching with Alt-[arrow] or Ctrl[h,j,k,l]:
+" ===================================================
+    noremap <C-h> <C-w>h  
+    noremap <M-Left> <C-w>h
+
+    noremap <C-j> <C-w>j
+    noremap <M-Down> <C-w>j
+
+    noremap <C-k> <C-w>k
+    noremap <M-Up> <C-w>k
+
+    noremap <C-l> <C-w>l
+    noremap <M-Right> <C-w>l
+
+" Word-right and Word-left are 'w' and 'b' respectively, but vimsane 
+" also offers <Ctrl+Left> and <Ctrl+Right>:
+" ===================================================
+    noremap <C-Left> b
+    noremap <C-Right> w
 
 
-" Loop through our taskrc's if they exist. These
-" are small scripts which establish commands or
-" options that are local to a particular directory
-" or user.
-function! LoadTaskRcs(baseDir)
-    let l:rcdir= expand(a:baseDir)
-    let l:myRcs=split( globpath( l:rcdir,'*.vim'),'\n')
-    if len(l:myRcs) == 0
-        return 0
-    endif
-    for rcs in myRcs
-        execute "source " . rcs
-    endfor
-    return 0
-endfunction
-
+source $VIMHOME/load-plugins.vim
 
 command! VsRefresh execute 'source ' . g:vimsane_script_path
+
+source $VIMHOME/load-task-rcs.vim
 
 " We first search the user's ~/.taskrc directory for *.vim,
 " and then we search ./.taskrc.
