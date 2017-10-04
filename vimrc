@@ -181,8 +181,8 @@ nnoremap <leader>z 15j
 vnoremap <leader>a 15k
 vnoremap <leader>z 15j
 
-nmap <M-8> :colorscheme morning<CR>
-nmap <C-M-8> :colorscheme industry<CR>
+nnoremap <M-8> :colorscheme morning<CR>
+nnoremap <C-M-8> :colorscheme industry<CR>
 
 
 " We always want a status line:
@@ -312,7 +312,7 @@ nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| l
 
 
 " In normal mode, hitting Esc turns off search highlights:
-"  BAD MAPPING:  nmap <ESC> :nohl<CR>
+"  BAD MAPPING:  nnoremap <ESC> :nohl<CR>
 
 " Change to directory containing current file, for current window only:
 noremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
@@ -364,7 +364,7 @@ function! HandleURL()
   endif
 endfunction
 
-map gx :call HandleURL()<cr>
+
 
 
 " The Astyle command will reformat the file
@@ -608,9 +608,9 @@ if has("gui_running")
 	" Make font larger (gvim only on Linux)
 	" See plugin/gtk2fontsize.vim
 	"source ~/.vim/plugin/gtk2fontsize.vim
-	nmap <leader>+ :LargerFont<CR> 
-	nmap <leader>= :LargerFont<CR> 
-	nmap <leader>- :SmallerFont<CR> 
+	nnoremap <leader>+ :LargerFont<CR> 
+	nnoremap <leader>= :LargerFont<CR> 
+	nnoremap <leader>- :SmallerFont<CR> 
 	set guifont=Monospace\ 11
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
