@@ -1,11 +1,11 @@
-" Les Matheson's .vimrc
+" Vimsane-core .vimrc
 "
 
 let $VIMHOME=expand('<sfile>:p:h')
 
-if filereadable(expand("$VIMHOME/vimsane.vim"))
-    source $VIMHOME/vimsane.vim
-endif
+" if filereadable(expand("$VIMHOME/vimsane.vim"))
+"     source $VIMHOME/vimsane.vim
+" endif
 
 
 set cmdheight=2   " A bit more room for the command line
