@@ -152,7 +152,7 @@ call LoadTaskRcs("~/.taskrc")
 call LoadTaskRcs(".taskrc")
 "
 
-echo "Vimsane loaded from " . g:vimsane_script_path
+"  echo "Vimsane loaded from " . g:vimsane_script_path
 
 let g:vimsane_loaded=1
 

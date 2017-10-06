@@ -10,10 +10,6 @@ let $VIMHOME=expand('<sfile>:p:h')
 source $VIMHOME/vimsane.vim
 
 
-set cmdheight=2   " A bit more room for the command line
-let mapleader=','
-
-
 " Reminders
 " .........
 "
@@ -79,22 +75,22 @@ let mapleader=','
 "   $ vim -c "set makeprg=bin/build" -c "set nowrap" *.c *.h
 "
 "===========  Vundle start  ======================
-filetype off
-
-if exists("&macmeta")
-    set macmeta " Interpret option key as alt on macos
-    nnoremap å :echo "macmeta is on"<CR>
-endif
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" filetype off
+" 
+" if exists("&macmeta")
+"     set macmeta " Interpret option key as alt on macos
+"     nnoremap å :echo "macmeta is on"<CR>
+" endif
+" 
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 " Plugin managment: see this include file...
-
-source $VIMHOME/manual-repos/plugin-list.vim  " Use external plugins list
-
+" 
+" source $VIMHOME/manual-repos/plugin-list.vim  " Use external plugins list
+" 
 " End of vundle initialization
-call vundle#end()
-filetype plugin indent on  " required
+" call vundle#end()
+" filetype plugin indent on  " required
 
 "==========   Vundle end ========================
 
