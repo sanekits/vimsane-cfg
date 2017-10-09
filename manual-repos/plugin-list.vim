@@ -50,7 +50,7 @@ Plugin 'manual-repos/bufexplorer' " @jlanzarotta/bufexplorer
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
   let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 
-Plugin 'manual-repos/QFGrep' " @sk1418/QFGrep
+
 Plugin 'manual-repos/vim-airline' " @Stabledog/vim-airline
 
 Plugin 'manual-repos/vim-airline-themes' " @vim-airline/vim-airline-themes
