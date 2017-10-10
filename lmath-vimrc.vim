@@ -4,7 +4,6 @@ set nocompatible
 
 " Capture the path of our own script for later refresh.
 let g:vimrc_script_path = expand('<sfile>:p')
-
 let $VIMHOME=expand('<sfile>:p:h')
 
 source $VIMHOME/vimsane.vim

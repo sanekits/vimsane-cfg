@@ -53,9 +53,11 @@
 "   d -->   Delete selected block of text (i.e. "cut")
 "   p -->   Paste text
 "
-"   :ls  --> Show a list of the files loaded
+"   :ls  --> Show a list of the files loaded.  The numbers
+"            on the left are buffer numbers that can be used
+"            with :b to change files.
 "
-"   :b [name-fragment]  --> switch to loaded file 
+"   :b [name-fragment]  --> switch to loaded file by number
 "   :b [buffer-number]  --> switch to numbered buffer
 "
 "   :args [wildcards] --> Load all files matching wildcard
@@ -108,18 +110,17 @@ set nocompatible  " Keep this at the top of the file. We don't do vi compatibili
 let g:vimsane_script_path = expand('<sfile>:p')
 let $VIMHOME=expand('<sfile>:p:h')
 
-
+"  BASICS
+"  ------
 " You can use 'jk' to leave insert mode, without reaching up to hit ESC:
 imap jk <ESC>
 
-" Height of the command window in lines:
-set cmdheight=2
 
 " The 'leader' is a single comma.  We use this as a prefix for various command
 " extensions to avoid "polluting the namespace" of key maps.
 let mapleader=','
 
-" Window switching with Alt-[arrow] or Ctrl[h,j,k,l]:
+" Window pane-switching with Alt-[arrow] or Ctrl[h,j,k,l]:
 " ===================================================
     noremap <C-h> <C-w>h  
     noremap <M-Left> <C-w>h
@@ -142,6 +143,10 @@ let mapleader=','
 
 source $VIMHOME/load-plugins.vim
 
+
+
+
+
 command! VsRefresh execute 'source ' . g:vimsane_script_path
 
 source $VIMHOME/load-task-rcs.vim
@@ -150,9 +155,13 @@ source $VIMHOME/load-task-rcs.vim
 " and then we search ./.taskrc.
 call LoadTaskRcs("~/.taskrc")
 call LoadTaskRcs(".taskrc")
-"
+
+" The command window needs at least 2 lines so echo messages don't 
+" disappear suddenly:
+set cmdheight=2
 
 "  echo "Vimsane loaded from " . g:vimsane_script_path
+" Height of the command window in lines:
 
 let g:vimsane_loaded=1
 
