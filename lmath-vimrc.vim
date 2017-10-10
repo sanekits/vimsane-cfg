@@ -375,38 +375,11 @@ nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 " Replace the current word with contents of the w register:
 nnoremap <leader>r viw"wp
 
-" Run Conque bash in split
-"command! Term ConqueTermVSplit bash
-" noremap <leader><F8> :ConqueTermSplit bash<CR>
-" noremap <leader><F9> :ConqueTermVSplit bash<CR>
-
-" Gopen opens the active document with shell handler.   This is also
-" mapped to <leader>g
-command! Gopen ! xdg-open %
-nnoremap <leader>g :!xdg-open % <CR><CR>
-
-" To launch a mark URL, first capture the text in parens, the pass
-" it to xdg-open:
-"nmap <leader>x yi):!xdg-open <c-r>" &<cr>
-" Same thing for stuff that isn't wrapped in parens:
-"nmap <leader>X yiW:!xdg-open <c-r>" &<cr>
-"
-" Find/Highlight text in braces[]:
-nnoremap <leader>] /\[[^\]]*\]<cr>
-
-" Sometimes you just need a pastebin in a browser, and you need
-" it now:
-command! Pastebin ! xdg-open http://pastebin.com
-"noremap <leader>p :! xdg-open http://pastebin.com <CR><CR>
 
 " <leader>p to reformat paragraph:
 nnoremap <leader>p gqip
 
-"command! Mdownview w | ! firefox  %
-"command! Foxview w | ! firefox  %
-"command! Term w | !terminator &
 command! La w | ! ls -a %:p:h
-"command! Multimarkdown w | ! multimarkdown % > /tmp/%:p:t.html && firefox /tmp/%:p:t.html &
 command! Lirt w | ! ls -lirt %:p:h
 "# Write a root-owned file:
 command! Sudowrite w !sudo tee %
@@ -414,10 +387,6 @@ command! Sudowrite w !sudo tee %
 command! Revimrc source ~/.vimrc
 " Fix the dang keyboard mapping:
 "command! Kbfix !source /home/lmatheson/.Xmodmap
-
-" Riddlesnap takes a quick git snapshot of the state of riddle dir
-command! Riddlesnap !$RIDDLE_HOME/bin/riddle-git-snapshot
-
 
 " Run gvim with the current file
 command! Gvim !gvim %
@@ -619,19 +588,19 @@ endif
 set background=dark
 syntax on
 
-augroup  fmtOpts
-    autocmd!
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    " According to http://stackoverflow.com/a/8748154/237059, there's a bug in a
-    " plugin which makes 'set formatoptions += {x}' malfunction.  Here's our
-    " workaround:
-    autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
-
-    "let g:syntastic_cpp_compiler = 'g++'
-    "let g:syntastic_cpp_compiler = 'clang++'
-    "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-    "au BufNewFile,BufRead *.cpp set syntax=cpp11
-augroup  END
+" augroup  fmtOpts
+"     autocmd!
+"     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"     " According to http://stackoverflow.com/a/8748154/237059, there's a bug in a
+"     " plugin which makes 'set formatoptions += {x}' malfunction.  Here's our
+"     " workaround:
+"     autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
+" 
+"     "let g:syntastic_cpp_compiler = 'g++'
+"     "let g:syntastic_cpp_compiler = 'clang++'
+"     "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+"     "au BufNewFile,BufRead *.cpp set syntax=cpp11
+" augroup  END
 
 " The clang_complete plugin needs the directory name containing libclang.so:
 let g:clang_library_path='/opt/swt/lib'
