@@ -72,26 +72,14 @@ source $VIMHOME/vimsane.vim
 "
 " Tip: run one or more ex commands on startup, from shell:
 "   $ vim -c "set makeprg=bin/build" -c "set nowrap" *.c *.h
-"
-"===========  Vundle start  ======================
-" filetype off
-" 
-" if exists("&macmeta")
-"     set macmeta " Interpret option key as alt on macos
-"     nnoremap å :echo "macmeta is on"<CR>
-" endif
-" 
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-" Plugin managment: see this include file...
-" 
-" source $VIMHOME/manual-repos/plugin-list.vim  " Use external plugins list
-" 
-" End of vundle initialization
-" call vundle#end()
-" filetype plugin indent on  " required
 
-"==========   Vundle end ========================
+" Plugins are extension scripts produced by 3rd parties that add
+" features to vim.  Vimsane includes a few of the most popular
+" plugins pre-configured, you can see what they 
+" are in ~/.vim/manual-repos/plugin-list.vim
+source $VIMHOME/load-plugins.vim
+
+
 
 " Fix the markdown mapping for 'md' extension:
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -120,52 +108,9 @@ vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
 " Execute (with vim ex commandline) the command text currently selected:
 vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
+source $VIMHOME/comment-helper.vim
 
 
-" Commenting blocks of code.
-" --------------------------
-    let s:comment_map = {
-    \   "c": '// ',
-    \   "cpp": '// ',
-    \   "csc2": '# ',
-    \   "go": '// ',
-    \   "java": '// ',
-    \   "javascript": '// ',
-    \   "make": '# ',
-    \   "php": '// ',
-    \   "python": '# ',
-    \   "ruby": '# ',
-    \   "tex": '%',
-    \   "vim": '" ',
-    \   "sh": '# ',
-    \   "plaintex": '% ',
-    \ }
-
-    function! ToggleComment()
-        if has_key(s:comment_map, &filetype)
-            let comment_leader = s:comment_map[&filetype]
-            if getline('.') =~ "^" . comment_leader
-                " Uncomment the line
-                execute "silent s/^" . comment_leader . "//"
-            else
-                " Comment the line
-                execute "silent s/^/" . comment_leader . "/"
-            endif
-        else
-            echo "No comment leader found for filetype"
-        end
-    endfunction
-
-    "  Use <leader>1 (the number 1, not lower-case L) to toggle  comments.  Add
-    "  new file types above as needed.
-    nnoremap <leader>1 :call ToggleComment()<cr>
-    vnoremap <leader>1 :call ToggleComment()<cr>
-
-
-set t_Co=256
-
-" <leader>. -> open file browser in current dir
-nnoremap <leader>. :e .<CR>
 
 " Window switching is easier if you just take over the Ctrl+Dir sequence:
 nnoremap <C-h> <C-w>h
