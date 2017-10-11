@@ -607,6 +607,10 @@ highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Re
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 
+" SaveSession saves the current window/file layout into .taskrc/session.vim,
+" so if you restart vim in this same directory it all gets restored
+command! SaveSession mksession .taskrc/session.vim
+
 set makeprg=make
 
 " Generic build using local script:
@@ -632,6 +636,8 @@ function! LoadTaskRcs(baseDir)
     endfor
     return 0
 endfunction
+
+source $VIMHOME/fsd-train.vim  " Some helpers for fsd labs
 
 call LoadTaskRcs("~/.taskrc")
 call LoadTaskRcs(".taskrc")
