@@ -1,4 +1,5 @@
 " vimsane.vim
+" lmatheson4@bloomberg.net
 "
 " vimsane is a pre-packaged Vim installation available to 
 " those who want to learn the Vim editor.  Vim can be 
@@ -145,6 +146,14 @@ let mapleader=','
 " We always want a status line:
 set laststatus=2   
 
+" Ctrl+z is the CUA 'undo'.  If you find vim's standard 'u' to
+" be a bit dangerous, you can uncomment the line below to nullify 
+" that.  Then just use Ctrl+z all the time.
+nnoremap <C-Z> u
+inoremap <C-Z> <ESC>u
+vnoremap <C-Z> u
+" nnoremap u <Nop>  " Un-comment this to eliminate 'u' as undo
+
 " Smart tabbing / autoindenting
 set autoindent
 set copyindent
@@ -254,5 +263,32 @@ source $VIMHOME/toggle-comment.vim
 nnoremap <leader>1 :call ToggleComment()<cr>
 vnoremap <leader>1 :call ToggleComment()<cr>
 
+if has("gui_running")
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ 12
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h16
+    elseif has("gui_win32")
+        set guifont=Consolas:h10:cANSI
+    endif
+	" Make font larger (gvim only on Linux)
+	" See plugin/gtk2fontsize.vim
+	"source ~/.vim/plugin/gtk2fontsize.vim
+	nnoremap <leader>+ :LargerFont<CR> 
+	nnoremap <leader>= :LargerFont<CR> 
+	nnoremap <leader>- :SmallerFont<CR> 
+endif
+
+" Change to directory containing current file, for current window only:
+nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
+
+syntax on " Turn on syntax higlighting.
+
+"  Don't ever, ever, ever beep or flash at me:
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
 let g:vimsane_loaded=1
+
+
 

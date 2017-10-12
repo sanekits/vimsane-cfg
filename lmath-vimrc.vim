@@ -86,30 +86,27 @@ vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
 
 " <leader>a/z are used for faster up/down:
-nnoremap <leader>a 15k
-nnoremap <leader>z 15j
-vnoremap <leader>a 15k
-vnoremap <leader>z 15j
+" nnoremap <leader>a 15k
+" nnoremap <leader>z 15j
+" vnoremap <leader>a 15k
+" vnoremap <leader>z 15j
 
-nnoremap <M-8> :colorscheme morning<CR>
-nnoremap <C-M-8> :colorscheme industry<CR>
-
+" nnoremap <M-8> :colorscheme morning<CR>
+" nnoremap <C-M-8> :colorscheme industry<CR>
 
 "set mouse=a
 set grepprg=ack
 
 " Grep for the current word in current dir
-nnoremap gR :grep '\b<cword>\b' *<CR>
+"command! GrepWordHere grep '\b<cword\b' *
+"nnoremap gR :grep '\<cword\>' *<CR>
+
+"nnoremap gR :exec 'grep "' . expand('<cword>') . '" *<CR>'
 
 filetype plugin indent on
 set undofile
 set undodir=~/.vimundo/
 
-" We don't like a simple 'u' for undo, it's to easy to hit accidentally and
-" make a mess. Our 'undo' is Ctrl+Z, like CUA
-nnoremap <C-Z> u
-inoremap <C-Z> <ESC>u
-vnoremap <C-Z> u
 nnoremap u <Nop>
 
 
@@ -130,16 +127,6 @@ nnoremap <silent> <leader>n :BufExplorer<CR>
 
 " Load tags on startup.
 set tags=tags;/
-
-"  Don't ever, ever, ever beep or flash at me:
-set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
-
-" Page up, page down:
-nnoremap fu <C-U>   
-nnoremap fd <C-D>   
-vnoremap fu <C-U>   
-vnoremap fd <C-D>   
 
 
 
@@ -169,15 +156,6 @@ nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| l
 
 
 
-
-" In normal mode, hitting Esc turns off search highlights:
-"  BAD MAPPING:  nnoremap <ESC> :nohl<CR>
-
-" Change to directory containing current file, for current window only:
-nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
-
-" Fix C# triple-slash comment headers:
-let g:load_doxygen_syntax=1
 
 " Gtags helpers:
 "==============
@@ -322,8 +300,8 @@ nnoremap <leader>< <C-W>20<
 "folding settings
 set foldmethod=syntax   "fold based on syntax
 set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
 set foldlevel=1
+set nofoldenable        "dont fold by default, use zi to toggle folding
 
 " 'set list' enables the display of whitespace, and 'set listchars' refines
 " the behavior of that.  Use 'set nolist' to turn this off.
@@ -425,19 +403,6 @@ endfunction
 "colorscheme desert
 
 if has("gui_running")
-    if has("gui_gtk2")
-        set guifont=Inconsolata\ 12
-    elseif has("gui_macvim")
-        set guifont=Menlo\ Regular:h16
-    elseif has("gui_win32")
-        set guifont=Consolas:h10:cANSI
-    endif
-	" Make font larger (gvim only on Linux)
-	" See plugin/gtk2fontsize.vim
-	"source ~/.vim/plugin/gtk2fontsize.vim
-	nnoremap <leader>+ :LargerFont<CR> 
-	nnoremap <leader>= :LargerFont<CR> 
-	nnoremap <leader>- :SmallerFont<CR> 
 	set guifont=Monospace\ 11
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
@@ -446,7 +411,6 @@ if has("gui_running")
 endif
 
 set background=dark
-syntax on
 
 " augroup  fmtOpts
 "     autocmd!
