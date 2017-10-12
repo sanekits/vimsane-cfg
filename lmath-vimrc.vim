@@ -437,9 +437,9 @@ let g:clang_complete_auto=1
 " We do, in general, want formatoptions += c, o, r (see help fo-table).  This
 " ensures that the comment leader is inserted in unsurprising ways when
 " writing or editing comment blocks.
-"set formatoptions += "c"  Disabled in favor of the autocmd hack above.
-"set formatoptions += "o"
-"set formatoptions += "r"
+set formatoptions += "c" 
+set formatoptions += "o"
+set formatoptions += "r"
 
 " When we're  in wrap mode, the per-line (instead of per-display) vertical
 " movement can be disorienting.   This is cured by remapping j and k to gj and gk:
