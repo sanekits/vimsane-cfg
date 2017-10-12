@@ -113,8 +113,10 @@ let $VIMHOME=expand('<sfile>:p:h')
 "  BASICS
 "  ------
 " You can use 'jk' to leave insert mode, without reaching up to hit ESC:
-imap jk <ESC>
+inoremap jk <ESC>
+inoremap JK <ESC>
 
+set t_Co=256  " Don't even claim you can't do 256 colors.
 
 " The 'leader' is a single comma.  We use this as a prefix for various command
 " extensions to avoid "polluting the namespace" of key maps.
@@ -122,23 +124,62 @@ let mapleader=','
 
 " Window pane-switching with Alt-[arrow] or Ctrl[h,j,k,l]:
 " ===================================================
-    noremap <C-h> <C-w>h  
-    noremap <M-Left> <C-w>h
+    nnoremap <C-h> <C-w>h  
+    nnoremap <M-Left> <C-w>h
 
-    noremap <C-j> <C-w>j
-    noremap <M-Down> <C-w>j
+    nnoremap <C-j> <C-w>j
+    nnoremap <M-Down> <C-w>j
 
-    noremap <C-k> <C-w>k
-    noremap <M-Up> <C-w>k
+    nnoremap <C-k> <C-w>k
+    nnoremap <M-Up> <C-w>k
 
-    noremap <C-l> <C-w>l
-    noremap <M-Right> <C-w>l
+    nnoremap <C-l> <C-w>l
+    nnoremap <M-Right> <C-w>l
 
 " Word-right and Word-left are 'w' and 'b' respectively, but vimsane 
 " also offers <Ctrl+Left> and <Ctrl+Right>:
 " ===================================================
-    noremap <C-Left> b
-    noremap <C-Right> w
+    nnoremap <C-Left> b
+    nnoremap <C-Right> w
+
+" We always want a status line:
+set laststatus=2   
+
+" Smart tabbing / autoindenting
+set autoindent
+set copyindent
+
+"" Allow backspace to back over lines
+set backspace=indent,eol,start
+
+set shiftwidth=4
+set shiftround
+set tabstop=4
+set expandtab
+set textwidth=0
+
+" Number lines in the margin:
+set number
+set showmatch
+
+" Disable case-sensitivity in searches
+set ignorecase
+set smartcase
+
+" Highlight search matches:
+set hlsearch
+
+" How to turn off the search highlights and the annoying 'cursorline' option:
+nnoremap <leader><space> :nohlsearch<CR>:set nocursorline<CR>
+
+" Use incremental search:
+set incsearch
+
+" You probably want it to write current file when jumping to another:
+set autowrite
+
+" Yes, wrap long lines (use :set nowrap) to disable this
+set wrap
 
 
 " Plugins are extension scripts produced by 3rd parties that add
@@ -147,8 +188,18 @@ let mapleader=','
 " are in ~/.vim/manual-repos/plugin-list.vim
 source $VIMHOME/load-plugins.vim
 
+set linebreak  " if you do wrap, do it nicely (caution: this conflicts with 'set list', so you have to turn the latter off if you really want linebreak to work)
 
+set updatetime=800
+set title
+set showcmd
 
+set breakindent
+set breakindentopt=shift:1
+set history=1000
+set undolevels=1000
+
+set wildignore=*.swp,*.bak,*.o,*.d
 
 
 command! VsRefresh execute 'source ' . g:vimsane_script_path
@@ -169,9 +220,39 @@ call LoadTaskRcs(".taskrc")
 " disappear suddenly:
 set cmdheight=2
 
-"  echo "Vimsane loaded from " . g:vimsane_script_path
-" Height of the command window in lines:
+"# Display a menu of buffers with F10:
+nnoremap <F10> :buffers<CR>:buffer<Space>
 
+
+" From https://stackoverflow.com/a/6271254/237059
+" Grab the current visual selection and return it
+function! Get_visual_selection()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+" Execute (with shell) the command text currently selected:
+vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
+
+" <leader>. -> open file browser in current dir:
+nnoremap <leader>. :e .<CR>
+
+" Fix the markdown mapping for 'md' extension:
+au BufRead,BufNewFile *.md set filetype=markdown
+
+source $VIMHOME/toggle-comment.vim
+
+
+"  Use <leader>1 (the number 1, not lower-case L) to toggle  comments.  
+nnoremap <leader>1 :call ToggleComment()<cr>
+vnoremap <leader>1 :call ToggleComment()<cr>
 
 let g:vimsane_loaded=1
 

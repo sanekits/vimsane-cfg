@@ -73,105 +73,17 @@ source $VIMHOME/vimsane.vim
 " Tip: run one or more ex commands on startup, from shell:
 "   $ vim -c "set makeprg=bin/build" -c "set nowrap" *.c *.h
 "
-"===========  Vundle start  ======================
-" filetype off
-" 
-" if exists("&macmeta")
-"     set macmeta " Interpret option key as alt on macos
-"     nnoremap å :echo "macmeta is on"<CR>
-" endif
-" 
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-" Plugin managment: see this include file...
-" 
-" source $VIMHOME/manual-repos/plugin-list.vim  " Use external plugins list
-" 
-" End of vundle initialization
-" call vundle#end()
-" filetype plugin indent on  " required
 
-"==========   Vundle end ========================
-
-" Fix the markdown mapping for 'md' extension:
-au BufRead,BufNewFile *.md set filetype=markdown
 
 au BufRead,BufNewFile *.jrnl  setfiletype jrnl
 
 let g:tex_flavor = "latex"
 
-function! Get_visual_selection()
-	" From https://stackoverflow.com/a/6271254/237059
-    " Grab the current visual selection and return it
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-    if len(lines) == 0
-        return ''
-    endif
-    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-    let lines[0] = lines[0][column_start - 1:]
-    return join(lines, "\n")
-endfunction
 
-" Execute (with shell) the command text currently selected:
-vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
 
 " Execute (with vim ex commandline) the command text currently selected:
 vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
-
-
-" Commenting blocks of code.
-" --------------------------
-    let s:comment_map = {
-    \   "c": '// ',
-    \   "cpp": '// ',
-    \   "csc2": '# ',
-    \   "go": '// ',
-    \   "java": '// ',
-    \   "javascript": '// ',
-    \   "make": '# ',
-    \   "php": '// ',
-    \   "python": '# ',
-    \   "ruby": '# ',
-    \   "tex": '%',
-    \   "vim": '" ',
-    \   "sh": '# ',
-    \   "plaintex": '% ',
-    \ }
-
-    function! ToggleComment()
-        if has_key(s:comment_map, &filetype)
-            let comment_leader = s:comment_map[&filetype]
-            if getline('.') =~ "^" . comment_leader
-                " Uncomment the line
-                execute "silent s/^" . comment_leader . "//"
-            else
-                " Comment the line
-                execute "silent s/^/" . comment_leader . "/"
-            endif
-        else
-            echo "No comment leader found for filetype"
-        end
-    endfunction
-
-    "  Use <leader>1 (the number 1, not lower-case L) to toggle  comments.  Add
-    "  new file types above as needed.
-    nnoremap <leader>1 :call ToggleComment()<cr>
-    vnoremap <leader>1 :call ToggleComment()<cr>
-
-
-set t_Co=256
-
-" <leader>. -> open file browser in current dir
-nnoremap <leader>. :e .<CR>
-
-" Window switching is easier if you just take over the Ctrl+Dir sequence:
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " <leader>a/z are used for faster up/down:
 nnoremap <leader>a 15k
@@ -183,55 +95,13 @@ nnoremap <M-8> :colorscheme morning<CR>
 nnoremap <C-M-8> :colorscheme industry<CR>
 
 
-" We always want a status line:
-set laststatus=2   
-
-" Smart tabbing / autoindenting
-set autoindent
-set copyindent
-
-"" Allow backspace to back over lines
-set backspace=indent,eol,start
-
-set shiftwidth=4
-set shiftround
-set tabstop=4
-set expandtab
-set textwidth=0
-
-" Number lines in the margin:
-set number
-set showmatch
-" Disable case-sensitivity in searches
-set ignorecase
-set smartcase
-" Highlight search matches:
-set hlsearch
-
-" How to turn off the search highlights and the annoying 'cursorline' option:
-nnoremap <leader><space> :nohlsearch<CR>:set nocursorline<CR>
-
-" Use incremental search:
-set incsearch
-
-" I like it writing automatically on swapping
-set autowrite
-set wrap
-set linebreak  " if you do wrap, do it nicely (caution: this conflicts with 'set list', so you have to turn the latter off if you really want linebreak to work)
-set updatetime=800
 "set mouse=a
-set showcmd
-set title
 set grepprg=ack
 
 " Grep for the current word in current dir
 nnoremap gR :grep '\b<cword>\b' *<CR>
 
 filetype plugin indent on
-set breakindent
-set breakindentopt=shift:1
-set history=1000
-set undolevels=1000
 set undofile
 set undodir=~/.vimundo/
 
@@ -242,27 +112,18 @@ inoremap <C-Z> <ESC>u
 vnoremap <C-Z> u
 nnoremap u <Nop>
 
+
 " in vimdiff, the <leader>c goes to "next change", and
 " <leader>v is "previous change"
 nnoremap <leader>c ]c
 nnoremap <leader>v [c
 
 set wildignore=*.swp,*.bak,*.o,*.d
-" Use jk in insert mode to get back to normal mode:
-inoremap jk <ESC>
-inoremap JK <ESC>
-
 inoremap jj <Nop>
-inoremap JK <ESC>
-"# Display a menu of buffers with F5:
-nnoremap <F5> :buffers<CR>:buffer<Space>
-nnoremap <S-F5> :buffers<CR>:bd<Space>
 
 
 
-" ,t starts insert mode and enters # TODO:
-"inoremap <leader>t <ESC>A<space>#<space>TODO:<space>
-"nmap <leader>t A<space>#<space>TODO:<space> 
+
 
 " bufexplorer gets quick access with ',n'
 nnoremap <silent> <leader>n :BufExplorer<CR>
@@ -432,7 +293,6 @@ set directory=~/.vimtmp,.
 " Ctrl-S to save the file:
 nnoremap <C-S> :w<CR>
 
-nnoremap <F10> :messages<CR>
 
 " Insert newlines from normal mode with Ctrl+Enter:
 nnoremap <C-Enter> O<Esc>
