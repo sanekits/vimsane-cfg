@@ -7,9 +7,9 @@
 " curve is long.  
 "
 " Vimsane exists to help you become reasonably competent 
-" quickly, by bundling some popular vim plugins and 
-" configuration choices to make Vim a bit more 'sane' for
-" learning.
+" quickly, by bundling some help, a few popular vim plugins,  and 
+" sane configuration choices to make Vim a bit easier for
+" newbies.
 "
 " While you can use vimsane as your daily editor for the 
 " long term, you're encouraged to learn how to customize
@@ -117,7 +117,8 @@ let $VIMHOME=expand('<sfile>:p:h')
 inoremap jk <ESC>
 inoremap JK <ESC>
 
-set t_Co=256  " Don't even claim you can't do 256 colors.
+set t_Co=256  " Assume we have 256 colors.   We're not in the 80's.
+
 
 " The 'leader' is a single comma.  We use this as a prefix for various command
 " extensions to avoid "polluting the namespace" of key maps.
@@ -195,6 +196,7 @@ set wrap
 " features to vim.  Vimsane includes a few of the most popular
 " plugins pre-configured, you can see what they 
 " are in ~/.vim/manual-repos/plugin-list.vim
+
 source $VIMHOME/load-plugins.vim
 
 set linebreak  " if you do wrap, do it nicely (caution: this conflicts with 'set list', so you have to turn the latter off if you really want linebreak to work)
@@ -203,12 +205,18 @@ set updatetime=800
 set title
 set showcmd
 
+
 set breakindent
 set breakindentopt=shift:1
 set history=1000
 set undolevels=1000
 
+
 set wildignore=*.swp,*.bak,*.o,*.d
+
+" <leader>. -> open file browser in current dir
+nnoremap <leader>. :e .<CR>
+
 
 
 command! VsRefresh execute 'source ' . g:vimsane_script_path

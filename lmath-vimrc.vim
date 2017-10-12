@@ -72,7 +72,6 @@ source $VIMHOME/vimsane.vim
 "
 " Tip: run one or more ex commands on startup, from shell:
 "   $ vim -c "set makeprg=bin/build" -c "set nowrap" *.c *.h
-"
 
 
 au BufRead,BufNewFile *.jrnl  setfiletype jrnl
@@ -84,6 +83,7 @@ let g:tex_flavor = "latex"
 " Execute (with vim ex commandline) the command text currently selected:
 vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
+source $VIMHOME/comment-helper.vim
 
 " <leader>a/z are used for faster up/down:
 " nnoremap <leader>a 15k
@@ -91,8 +91,11 @@ vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 " vnoremap <leader>a 15k
 " vnoremap <leader>z 15j
 
+
 " nnoremap <M-8> :colorscheme morning<CR>
 " nnoremap <C-M-8> :colorscheme industry<CR>
+
+
 
 "set mouse=a
 set grepprg=ack
@@ -486,6 +489,10 @@ highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Re
 highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 
+" SaveSession saves the current window/file layout into .taskrc/session.vim,
+" so if you restart vim in this same directory it all gets restored
+command! SaveSession mksession .taskrc/session.vim
+
 set makeprg=make
 
 " Generic build using local script:
@@ -511,6 +518,8 @@ function! LoadTaskRcs(baseDir)
     endfor
     return 0
 endfunction
+
+source $VIMHOME/fsd-train.vim  " Some helpers for fsd labs
 
 call LoadTaskRcs("~/.taskrc")
 call LoadTaskRcs(".taskrc")
