@@ -13,7 +13,9 @@ endif
 "call Stubx( expand("x1: $VIMHOME -- ") . &runtimepath )
 set rtp+=$VIMHOME/bundle/Vundle.vim
 
-call vundle#begin()
+" The argument to vundle#begin allows you to redirect the root
+" of all plugins managed by vundle:
+call vundle#begin( expand("$LmHome/.vim/bundle"))
 "call Stubx( "x2: " . &runtimepath )
 
 " Plugin management: see this include file...
