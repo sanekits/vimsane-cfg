@@ -116,6 +116,7 @@ let $VIMHOME=expand('<sfile>:p:h')
 " You can use 'jk' to leave insert mode, without reaching up to hit ESC:
 inoremap jk <ESC>
 inoremap JK <ESC>
+inoremap jj <Nop>
 
 set t_Co=256  " Assume we have 256 colors.   We're not in the 80's.
 
@@ -223,9 +224,13 @@ set history=1000
 set undolevels=1000
 
 
-set wildignore=*.swp,*.bak,*.o,*.d
+" In file-completions with TAB or Ctrl-X Ctrl-F, ignore
+" files like these:
+set wildignore=*.swp,*.bak,*.o,*.d, *.tsk
 
-" <leader>. -> open file browser in current dir
+
+
+" ,. -> open file browser in current dir:
 nnoremap <leader>. :e .<CR>
 
 
@@ -278,6 +283,7 @@ vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
 " <leader>. -> open file browser in current dir:
 nnoremap <leader>. :e .<CR>
 
+filetype plugin indent on
 
 
 " Fix the markdown mapping for 'md' extension:
@@ -325,6 +331,22 @@ syntax on " Turn on syntax higlighting.
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" Load tags on startup.
+set tags=tags;/
+
+
+" Compile with F3:
+set makeprg=plink\ *.mk
+nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
+" Goto next error with F4:
+nnoremap <F4> :cn<CR>
+" Goto prev error with Shift-F4:
+nnoremap <S-F4> :cp<CR>
+
+
+
+" bufexplorer gets quick access with ',n'
+nnoremap <silent> <leader>n :BufExplorer<CR>
 
 
 let g:vimsane_loaded=1

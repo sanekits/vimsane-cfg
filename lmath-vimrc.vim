@@ -99,36 +99,22 @@ vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 "set mouse=a
 set grepprg=ack
 
+
 " Grep for the current word in current dir
 "command! GrepWordHere grep '\b<cword\b' *
 "nnoremap gR :grep '\<cword\>' *<CR>
 
 "nnoremap gR :exec 'grep "' . expand('<cword>') . '" *<CR>'
 
-filetype plugin indent on
+
 set undofile
 set undodir=~/.vimundo/
 
+
+
+" We don't want no stinkin 'u' for 'undo'.
 nnoremap u <Nop>
 
-
-" in vimdiff, the <leader>c goes to "next change", and
-" <leader>v is "previous change"
-nnoremap <leader>c ]c
-nnoremap <leader>v [c
-
-set wildignore=*.swp,*.bak,*.o,*.d
-inoremap jj <Nop>
-
-
-
-
-
-" bufexplorer gets quick access with ',n'
-nnoremap <silent> <leader>n :BufExplorer<CR>
-
-" Load tags on startup.
-set tags=tags;/
 
 
 
@@ -138,15 +124,10 @@ inoremap <leader>U <Esc>mvviwU`va
 nnoremap <leader>u viwue
 nnoremap <leader>U viwUe
 
+
 " Use <Ctrl+F9> repeatedly to double-width a text block.  (i.e. d o u b l e - w i d t h )
 nnoremap <C-F9> a<space><ESC>l
 
-" Compile and find next error:
-nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
-inoremap <F3> <ESC>:w<CR>:make!<CR><CR>:cn<CR>:cw<CR>
-nnoremap <F4> :cn<CR>
-
-nnoremap <leader>] /\[ \]<cr>
 
 " map grok wrapper....
 " Full text search:
@@ -183,12 +164,15 @@ endfunction
 
 command! -nargs=1 Tox call s:ToxCore(<f-args>)
 
+
+
 " Filelist invokes filelist-append.sh to add one or more files/groups to
 " ./.filelist:
 "  e.g.:  
 "       :Filelist cpp h
 "  
 command! -nargs=1 Filelist execute "!filelist-append.sh" '<args>' | args .filelist
+
 
 
 " Copy a URL to the clipboard:
