@@ -79,11 +79,10 @@ au BufRead,BufNewFile *.jrnl  setfiletype jrnl
 let g:tex_flavor = "latex"
 
 
-
 " Execute (with vim ex commandline) the command text currently selected:
 vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
-source $VIMHOME/comment-helper.vim
+
 
 " <leader>a/z are used for faster up/down:
 " nnoremap <leader>a 15k

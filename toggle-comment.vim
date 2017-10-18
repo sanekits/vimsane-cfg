@@ -19,18 +19,18 @@
     \   "plaintex": '% ',
     \ }
 
-function! ToggleComment()
-    if has_key(s:comment_map, &filetype)
-        let comment_leader = s:comment_map[&filetype]
-        if getline('.') =~ "^" . comment_leader
-            " Uncomment the line
-            execute "silent s/^" . comment_leader . "//"
+    function! ToggleComment()
+        if has_key(s:comment_map, &filetype)
+            let comment_leader = s:comment_map[&filetype]
+            if getline('.') =~ "^" . comment_leader
+                " Uncomment the line
+                execute "silent s/^" . comment_leader . "//"
+            else
+                " Comment the line
+                execute "silent s/^/" . comment_leader . "/"
+            endif
         else
-            " Comment the line
-            execute "silent s/^/" . comment_leader . "/"
-        endif
-    else
-        echo "No comment leader found for filetype"
-    end
-endfunction
+            echo "No comment leader found for filetype"
+        end
+    endfunction
 
