@@ -226,7 +226,7 @@ set undolevels=1000
 
 " In file-completions with TAB or Ctrl-X Ctrl-F, ignore
 " files like these:
-set wildignore=*.swp,*.bak,*.o,*.d, *.tsk
+set wildignore=*.swp,*.bak,*.o,*.d,*.tsk
 
 
 
