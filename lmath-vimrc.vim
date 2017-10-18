@@ -192,17 +192,12 @@ endfunction
 " The Astyle command will reformat the file
 command! Astyle w | !astyle %; rm %.orig
 
+
+
 " In visual mode, Shift-F8 will reformat the highlighted text:
 vnoremap <S-F8> :!astyle<CR>
-" Copy the current buffer's filename to the w register:
-nnoremap <leader>F :let @w=expand("%:p:t")<CR>
-
-" Replace the current word with contents of the w register:
-nnoremap <leader>r viw"wp
 
 
-" <leader>p to reformat paragraph:
-nnoremap <leader>p gqip
 
 command! La w | ! ls -a %:p:h
 command! Lirt w | ! ls -lirt %:p:h
@@ -210,18 +205,13 @@ command! Lirt w | ! ls -lirt %:p:h
 command! Sudowrite w !sudo tee %
 "# Reload .vimrc
 command! Revimrc source ~/.vimrc
-" Fix the dang keyboard mapping:
-"command! Kbfix !source /home/lmatheson/.Xmodmap
 
-" Run gvim with the current file
-command! Gvim !gvim %
 
-"  ,q is quit without saving:
-nnoremap <leader>q :qa!<CR>
 
 
 " Use CTRL-Q to mimic CTRL-V -- because that's what we're used to 
 nnoremap <C-Q>		<C-V>
+
 
 " How could someone use 's' for anything except "save"??  To substitute
 " chars, we prefer '-' (think "strikeout")
@@ -250,38 +240,17 @@ nnoremap s :w<CR>
 
 
 
-set backupdir=~/.vimtmp
-set directory=~/.vimtmp,.
-
-
-" Ctrl-S to save the file:
-nnoremap <C-S> :w<CR>
-
-
-" Insert newlines from normal mode with Ctrl+Enter:
-nnoremap <C-Enter> O<Esc>
-" ctrl-a should select-all:
-nnoremap <C-A> ggVG
-
-" <leader>f goes to the alternate file
-nnoremap <leader>f <C-^>
 
 " shift-ctrl-m runs the most-recent-files menu
 nnoremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
 
+
 " <leader>hh switches from C module to header (FSwitch plugin)
 nnoremap <leader>hh  :FSHere<CR>
 
-" <leader>w copies the current word to the w register.  
-nnoremap <leader>w :let @w=expand("<cword>")<CR>
-nnoremap <leader>W :let @w=expand("<cWORD>")<CR>
 
-"  Expand the current window horizontally +20:
-nnoremap <leader>> <C-W>20>
-"  Shrink the current window horizontally -20:
-nnoremap <leader>< <C-W>20<
 
 "folding settings
 set foldmethod=syntax   "fold based on syntax
@@ -428,9 +397,6 @@ set formatoptions += "r"
 " movement can be disorienting.   This is cured by remapping j and k to gj and gk:
 nnoremap j gj
 nnoremap k gk
-
-" Switch between .h and .cpp if they're in the same dir:
-nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 
 " wildmenu turns on the fancy visual display of <TAB> matches when doing

@@ -200,6 +200,40 @@ set wrap
 " nnoremap s :w<CR>
 
 
+" Ctrl-S will save the current file:
+nnoremap <C-S> :w<CR>
+
+" Ctrl-a will select-all in the current file:
+nnoremap <C-A> ggVG
+
+" ,f switches to the previous ("alternate") file.  This 
+" is useful for toggling back and forth between two files
+" repeatedly:
+nnoremap <leader>f <C-^>
+
+
+" ,x switches between the .h and .cpp if they're in the same dir:
+nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+
+" In normal mode, when wrap is ON, the per-line (instead of 
+" per-display) vertical movement is disorienting.   
+" This is cured by remapping j and k to gj and gk:
+nnoremap j gj
+nnoremap k gk
+
+" wildmenu turns on the fancy visual display of <TAB> matches when doing
+" command-line completion:
+set wildmenu
+
+
+" We do, in general, want formatoptions += c, o, r (see help 
+" fo-table).  This ensures that the comment leader is inserted in 
+" unsurprising ways when writing or editing comment blocks:
+set formatoptions += "c" 
+set formatoptions += "o"
+set formatoptions += "r"
+
 
 " Plugins are extension scripts produced by 3rd parties that add
 " features to vim.  Vimsane includes a few of the most popular
@@ -283,6 +317,7 @@ vnoremap <leader>e :<C-U>exec '!'.expand(Get_visual_selection())<CR>
 " <leader>. -> open file browser in current dir:
 nnoremap <leader>. :e .<CR>
 
+" Enable filetype detection and type-specific indenting:
 filetype plugin indent on
 
 
@@ -294,11 +329,45 @@ au BufRead,BufNewFile *.md set filetype=markdown
 source $VIMHOME/toggle-comment.vim
 
 
+" ,F copies the current buffer's filename to the w register:
+nnoremap <leader>F :let @w=expand("%:p:t")<CR>
 
-"  To toggle a comment-block, select it and then 
-"  use ,1 
+" ,w copies the current word to the w register:  
+nnoremap <leader>w :let @w=expand("<cword>")<CR>
+nnoremap <leader>W :let @w=expand("<cWORD>")<CR>
+
+" ,r replaces the current word with contents of the w register
+nnoremap <leader>r viw"wp
+
+" ,p will reformat the current paragraph:
+nnoremap <leader>p gqip
+
+
+" :Gvim will start gvim with the current file:
+command! Gvim !gvim %
+
+
+" ,q will quit without saving, losing all unsaved changes:
+nnoremap <leader>q :qa!<CR>
+
+
+" ,1 toggles a comment-block (select it first):
 nnoremap <leader>1 :call ToggleComment()<cr>
 vnoremap <leader>1 :call ToggleComment()<cr>
+
+
+" ,> resizes the current window horizontally +20:
+nnoremap <leader>> <C-W>20>
+" ,<  resizes the current window horizontally -20:
+nnoremap <leader>< <C-W>20<
+
+
+
+" You'll want to create a ~/.vimtmp directory if vim complains
+" about not being able to save file backups:
+set backupdir=~/.vimtmp
+set directory=~/.vimtmp,.
+
 
 
 "  If we're running gvim, use a decent font:
@@ -310,7 +379,7 @@ if has("gui_running")
     elseif has("gui_win32")
         set guifont=Consolas:h10:cANSI
     endif
-	" Make font larger (gvim only on Linux)
+	" Make font larger (gvim only on Linux):
 	nnoremap <leader>+ :LargerFont<CR> 
 	nnoremap <leader>= :LargerFont<CR> 
 	nnoremap <leader>- :SmallerFont<CR> 
