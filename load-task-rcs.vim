@@ -11,6 +11,7 @@ function! LoadTaskRcs(baseDir)
         return 0
     endif
     for rcs in myRcs
+        call DebugMsg( "LoadTaskRcs sourcing [" . rcs . "]" )
         execute "source " . rcs
     endfor
     return 0

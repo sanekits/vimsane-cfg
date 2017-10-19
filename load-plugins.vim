@@ -1,9 +1,8 @@
 " load-plugins.vim
 filetype off
 
-function! Stubx(msg)
-    echom( "Stubx: [" . a:msg . "]")
-endfunction
+call DebugMsg("Loading " . expand('<sfile>') )
+
 
 if exists("&macmeta")
     set macmeta " Interpret option key as alt on macos
