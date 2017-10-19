@@ -220,26 +220,6 @@ nnoremap s :w<CR>
 
 
 
-" Pasting blockwise and linewise selections is not possible in Insert and
-" Visual mode without the +virtualedit feature.  They are pasted as if they
-" were characterwise instead.
-" Uses the paste.vim autoload script.
-
-"exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-"exe 'vmap <script> <C-V>' paste#paste_cmd['v']
-
-" Something we really don't like: pasting replaces the contents of the unnamed
-" buffer '*', which is almost always the wrong behavior.  So we're going out
-" on a limb here with the draconian policy of "always paste from 0 register
-" from normal mode". 
-"nmap p "0p
-"vmap p "0p
-
-"inoremap <S-Insert>		<C-V>
-"vmap <S-Insert>		<C-V>
-
-
-
 
 " shift-ctrl-m runs the most-recent-files menu
 nnoremap <leader>m :MRU<CR>
@@ -247,25 +227,13 @@ let MRU_Window_Height = 25
 
 
 
-" <leader>hh switches from C module to header (FSwitch plugin)
-nnoremap <leader>hh  :FSHere<CR>
-
-
-
 "folding settings
-set foldmethod=syntax   "fold based on syntax
-set foldnestmax=10      "deepest fold is 10 levels
-set foldlevel=1
-set nofoldenable        "dont fold by default, use zi to toggle folding
+" set foldmethod=syntax   "fold based on syntax
+" set foldnestmax=10      "deepest fold is 10 levels
+" set foldlevel=1
+" set nofoldenable        "dont fold by default, use zi to toggle folding
 
-" 'set list' enables the display of whitespace, and 'set listchars' refines
-" the behavior of that.  Use 'set nolist' to turn this off.
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
-set nolist
 
-" syntax settings for shell syntax
-let is_bash = 1 " our 'sh' Bourne shell is alias to bash
-let sh_fold_enabled= 7 " enable all kinds of syntax folding
 
 " Doing ':Shell ls /' will load the ls output into a new
 " buffer for edit/display.  Note that you can't pass wildcards to the args,
@@ -297,24 +265,8 @@ endfunction
 
 
 
-" Toggle paste mode:
-set pastetoggle=<F2>
-" In normal mode, we get similar effect:
-nnoremap <F2> i<F2>
 
-if exists('&selection')
-	set selection=exclusive
-endif
 
-" From this link: http://superuser.com/questions/385553/making-the-active-window-in-vim-more-obvious, 
-" supposed to make active window + line more obvious
-augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
-augroup END
-
-syntax on
 "colorscheme elflord
 "colorscheme solarized
 colorscheme industry
@@ -365,7 +317,6 @@ if has("gui_running")
     set guioptions-=L  "remove left-hand scroll bar
 endif
 
-set background=dark
 
 " augroup  fmtOpts
 "     autocmd!
@@ -386,24 +337,6 @@ let g:clang_library_path='/opt/swt/lib'
 let g:clang_complete_auto=1
 
 
-" We do, in general, want formatoptions += c, o, r (see help fo-table).  This
-" ensures that the comment leader is inserted in unsurprising ways when
-" writing or editing comment blocks.
-set formatoptions += "c" 
-set formatoptions += "o"
-set formatoptions += "r"
-
-" When we're  in wrap mode, the per-line (instead of per-display) vertical
-" movement can be disorienting.   This is cured by remapping j and k to gj and gk:
-nnoremap j gj
-nnoremap k gk
-
-
-" wildmenu turns on the fancy visual display of <TAB> matches when doing
-" command-line completion:
-set wildmenu
-
-
 
 
 
@@ -418,55 +351,15 @@ function! EditSymfileUnderCursor()
 endfunction
 
 
-" Compile current module (convert  .h to .cpp automatically:)
-"set makeprg=./compile-module\ %
 
-" Position the cursor on a riddle symbol and use this to split/open the .summ:
-nnoremap <leader>0 :call EditSymfileUnderCursor()<CR>
 
 " If vim errors on startup, symlink: 'cd; ln ~/.vim/all_color_codes.vim ./'
 "source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
 
+
 hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
-" The vimdiff colors are truly horrid.  Here's a fix attempt from
-" http://stackoverflow.com/questions/1862423/how-to-tell-which-commit-a-tag-points-to-in-git
 
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
-
-
-" SaveSession saves the current window/file layout into .taskrc/session.vim,
-" so if you restart vim in this same directory it all gets restored
-command! SaveSession mksession .taskrc/session.vim
-
-set makeprg=make
-
-" Generic build using local script:
-"set makeprg=./build
-"set makeprg=xbd5\ make\ --ccache\ -tS\ --check=gcc-wall\ xapapp3.tsk
-
-" For eqstst, building a single module on linux:
-"set makeprg=./xbuild.sh\ %
-"
-" --failpause means 'pause upon failure so I can read the outputr'
-"set makeprg=./build\ --failpause
-"set makeprg=./build
-
-" Loop through our taskrc's if they exist
-function! LoadTaskRcs(baseDir)
-    let l:rcdir= expand(a:baseDir)
-    let l:myRcs=split( globpath( l:rcdir,'*.vim'),'\n')
-    if len(l:myRcs) == 0
-        return 0
-    endif
-    for rcs in myRcs
-        execute "source " . rcs
-    endfor
-    return 0
-endfunction
 
 source $VIMHOME/fsd-train.vim  " Some helpers for fsd labs
 
