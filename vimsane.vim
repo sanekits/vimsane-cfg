@@ -1,25 +1,117 @@
-" vimsane.vim
-" lmatheson4@bloomberg.net
+" vimsane.vim 
+" Les Matheson - lmatheson4@bloomberg.net
+
+" What is vimsane?
+" ----------------
+" vimsane is a Bloomberg-oriented, pre-packaged Vim configuration
+" offered to those who want to learn the Vim editor but don't
+" understand Vim well enough to set it up sanely.
 "
-" vimsane is a pre-packaged Vim installation available to 
-" those who want to learn the Vim editor.  Vim can be 
-" intimdating and frustrating to new users, and the learning
-" curve is long.  
+" Vim can be intimdating and frustrating to new users, and the
+" learning curve is long, so Vimsane exists to help you become
+" reasonably competent quickly. By bundling some help with a few
+" popular vim plugins and sane configuration choices, the initial
+" learning curve is made gentler for newcomers.
 "
-" Vimsane exists to help you become reasonably competent 
-" quickly, by bundling some help, a few popular vim plugins,  and 
-" sane configuration choices to make Vim a bit easier for
-" newbies.
+" While you can use vimsane as your daily editor for the long
+" term, you're encouraged to learn how to customize and extend
+" Vim, and you'll probably want to leave vimsane behind as you do
+" that.  This is training wheels, not a racing bike.
 "
-" While you can use vimsane as your daily editor for the 
-" long term, you're encouraged to learn how to customize
-" and extend Vim, and you'll probably want to leave 
-" vimsane behind as you do that.  This is training wheels,
-" not a racing bike.
+" If you're brand new, it's recommended to print these
+" instructions and keep them handy while you're working.
+
+" Sales pitch:
+" -----------
+" The time spend learning Vim is an investment. One must accept
+" that productivity will drop before it recovers: ordinary things
+" will take a long time, and you'll think 'I could have been done
+" by now with a GUI editor!' 
 "
-" If you're brand new, you should print these instructions
-" and keep them handy while working.
+" But that's a short-sighted viewpoint: yes, the GUI will get you
+" to the boarding gate quicker, but it's a long flight.
+" Presumably you will be a software engineer for decades, and on
+" that scale, the advantages of Vim proficiency will beat all GUI
+" editor choices by a huge margin.
 "
+" With Vim, you and the editor will become a single deeply
+" interwoven system that evolve together and go everywhere as a
+" unit. You'll complete each other's thoughts, you'll share
+" socks, you'll become Edward Scissorhands watching your ideas
+" turn into code with no consciousness of the mechanical process
+" involved. 
+"
+" Your hands and the keyboard will merge and you'll stop spending
+" precious mental energy and movement time on the interface
+" between your brain and the code.  No GUI will ever become a
+" direct pipe from your mind to the text like that. This is why
+" something as ugly and unfriendly as Vim continues to thrive
+" year after year, even as wave after wave of sexier alternatives
+" proliferate.
+"
+" So I encourage you to bite the bullet and take your pain --
+" learn The One True Editor(tm), and meld with the machine.  It
+" only hurts for a while, and vimsane will reduce some of that
+" sting. After that, you'll fly past your GUI-bound peers and
+" smile with a merciful pity in your eye: `you poor things!'
+
+" What about emacs?
+" ----------------- 
+" Yes, there's another `editor' called emacs which has ensnared
+" many of the unenlightened. `emacs' is an acronym that expands
+" to various metaphors that express how it kills the spirit and
+" pollutes the basic bodily fluids.  If you go that way, expect
+" no mercy from the gods when your soul is finally judged.  But
+" hey: it's a free country.
+
+" .......................................
+"   Just the basic concepts
+" .......................................
+" 
+" Vim is a modal editor: the meaning of keys is radically
+" affected by the current mode.  If you just start typing without
+" knowing what mode you're in, you will almost surely be
+" surprised by the outcome.
+"
+" There are two modes that are most important: 'normal' mode is
+" anything but normal to those who arrive from other editors --
+" in normal mode, your fingers are talking to the control logic
+" of the editor, issuing commands to move around in documents,
+" change files, reposition windows, reformat, and so forth.  
+"
+" Everything in Vim is tuned to the idea that you do not want to
+" move your hands far from the home row on the keyboard -- being
+" a touch typist is pretty much assumed.  (If you aren't a touch
+" typist, and you've chosen programming as a career, stop doing
+" that and learn to type first.) Since there are a limited number
+" of keys in close proximity to the home row, the meaning of
+" those keys in normal mode is opaque and must be learned the
+" old-fashioned way, but once learned, the practice of those
+" operations is very efficient.
+"
+" The other really-important mode is 'insert mode': this is where
+" you type and your keystrokes are mostly turned into text in an
+" unsurprising way.  Insert mode is not 'pure' -- Vim provides
+" interpretation for certain key sequences that goes beyond
+" simply 'insert the keystroke into the document as a character',
+" and you can customize insert mode extensively too.
+"
+" But in general, you use insert mode to enter text, and you use
+" normal mode to do almost everything else, and you switch
+" between these modes rapidly and frequently... always aware of
+" the current mode, your fingers learn patterns that encode this
+" knowledge and you stop thinking about it after a while.
+"
+" Other modes you'll learn as you go. But learning Vim, the most
+" important thing to know is `am I in insert mode or normal
+" mode'? With vimsane, you'll see the text `--INSERT--' at the
+" lower left corner of the window when you're insert mode.
+
+" Mode switching:
+" --------------
+" To enter insert mode:  type 'i' from normal mode.
+" To return to normal mode:  hit <ESC>, or with vimsane, you can
+" also type 'jk' quickly.
 
 " .......................................
 " Level 1:  Things you should learn early 
@@ -28,9 +120,6 @@
 " (Note: this includes a few things that only work in
 "  vimsane, noted with a *VS* marker)
 "
-
-" This section just provides a list of commands that are 
-" handy to have in your muscle memory:
 "
 "   i --> Enter insert mode (so you can modify text)
 "
