@@ -2,7 +2,7 @@
 "
 set nocompatible
 
-let g:debug_enable=1
+let g:debug_enable=0
 
 function! DebugMsg(msg)
     if exists("g:debug_enable")
