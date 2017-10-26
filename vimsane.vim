@@ -1,168 +1,244 @@
-" vimsane.vim 
+" vimsane.vim vim: textwidth=75 :
 " Les Matheson - lmatheson4@bloomberg.net
 
 " What is vimsane?
-" ----------------
-" vimsane is a Bloomberg-oriented, pre-packaged Vim configuration
-" offered to those who want to learn the Vim editor but don't
-" understand Vim well enough to set it up sanely.
+" ================
+" vimsane is a Bloomberg-oriented, pre-packaged Vim configuration offered
+" to those who want to learn the Vim editor but don't understand Vim well
+" enough to set it up sanely.
 "
-" Vim can be intimdating and frustrating to new users, and the
-" learning curve is long, so Vimsane exists to help you become
-" reasonably competent quickly. By bundling some help with a few
-" popular vim plugins and sane configuration choices, the initial
-" learning curve is made gentler for newcomers.
+" Vim can be intimdating and frustrating to new users, and the learning
+" curve is long, so Vimsane exists to help you become reasonably competent
+" quickly. By bundling some help with a few popular vim plugins and sane
+" configuration choices, the initial learning curve is made gentler for
+" newcomers.
 "
-" While you can use vimsane as your daily editor for the long
-" term, you're encouraged to learn how to customize and extend
-" Vim, and you'll probably want to leave vimsane behind as you do
-" that.  This is training wheels, not a racing bike.
+" While you can use vimsane as your daily editor for the long term, you're
+" encouraged to learn how to customize and extend Vim, and you'll probably
+" want to leave vimsane behind as you do that.  This is training wheels,
+" not a racing bike.
 "
-" If you're brand new, it's recommended to print these
-" instructions and keep them handy while you're working.
+" If you're brand new, it's recommended to print these instructions and
+" keep them handy while you're working.
 
 " Sales pitch:
-" -----------
-" The time spend learning Vim is an investment. One must accept
-" that productivity will drop before it recovers: ordinary things
-" will take a long time, and you'll think 'I could have been done
-" by now with a GUI editor!' 
+" ============
+" The time spend learning Vim is an investment. One must accept that
+" productivity will drop before it recovers: ordinary things will take a
+" long time, and you'll think 'I could have been done by now with a GUI
+" editor!' 
 "
-" But that's a short-sighted viewpoint: yes, the GUI will get you
-" to the boarding gate quicker, but it's a long flight.
-" Presumably you will be a software engineer for decades, and on
-" that scale, the advantages of Vim proficiency will beat all GUI
-" editor choices by a huge margin.
+" But that's a short-sighted viewpoint: yes, the GUI will get you to the
+" boarding gate quicker, but it's a long flight.  Presumably you will be a
+" software engineer for decades, and on that scale, the advantages of Vim
+" proficiency will beat all GUI editor choices by a huge margin.
 "
-" With Vim, you and the editor will become a single deeply
-" interwoven system that evolve together and go everywhere as a
-" unit. You'll complete each other's thoughts, you'll share
-" socks, you'll become Edward Scissorhands watching your ideas
-" turn into code with no consciousness of the mechanical process
-" involved. 
+" With Vim, you and the editor will become a single deeply interwoven
+" system that evolve together and go everywhere as a unit. You'll complete
+" each other's thoughts, you'll share socks, you'll become Edward
+" Scissorhands watching your ideas turn into code with no consciousness of
+" the mechanical process involved. 
 "
-" Your hands and the keyboard will merge and you'll stop spending
-" precious mental energy and movement time on the interface
-" between your brain and the code.  No GUI will ever become a
-" direct pipe from your mind to the text like that. This is why
-" something as ugly and unfriendly as Vim continues to thrive
-" year after year, even as wave after wave of sexier alternatives
-" proliferate.
+" Your hands and the keyboard will merge and you'll stop spending precious
+" mental energy and movement time on the interface between your brain and
+" the code.  No GUI will ever become a direct pipe from your mind to the
+" text like that. This is why something as ugly and unfriendly as Vim
+" continues to thrive year after year, even as wave after wave of sexier
+" alternatives proliferate.
 "
-" So I encourage you to bite the bullet and take your pain --
-" learn The One True Editor(tm), and meld with the machine.  It
-" only hurts for a while, and vimsane will reduce some of that
-" sting. After that, you'll fly past your GUI-bound peers and
-" smile with a merciful pity in your eye: `you poor things!'
+" So I encourage you to bite the bullet and take your pain -- learn The One
+" True Editor(tm), and meld with the machine.  It only hurts for a while,
+" and vimsane will reduce some of that sting. After that, you'll fly past
+" your GUI-bound peers and smile with merciful pity in your eye: `you poor
+" things!'
 
 " What about emacs?
-" ----------------- 
-" Yes, there's another `editor' called emacs which has ensnared
-" many of the unenlightened. `emacs' is an acronym that expands
-" to various metaphors that express how it kills the spirit and
-" pollutes the basic bodily fluids.  If you go that way, expect
-" no mercy from the gods when your soul is finally judged.  But
-" hey: it's a free country.
+" ================= 
+" Yes, there's another `editor' called emacs which has ensnared many of the
+" unenlightened. `emacs' is an acronym that expands to various metaphors
+" that express how it kills the spirit and pollutes the basic bodily
+" fluids.  If you go that way, expect no mercy from the gods when your soul
+" is finally judged.  But hey: it's a free country.
 
-" .......................................
-"   Just the basic concepts
-" .......................................
-" 
-" Vim is a modal editor: the meaning of keys is radically
-" affected by the current mode.  If you just start typing without
-" knowing what mode you're in, you will almost surely be
-" surprised by the outcome.
+" Just the basic concepts:
+" ========================
+
+" Vim is a modal editor: the meaning of keys is radically affected by the
+" current mode.  If you just start typing without knowing what mode you're
+" in, you will almost surely be surprised by the outcome.
 "
-" There are two modes that are most important: 'normal' mode is
-" anything but normal to those who arrive from other editors --
-" in normal mode, your fingers are talking to the control logic
-" of the editor, issuing commands to move around in documents,
-" change files, reposition windows, reformat, and so forth.  
+" There are two modes that are most important: 'normal' mode is anything
+" but normal to those who arrive from other editors -- in normal mode, your
+" fingers are talking to the control logic of the editor, issuing commands
+" to move around in documents, change files, reposition windows, reformat,
+" and so forth.  
 "
-" Everything in Vim is tuned to the idea that you do not want to
-" move your hands far from the home row on the keyboard -- being
-" a touch typist is pretty much assumed.  (If you aren't a touch
-" typist, and you've chosen programming as a career, stop doing
-" that and learn to type first.) Since there are a limited number
-" of keys in close proximity to the home row, the meaning of
-" those keys in normal mode is opaque and must be learned the
-" old-fashioned way, but once learned, the practice of those
+" Everything in Vim is tuned to the idea that you do not want to move your
+" hands far from the home row on the keyboard -- being a touch typist is
+" pretty much assumed.  (Note: If you aren't a touch typist, and you've
+" chosen programming as a career, stop worrying about Vm and learn to type
+" properly first.) 
+"
+" Since there are a limited number of keys in close proximity to the home
+" row, the meaning of those keys in normal mode is opaque and must be
+" learned the old-fashioned way, but once learned, the practice of those
 " operations is very efficient.
 "
-" The other really-important mode is 'insert mode': this is where
-" you type and your keystrokes are mostly turned into text in an
-" unsurprising way.  Insert mode is not 'pure' -- Vim provides
-" interpretation for certain key sequences that goes beyond
-" simply 'insert the keystroke into the document as a character',
-" and you can customize insert mode extensively too.
+" The other really-important mode is 'insert mode': this is where you type
+" and your keystrokes are mostly turned into text in an unsurprising way.
+" Insert mode is not 'pure' -- Vim provides interpretation for certain key
+" sequences that goes beyond simply 'insert the keystroke into the document
+" as a character', and you can customize insert mode extensively too.
 "
-" But in general, you use insert mode to enter text, and you use
-" normal mode to do almost everything else, and you switch
-" between these modes rapidly and frequently... always aware of
-" the current mode, your fingers learn patterns that encode this
-" knowledge and you stop thinking about it after a while.
+" But in general, you use insert mode to enter text, and you use normal
+" mode to do almost everything else, and you switch between these modes
+" rapidly and frequently... always aware of the current mode, your fingers
+" learn patterns that encode this knowledge and you stop thinking about it
+" after a while.
 "
-" Other modes you'll learn as you go. But learning Vim, the most
-" important thing to know is `am I in insert mode or normal
-" mode'? With vimsane, you'll see the text `--INSERT--' at the
-" lower left corner of the window when you're insert mode.
+" Other modes you'll learn as you go. But learning Vim, the most important
+" thing to know is `am I in insert mode or normal mode'? With vimsane,
+" you'll see the text `--INSERT--' at the lower left corner of the window
+" when you're insert mode.
 
-" Mode switching:
-" --------------
-" To enter insert mode:  type 'i' from normal mode.
-" To return to normal mode:  hit <ESC>, or with vimsane, you can
-" also type 'jk' quickly.
+" Practice as a practice:
+" ======================
+" Nobody can pour the Vim manual into their brain in a brief period of
+" time.  You should expect that you'll learn stuff, use it on a daily
+" basis, then learn more stuff and practice that to integrate it with your
+" muscle memory.  This will occur over and over again -- each new wave of
+" skills will make you more efficient, but you need to keep taking on those
+" next waves: once you get competent at what you already know, reach out
+" and grab some more tips and start using them on a daily basis.
+"
+" Practice is a long-term practice here: if you get complacent and think
+" `my Vim skills are good enough now', then you'll waste much of the power
+" of Vim and not achieve the productivity gains that pay for the learning
+" curve.
 
-" .......................................
-" Level 1:  Things you should learn early 
-" .......................................
+
+" About vimtutor
+" ==============
+
+" If you run vimtutor from the unix shell, you'll get the classic vim
+" tutor, which munges your configuration a bit and then loads a copy of a
+" static tutorial file -- so you can mess up the file without losing
+" anything important as you read and practice its instructions.
 "
-" (Note: this includes a few things that only work in
-"  vimsane, noted with a *VS* marker)
+"   $ vimtutor
 "
+" This is worth 30 min of your time to practice the basic commands.  It
+" doesn't go very deep, but it does a decent first whack and helps you to
+" function in vim if you're totally new.
 "
+
+
+" Why CAPSLOCK is Satan:
+" ====================== 
+
+"  In Vim's normal mode, a capital letter has a completely different
+"  meaning than a lower-case letter most of the time.  To maximize the
+"  value of home-row proximity, many Vim (and emacs) programmers use their
+"  operating system's keyboard controls to re-map the Capslock key to
+"  become <ESC> or <CTRL>, which produces more efficient hand positioning
+"  for rapid work.
+"
+"  But if the Vim user moves to a different computer, the Capslock becomes
+"  Capslock again, and their hard-won finger skills become deadly:
+"  accidentally hitting the Capslock key because they're used to it being
+"  friendly, they decimate their document with errant capital letters in
+"  normal mode.
+"
+"  My solution to this is analog but effective: I keep an office binder
+"  clip with me, and break off the end of a wooden coffee stirrer, using
+"  the pair to clamp the Capslock key into the inactive state.  While I
+"  lose a bit of efficiency from the loss of my nearby <CTRL> key, I regain
+"  my sanity by not throwing errant capital letters at normal mode.
+"
+"  Really, though, Capslock is a rarely used key that does not deserve such
+"  a prominent and valuable piece of real estate on the keyboard, even for
+"  non-Vim users.  If it must exist, it should be far from the home row.
+"  That's why it's Satan: bad design, oft repeated.
+"
+"  There is another solution for those who use X-window terminals like
+"  xterm or gnome-terminal: add the following to your shell's init file
+"  (e.g. ~/.bashrc), to tell the X keyboard handler to ignore Capslock:
+"
+"  [[ TODO -- advise about x-config hack for capslock ]]
+"
+
+
+
+" ====================================================
+" Level 1:  Basic things you really should learn first
+" ====================================================
+"
+"  *VS* : This marker indicates something that only works if you're using
+"         vimsane.
+" 
+"   Mode switching:
+"   - - - - - - - -
 "   i --> Enter insert mode (so you can modify text)
 "
 "   <ESC> --> Return to normal mode ( OR...)
-"   jk   -->  Return to normal mode *VS*
+"   jk    --> Return to normal mode *VS*
 "
-"   :w  --> Write current file to disk
-"   :e [filename]  --> Edit/open given file
 "
-"   :q  --> Exit vim 
+"   File operations:
+"   - - - - - - - -
+"   :args [file*]  --> Open one or more files, with name matching
+"   :w [filename]  --> Write current file to disk
+"   <F10> --> Show a list of open files *VS* with selection prompt.
+"   :b [number or filename-fragment]  --> Switch to matching file
+"
+"
+"   Quitting Vim:
+"   - - - - - - -
+"   :q   --> Exit vim, prompt for save if necessary
 "   :qa! --> Exit without saving anything
 "   
-"   h,l,j,k --> Basic cursor movements
 "
-"   Ctrl-z  --> Undo change
-"   Ctrl-r  --> Redo change
+"   Moving the cursor:
+"   - - - - - - - - - 
+"   h,l,k,j --> Basic cursor movements for left, right, up, and down
 "
-"   V -->   Select a block of text: V (and then move up or down to extend the   selection.)
+"
+"   Undo
+"   - - -
+"   Ctrl-z  --> Undo a change
+"   Ctrl-r  --> Redo a change
+"
+"
+"   Copy/paste
+"   - - - - - -
+"   V -->   Select a block of text: V (and then move up or down 
+"           to extend the selection.)
 "
 "   y -->   copY selected block of text (i.e. "yank")
 "   d -->   Delete selected block of text (i.e. "cut")
 "   p -->   Paste text
 "
-"   :ls  --> Show a list of the files loaded.  The numbers
-"            on the left are buffer numbers that can be used
-"            with :b to change files.
+"   F2 -->  Toggle paste-mode *VS*. (If you paste with the middle-mouse
+"           button from another application, you want to be in paste
+"           mode first so the indenting of the pasted text doesn't
+"           get messed up.)
 "
-"   :b [name-fragment]  --> switch to loaded file by number
-"   :b [buffer-number]  --> switch to numbered buffer
 "
-"   :args [wildcards] --> Load all files matching wildcard
-"
-"   ,.  --> Open directory browser at current dir *VS*
-"   ,m  --> Open MRU list for recently-edited files *VS*
-"   ,n  --> Open browser of current buffers *VS*
 "   
-"
-" .......................................
+
+" =======================================
 " Level 2:  A bit more advanced:
-" .......................................
+" =======================================
 "
-"   
+" F3 --> Run plink to compile the current project(s).  This
+"        does 'plink *.mk' on whatever makefiles are in the
+"        current directory.  Errors will be parsed and marked
+"        in the appropriate sourcefiles in Vim.
+"        [[ TODO  - implement ]]
 "
+" F4 --> Goto next compile error [[ TODO ]]
+" Shift-F4 --> Goto previous compile error [[ TODO ]]
+
 " Zoom a window in/out:
 "   Ctrl+@ o     " Thanks to ZoomWin plugin
 "
@@ -193,6 +269,17 @@
 "
 " 	  :resize 5  (make it 5 lines high)
 " 	  :resize +5 (increase by 5 lines)
+
+" ===========================
+" Level 3:  Onward and upward
+" ===========================
+"
+"   File operations:
+"   - - - - - - - -
+"   ,.  --> Open directory browser at current dir *VS*
+"   ,m  --> Open recent-files list *VS*
+"   ,n  --> Open browser of currently-loaded files *VS*
+
 
 set nocompatible  " Keep this at the top of the file. We don't do vi compatibility
 

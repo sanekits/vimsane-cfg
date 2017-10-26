@@ -7,4 +7,25 @@
 " to keep taking updates from vimsane:
 
 
-source 
+set nocompatible
+
+let g:debug_enable=1
+
+function! DebugMsg(msg)
+    if exists("g:debug_enable")
+        if g:debug_enable
+            echom( "DebugMsg: [" . a:msg . "]")
+        endif
+    endif
+
+endfunction
+
+call DebugMsg("Loading " . expand("<sfile>"))
+
+" Capture the path of our own script for later refresh.
+let g:vimrc_script_path = expand('<sfile>:p')
+let $VIMHOME=expand('<sfile>:p:h')
+
+let g:load_taskrcs=1
+source $VIMHOME/vimsane.vim
+
