@@ -168,7 +168,7 @@
 "
 
 
-
+" _level1_
 " ====================================================
 " Level 1:  Basic things you really should learn first
 " ====================================================
@@ -414,7 +414,17 @@ set formatoptions += "o"
 set formatoptions += "r"
 
 
-" The vimdiff colors are truly horrid.  Here's a fix attempt from
+
+" The default colorscheme for vimsane.  Try :colorscheme <tab> to
+" cycle through the available choices.
+colorscheme industry
+
+if &diff " If we're started in diff mode, choose a useful 
+         " color scheme, instead of the default.
+    colorscheme blue
+endif
+
+" The vimdiff colors are truly horrid.  Here's a fix from
 " http://stackoverflow.com/questions/1862423/how-to-tell-which-commit-a-tag-points-to-in-git
 
 highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
@@ -473,7 +483,7 @@ nnoremap <F10> :buffers<CR>:buffer<Space>
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set nolist
 
-" Toggle paste mode:
+" Toggle paste mode with F2:
 set pastetoggle=<F2>
 " In normal mode, we get similar effects:
 nnoremap <F2> i<F2>
@@ -577,6 +587,14 @@ if has("gui_running")
 	nnoremap <leader>+ :LargerFont<CR> 
 	nnoremap <leader>= :LargerFont<CR> 
 	nnoremap <leader>- :SmallerFont<CR> 
+	" If you don't need these other gui-ish hacks, or just
+	" want to prove your street cred, you can turn them off in gvim:
+	"
+    "     set guioptions-=m  "remove menu bar
+    "     set guioptions-=T  "remove toolbar
+    "     set guioptions-=r  "remove right-hand scroll bar
+    "     set guioptions-=L  "remove left-hand scroll bar
+
 endif
 
 
@@ -619,6 +637,14 @@ source $VIMHOME/load-plugins.vim
 
 " bufexplorer gets quick access with ',n'
 nnoremap <silent> <leader>n :BufExplorer<CR>
+
+
+" ,m -> Load the most-recently-used (MRU) window.
+" (See plugins/mru.vim)
+nnoremap <leader>m :MRU<CR>
+let MRU_Window_Height = 25
+
+
 
 " By default, when :make runs in vim, we invoke plink on "whatever 
 " makefile(s) are at hand..."

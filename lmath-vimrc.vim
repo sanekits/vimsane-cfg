@@ -237,20 +237,6 @@ nnoremap s :w<CR>
 
 
 
-" shift-ctrl-m runs the most-recent-files menu
-nnoremap <leader>m :MRU<CR>
-let MRU_Window_Height = 25
-
-
-
-"folding settings
-" set foldmethod=syntax   "fold based on syntax
-" set foldnestmax=10      "deepest fold is 10 levels
-" set foldlevel=1
-" set nofoldenable        "dont fold by default, use zi to toggle folding
-
-
-
 " Doing ':Shell ls /' will load the ls output into a new
 " buffer for edit/display.  Note that you can't pass wildcards to the args,
 " haven't figured out why.
@@ -281,15 +267,6 @@ endfunction
 
 
 
-
-
-"colorscheme elflord
-"colorscheme solarized
-colorscheme industry
-
-" if &diff
-"     colorscheme blue
-" endif
 
 " Doing ':Shell ls /' will load the ls output into a new
 " buffer for edit/display.  Note that you can't pass wildcards to the args,
@@ -353,9 +330,6 @@ let g:clang_library_path='/opt/swt/lib'
 let g:clang_complete_auto=1
 
 
-
-
-
 function! EditSymfileUnderCursor()
     " cWORD gets the WORD at cursor:
     let l:xpath=expand("<cWORD>")
@@ -368,16 +342,11 @@ endfunction
 
 
 
-
-" If vim errors on startup, symlink: 'cd; ln ~/.vim/all_color_codes.vim ./'
 "source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
 
 
 hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
-
-
-
-
+colorscheme industry
 
 
