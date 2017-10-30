@@ -36,6 +36,7 @@ Plugin 'manual-repos/ctrlp.vim'  " @ctrlpvim/ctrlp.vim
 
 
 
+
 Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
     " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
     " sunos, at least.  Probably others too)
@@ -83,7 +84,7 @@ endif
     "       4. Use <Ctrl+K> to go backward in param field
 
 "-- someday.  Requires compiled clang  component:
-Plugin 'manual-repos/YouCompleteMe'  " @Valloric/YouCompleteMe
+"Plugin 'manual-repos/YouCompleteMe'  " @Valloric/YouCompleteMe
     " The clang_complete plugin needs the directory name containing libclang.so:
     let g:clang_library_path='/opt/swt/lib'
     let g:clang_complete_auto=1
