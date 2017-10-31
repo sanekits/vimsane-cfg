@@ -165,10 +165,10 @@ nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| l
 
 
 " GIT commands:
-command! Gitadd cd %:p:h | ! git add %
+" command! Gitadd cd %:p:h | ! git add %
 " Make a script executable:
 
-command! Gitstatus ! git status
+" command! Gitstatus ! git status
 
 command! Chmodx ! chmod +x %
 

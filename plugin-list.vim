@@ -1,6 +1,6 @@
 " vim: textwidth=75 : 
 "
-"   >> Operation notes ------------------ 
+"   >> Plugin maintenance notes:
 "
 "       >> Setting up a new machine:
 "
@@ -35,48 +35,77 @@
 "          
 "
 
-"Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
+
 Plugin 'altercation/vim-colors-solarized'
     set background=dark
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
 
-Plugin 'ctrlpvim/ctrlp.vim'
-    let g:ctrlp_show_hidden=1
-    let g:ctrlp_root_markers=['.taskrc','.git']
-    let g:ctrlp_types=['buf','fil','tag']
+" Ctrl-P is popular, uncomment-this to enable it:
+" Plugin 'ctrlpvim/ctrlp.vim'
+"     let g:ctrlp_show_hidden=1
+"     let g:ctrlp_root_markers=['.taskrc','.git']
+"     let g:ctrlp_types=['buf','fil','tag']
 
 
+
+Plugin 'tpope/vim-fugitive'
+
+
+
+
+    " incsearch.vim is a plugin which displays all matches as you type a
+    " search string. This replaces the vim built-in incremental search if
+    " the key mappings below are enabled.
 Plugin 'haya14busa/incsearch.vim'
     map /  <Plug>(incsearch-forward)
     map ?  <Plug>(incsearch-backward)
     map g/ <Plug>(incsearch-stay)
 
 
+    " Nerdtree is a popular plugin which provides a file-browser interface
+    " for choosing files to edit:
 Plugin 'scrooloose/nerdtree'
     " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
-    " sunos, at least.  Probably others too)
-    "let g:NERDTreeDirArrows=0
+    " sunos, at least.  But why would anybody be using sunos??)
+    " let g:NERDTreeDirArrows=0
     set encoding=utf-8
     let NERDTreeShowHidden=1    " Show hidden files
 
-    "noremap <C-n> :NERDTreeToggle<CR>
 
+
+
+    " Use :XtermColorTable  to show all the colors.  Pretty, and sometimes
+    " useful.
 Plugin 'guns/xterm-color-table.vim'
+
+
+
+
+    "  BufExplorer lets you navigate through multiple buffers conveniently:
 Plugin 'jlanzarotta/bufexplorer'
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
   let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 
 
+  " Vim-airline is a popular plugin which puts a fancy status line
+  " at the bottom of vim, with many options.
 Plugin 'Stabledog/vim-airline'
-
 Plugin 'vim-airline/vim-airline-themes'
   " vim-airline color tweaking...
   ": AirlineTheme 'kolor'
   let g:airline_theme='kolor'
 
+  " Airline has its own plugins! This one adds a clock:
 Plugin 'enricobacis/vim-airline-clock'
+
+
+    " Vim-peekaboo shows a pop-up window displaying register contents when
+    " you press Ctrl+R in insert mode, or quote(") in normal mode. You're
+    " peeking at the registers.  Handy, and also helps you to learn the vim
+    " register usage.
 Plugin 'junegunn/vim-peekaboo'
+
 "Plugin 'kshenoy/vim-signature '
     nmap <leader>` :SignatureListGlobalMarks<CR>  " vim-signature mapping
 
