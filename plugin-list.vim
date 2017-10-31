@@ -1,22 +1,32 @@
-" Repos to fetch and install :
+" vim: textwidth=75 : 
 "
-"   >> Operation notes
-"   ------------------
+"   >> Operation notes ------------------ 
+"
 "       >> Setting up a new machine:
-"           - [internet connected?] Run manual-repos/update-from-internet.sh
-"           - [no internet?] manually copy the plugin subdirs in manual-repos/* to the target machine from a working machine, 
-"                 then run "./update-from-internet.sh --local"
-"           - !! Don't use vundle's PluginInstall, but do use PluginList after vim restart
+"
+"           Vundle needs to get to github.com to work properly.  So do this
+"           setup step: 
+"
+"               git config --global http.proxy devproxy.bloomberg.com:82
+"               
 "           
 "       >> Adding a plugin:
-"           - Add an entry to manual-repos/plugin-list.vim
-"           - [no internet? ] Manually clone the source  repo into manual-repos/[user]/[product]
-"           - Re-run manual-repos/update-from-internet.sh (with --local if  no internet)
+"           o  Add 'Plugin' statement below.  The name of the plugin is
+"           normally the repo name on github.com, without the rest of the
+"           URL.
 "
-"       >> Uninstalling vundle plugins:
-"            - Comment out from plugin-list.vim
-"            - rm the symlink in .vim/bundle and the symlinks+source dirs  in manual-repos/
-"            - Run :PluginClean
+"           o  Run ':PluginInstall' at the vim command line
+"
+"       >> Customizing a plugin:
+"           o  Most plugins have options that can be set if you read the
+"           help.  Recommended that you add the plugin-specific options
+"           right after the Plugin definition below.
+"
+"       >> Disabling/removing a plugin:
+"
+"           o  Comment out the plugin definition and option settings, then
+"           run ':PluginClean' at the vim command line.
+"          
 "
 
 "Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized

@@ -12,7 +12,7 @@ endif
 
 "call Stubx( expand("x1: $VIMHOME -- ") . &runtimepath )
 filetype off " Vundle requires this.
-set rtp+=$VIMHOME/bundle/Vundle.vim
+set rtp+=$VIMHOME/Vundle.vim
 
 " The argument to vundle#begin allows you to redirect the root
 " of all plugins managed by vundle:

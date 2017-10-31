@@ -8,3 +8,4 @@ manual-repos
 tags
 *.un~
 vimrc
+Vundle.vim
