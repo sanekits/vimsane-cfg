@@ -1,4 +1,5 @@
-" load-plugins.vim
+" ~/.vim/load-plugins.vim
+"
 filetype off
 
 call DebugMsg("Loading " . expand('<sfile>') )
@@ -10,6 +11,7 @@ if exists("&macmeta")
 endif
 
 "call Stubx( expand("x1: $VIMHOME -- ") . &runtimepath )
+filetype off " Vundle requires this.
 set rtp+=$VIMHOME/bundle/Vundle.vim
 
 " The argument to vundle#begin allows you to redirect the root
@@ -17,8 +19,10 @@ set rtp+=$VIMHOME/bundle/Vundle.vim
 call vundle#begin( expand("$LmHome/.vim/bundle"))
 "call Stubx( "x2: " . &runtimepath )
 
+
+
 " Plugin management: see this include file...
-source $VIMHOME/manual-repos/plugin-list.vim  " Use external plugins list
+source $VIMHOME/plugin-list.vim  " Use external plugins list
 
 
 " End of vundle initialization

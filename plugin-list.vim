@@ -1,8 +1,4 @@
-" Repos to fetch from Internet to manual-repos:
-"
-"   Note that the comments for each plugin contain the github-relative path,
-"   and our update-from-internet script creates a symlink in manual-repos/
-"   which points to the git working tree for each repo.
+" Repos to fetch and install :
 "
 "   >> Operation notes
 "   ------------------
@@ -22,22 +18,26 @@
 "            - rm the symlink in .vim/bundle and the symlinks+source dirs  in manual-repos/
 "            - Run :PluginClean
 "
-Plugin 'manual-repos/Vundle.vim' " @gmarik/Vundle.vim
-Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
+
+"Plugin 'manual-repos/vim-colors-solarized'  " @altercation/vim-colors-solarized
+Plugin 'altercation/vim-colors-solarized'
     set background=dark
     let g:solarized_termcolors=256
     let g:solarized_termtrans=1
 
-Plugin 'manual-repos/ctrlp.vim'  " @ctrlpvim/ctrlp.vim
+Plugin 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_show_hidden=1
     let g:ctrlp_root_markers=['.taskrc','.git']
     let g:ctrlp_types=['buf','fil','tag']
 
 
-Plugin 'manual-repos/incsearch.vim' " @haya14busa/incsearch.vim
+Plugin 'haya14busa/incsearch.vim'
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
 
 
-Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
+Plugin 'scrooloose/nerdtree'
     " See http://superuser.com/a/418915 for this NERDtree workaround (needed on
     " sunos, at least.  Probably others too)
     "let g:NERDTreeDirArrows=0
@@ -46,22 +46,23 @@ Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree
 
     "noremap <C-n> :NERDTreeToggle<CR>
 
-Plugin 'manual-repos/xterm-color-table.vim' " @guns/xterm-color-table.vim
-Plugin 'manual-repos/bufexplorer' " @jlanzarotta/bufexplorer
+Plugin 'guns/xterm-color-table.vim'
+Plugin 'jlanzarotta/bufexplorer'
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
   let g:bufExplorerSortBy='mru'        " Sort by most recently used.
 
 
-Plugin 'manual-repos/vim-airline' " @Stabledog/vim-airline
+Plugin 'Stabledog/vim-airline'
 
-Plugin 'manual-repos/vim-airline-themes' " @vim-airline/vim-airline-themes
+Plugin 'vim-airline/vim-airline-themes'
   " vim-airline color tweaking...
   ": AirlineTheme 'kolor'
   let g:airline_theme='kolor'
-Plugin 'manual-repos/vim-airline-clock' " @enricobacis/vim-airline-clock
-Plugin 'manual-repos/vim-peekaboo' " @junegunn/vim-peekaboo
-Plugin 'manual-repos/vim-signature' " @kshenoy/vim-signature 
-nmap <leader>` :SignatureListGlobalMarks<CR>  " vim-signature mapping
+
+Plugin 'enricobacis/vim-airline-clock'
+Plugin 'junegunn/vim-peekaboo'
+"Plugin 'kshenoy/vim-signature '
+    nmap <leader>` :SignatureListGlobalMarks<CR>  " vim-signature mapping
 
 " Plugin 'manual-repos/syntastic'
 "Plugin 'manual-repos/vim-snippets'
