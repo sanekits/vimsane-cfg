@@ -34,7 +34,7 @@ Plugin 'manual-repos/ctrlp.vim'  " @ctrlpvim/ctrlp.vim
     let g:ctrlp_types=['buf','fil','tag']
 
 
-
+Plugin 'manual-repos/incsearch.vim' " @haya14busa/incsearch.vim
 
 
 Plugin 'manual-repos/nerdtree'  " @scrooloose/nerdtree 
