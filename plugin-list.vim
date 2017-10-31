@@ -47,15 +47,6 @@ Plugin 'altercation/vim-colors-solarized'
 
 
 
-" =====================
-"   Ctrl-P
-" =====================
-" Ctrl-P is popular, uncomment-this to enable it:
-" Plugin 'ctrlpvim/ctrlp.vim'
-"     let g:ctrlp_show_hidden=1
-"     let g:ctrlp_root_markers=['.taskrc','.git']
-"     let g:ctrlp_types=['buf','fil','tag']
-
 
 
 " =====================
@@ -198,6 +189,15 @@ Plugin 'junegunn/vim-peekaboo'
     "       4. Use <Ctrl+K> to go backward in param field
 
 
+
+" =====================
+"   Ctrl-P
+" =====================
+" Ctrl-P is popular, uncomment-this to enable it:
+" Plugin 'ctrlpvim/ctrlp.vim'
+"     let g:ctrlp_show_hidden=1
+"     let g:ctrlp_root_markers=['.taskrc','.git']
+"     let g:ctrlp_types=['buf','fil','tag']
 
 
 
