@@ -4,11 +4,17 @@
 "
 "       >> Setting up a new machine:
 "
-"           Vundle needs to get to github.com to work properly.  So do this
-"           setup step: 
+"           > Vundle needs to get to github.com to work properly.  If you're
+"           behind a proxy, do this: 
 "
-"               git config --global http.proxy devproxy.bloomberg.com:82
+"               git config --global http.proxy [proxy address ]
+"
+"           > Clone Vundle itself:
+"
+"               cd ~/.vim
+"               git clone 'https://github.com/VundleVim/Vundle.vim.git'
 "               
+"           > Start vim and run :PluginInstall
 "           
 "       >> Adding a plugin:
 "           o  Add 'Plugin' statement below.  The name of the plugin is

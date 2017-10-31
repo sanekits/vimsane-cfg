@@ -1,6 +1,5 @@
 " ~/.vim/load-plugins.vim
 "
-filetype off
 
 call DebugMsg("Loading " . expand('<sfile>') )
 
