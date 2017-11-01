@@ -140,8 +140,8 @@ Plugin 'junegunn/vim-peekaboo'
 " =====================
 "   vim-signature
 " =====================
-"Plugin 'kshenoy/vim-signature '
-    " nmap <leader>` :SignatureListGlobalMarks<CR>  " vim-signature mapping
+Plugin 'kshenoy/vim-signature'
+    nmap <leader>` :SignatureListGlobalMarks<CR>  
 
 
 
