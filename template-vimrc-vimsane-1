@@ -1,5 +1,6 @@
 " ~/.vim/vimrc
-" vim: textwidth=75 :
+" vim: textwidth=75 filetype=vim :
+" original:template-vimrc-vimsane-1  " Do not remove this line of text.
 "
 " This is your vim configuration file.  It was created by vimsane, but now
 " it's yours and vimsane will never overwrite it.
