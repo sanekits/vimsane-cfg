@@ -3,15 +3,20 @@
 " original:template-vimrc-vimsane-1  " Do not remove this line of text.
 "
 " This is your vim configuration file.  It was created by vimsane, but now
-" it's yours and vimsane will never overwrite it.
+" it's yours and vimsane will never overwrite it. You should add your
+" customizations below the line at the bottom.
 "
-" You should leave this reference to vimsane.vim alone, though, if you plan
-" to keep taking updates from vimsane:
-
 
 set nocompatible
 
-let g:debug_enable=1
+" If you set debug_enable=1, then you can add diagnostic messages in your
+" vimrc stuff, e.g.:
+"
+"   call  DebugMsg("something...")
+"
+" It's handy for solving problems in your vim configuration sometimes.
+"
+let g:debug_enable=0
 
 function! DebugMsg(msg)
     if exists("g:debug_enable")
@@ -29,10 +34,14 @@ let $VIMHOME=expand('<sfile>:p:h')
 
 let g:load_taskrcs=1
 
+
 " Now we're ready to process vimsane.vim, which contains most of the meat
 " of vimsane.  It's worth reading if you're learning vim.
 " 
 " You can load it into the editor by putting the cursor anywhere on the
 " filename below and typing 'gf' in normal mode ("go file").
 source $VIMHOME/vimsane.vim
+
+" ======================  Add your stuff below: ====================
+
 
