@@ -417,7 +417,7 @@ set formatoptions += "r"
 
 " The default colorscheme for vimsane.  Try :colorscheme <tab> to
 " cycle through the available choices.
-colorscheme industry
+colorscheme industry1
 
 if &diff " If we're started in diff mode, choose a useful 
          " color scheme, instead of the default.
@@ -643,9 +643,6 @@ nnoremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
 
 
-" By default, when :make runs in vim, we invoke plink on "whatever 
-" makefile(s) are at hand..."
-set makeprg=plink\ *.mk
 
 
 " Some helpers for fsd training.  If you're not an FSD trainee,

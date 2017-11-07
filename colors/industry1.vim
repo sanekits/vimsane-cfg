@@ -22,7 +22,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
-let colors_name = "industry"
+let colors_name = "industry1"
 
 " First set Normal to regular white on black text colors:
 hi Normal ctermfg=LightGray ctermbg=Black guifg=#dddddd	guibg=Black

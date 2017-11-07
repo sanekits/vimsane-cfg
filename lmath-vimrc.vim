@@ -347,6 +347,5 @@ endfunction
 
 hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
-colorscheme industry
 
 
