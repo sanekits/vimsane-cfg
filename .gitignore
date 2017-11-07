@@ -8,3 +8,5 @@ tags
 *.un~
 vimrc
 Vundle.vim
+load-plugins.vim
+fsd-train.vim

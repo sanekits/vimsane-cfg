@@ -102,6 +102,8 @@ Plugin 'guns/xterm-color-table.vim'
 Plugin 'jlanzarotta/bufexplorer'
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
   let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+  " bufexplorer gets quick access with ',n'
+  nnoremap <silent> <leader>n :BufExplorer<CR>
 
 
 

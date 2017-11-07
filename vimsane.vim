@@ -632,18 +632,15 @@ command! SaveSession mksession .taskrc/session.vim
 " features to vim.  Vimsane includes a few of the most popular
 " plugins pre-configured, you can see what they 
 " are in ~/.vim/manual-repos/plugin-list.vim
-source $VIMHOME/load-plugins.vim
-
-
-" bufexplorer gets quick access with ',n'
-nnoremap <silent> <leader>n :BufExplorer<CR>
+if filereadable(expand("$VIMHOME/load-plugins.vim"))
+    source $VIMHOME/load-plugins.vim
+endif
 
 
 " ,m -> Load the most-recently-used (MRU) window.
 " (See plugins/mru.vim)
 nnoremap <leader>m :MRU<CR>
 let MRU_Window_Height = 25
-
 
 
 " By default, when :make runs in vim, we invoke plink on "whatever 
@@ -653,7 +650,9 @@ set makeprg=plink\ *.mk
 
 " Some helpers for fsd training.  If you're not an FSD trainee,
 " you can remove this without loss:
-source $VIMHOME/fsd-train.vim  
+if filereadable(expand("$VIMHOME/fsd-train.vim"))
+    source $VIMHOME/fsd-train.vim  
+endif
 
 
 
