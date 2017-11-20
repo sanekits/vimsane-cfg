@@ -205,7 +205,7 @@
 "
 "   Undo
 "   - - -
-"   Ctrl-z  --> Undo a change
+"   Ctrl-z  --> Undo a change *VS*
 "   Ctrl-r  --> Redo a change
 "
 "
@@ -230,7 +230,7 @@
 " Level 2:  A bit more advanced:
 " =======================================
 "
-" F3 --> Run plink to compile the current project(s).  This
+" F3 --> *VS* Run plink to compile the current project(s).  This
 "        does 'plink *.mk' on whatever makefiles are in the
 "        current directory.  Errors will be parsed and marked
 "        in the appropriate sourcefiles in Vim.
@@ -239,15 +239,11 @@
 " F4 --> Goto next compile error [[ TODO ]]
 " Shift-F4 --> Goto previous compile error [[ TODO ]]
 
-" Zoom a window in/out:
-"   Ctrl+@ o     " Thanks to ZoomWin plugin
 "
 " Normalize split sizes, handy when resizing a terminal:
 "
 "   ctrl+w = 
 "
-" Redraw the screen (if ^L isn't working)
-" :redraw!
 "
 " Capture the result of a command to register:
 "   : let @u=system("ls /")    
@@ -371,7 +367,7 @@ set autowrite
 " Yes, wrap long lines (use :set nowrap) to disable this
 set wrap
 
-" In vim, the normal-mode 's' is mapped to 'substitute chars'.
+" In vim's defaults, the normal-mode 's' is mapped to 'substitute chars'.
 " I would have mapped it to 'save', which is a much more
 " common action.  If you agree, uncomment the following 2 lines.  Then
 " you can use '-' for substitute-chars, and 's' for save-file:
