@@ -615,6 +615,7 @@ set tags=tags;/
 " Compile with F3:
 set makeprg=plink\ *.mk
 nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
+inoremap <F3> <ESC>:wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 " Goto next error with F4:
 nnoremap <F4> :cn<CR>
 " Goto prev error with Shift-F4:
