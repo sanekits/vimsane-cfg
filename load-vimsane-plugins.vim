@@ -1,5 +1,17 @@
 " ~/.vim/load-plugins.vim
 "
+" This depends on Vundle, a vim plugin manager.
+"
+" To install Vundle:
+"
+"   $  cd $HOME/.vim
+"   $  git clone "https://github.com/VundleVim/Vundle.vim.git"
+"
+"   ... then, run vim, and enter ":PluginInstall" at the command line.
+"   Vundle will fetch other plugins from github to complete your setup.
+"
+"   The list of plugins loaded can be found in plugin-list.vim
+"
 
 call DebugMsg("Loading " . expand('<sfile>') )
 
