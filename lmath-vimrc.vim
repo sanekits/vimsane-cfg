@@ -1,4 +1,4 @@
-" ~/.vim/lmath-vimrc.vim
+"/ ~/.vim/lmath-vimrc.vim
 "
 set nocompatible
 
@@ -340,7 +340,7 @@ function! EditSymfileUnderCursor()
     exec ":sp " l:sumfile  
 endfunction
 
-nnoremap = <ESC>:wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
+nnoremap = :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 
 
 "source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
