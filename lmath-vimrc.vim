@@ -1,4 +1,4 @@
-" ~/.vim/lmath-vimrc.vim
+"/ ~/.vim/lmath-vimrc.vim
 "
 set nocompatible
 
