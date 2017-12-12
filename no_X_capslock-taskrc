@@ -1,5 +1,7 @@
 #!/bin/bash
 
 
-xmodmap -e "remove lock = Caps_Lock"
+if [[ ! -z $DISPLAY ]]; then
+    xmodmap -e "remove lock = Caps_Lock"
+fi
 
