@@ -10,3 +10,5 @@ vimrc
 Vundle.vim
 load-plugins.vim
 fsd-train.vim
+vs-hello-world.cpp
+vs_hello.vim
