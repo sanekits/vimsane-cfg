@@ -1,4 +1,4 @@
-" ~/.vim/load-plugins.vim
+" ~/.vim/load-lmath-plugins.vim
 "
 " This depends on Vundle, a vim plugin manager.
 "
@@ -25,7 +25,9 @@ endif
 filetype off " Vundle requires this.
 set rtp+=$VIMHOME/Vundle.vim
 
-call vundle#begin()
+" The argument to vundle#begin allows you to redirect the root
+" of all plugins managed by vundle:
+call vundle#begin( expand("$LmHome/.vim/bundle"))
 "call Stubx( "x2: " . &runtimepath )
 
 

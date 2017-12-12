@@ -670,8 +670,6 @@ if exists("g:load_taskrcs")
         source $VIMHOME/load-task-rcs.vim
         call LoadTaskRcs("~/.taskrc")
         call LoadTaskRcs(".taskrc")
-    else
-        echom "Skipped LoadTaskRcs:1"
     endif
 else
     echom "Skipped LoadTaskRcs:0"
