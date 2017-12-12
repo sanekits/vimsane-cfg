@@ -85,7 +85,7 @@
 " Everything in Vim is tuned to the idea that you do not want to move your
 " hands far from the home row on the keyboard -- being a touch typist is
 " pretty much assumed.  (Note: If you aren't a touch typist, and you've
-" chosen programming as a career, stop worrying about Vm and learn to type
+" chosen programming as a career, stop worrying about Vim and learn to type
 " properly first.) 
 "
 " Since there are a limited number of keys in close proximity to the home
@@ -105,7 +105,7 @@
 " learn patterns that encode this knowledge and you stop thinking about it
 " after a while.
 "
-" Other modes you'll learn as you go. But learning Vim, the most important
+" Other modes you'll learn as you go. But when using Vim, the most important
 " thing to know is `am I in insert mode or normal mode'? With vimsane,
 " you'll see the text `--INSERT--' at the lower left corner of the window
 " when you're insert mode.
@@ -120,16 +120,16 @@
 " next waves: once you get competent at what you already know, reach out
 " and grab some more tips and start using them on a daily basis.
 "
-" Practice is a long-term practice here: if you get complacent and think
+" Practice is a long-term commitment here: if you get complacent and think
 " `my Vim skills are good enough now', then you'll waste much of the power
 " of Vim and not achieve the productivity gains that pay for the learning
-" curve.
-
+" curve.  If that happens, then you've tormented yourself with an ugly
+" editor in order to be no more productive than one of those GUI snails.
 
 " About vimtutor
 " ==============
 
-" If you run vimtutor from the unix shell, you'll get the classic vim
+" If you run 'vimtutor' from the unix shell, you'll get the classic vim
 " tutor, which munges your configuration a bit and then loads a copy of a
 " static tutorial file -- so you can mess up the file without losing
 " anything important as you read and practice its instructions.
@@ -171,10 +171,13 @@
 "
 "  There is another solution for those who use X-window terminals like
 "  xterm or gnome-terminal: add the following to your shell's init file
-"  (e.g. ~/.bashrc), to tell the X keyboard handler to ignore Capslock:
+"  (e.g. ~/.bashrc), to tell the X keyboard handler to ignore Capslock
+"  by adding the following to your shell startup file (e.g. ~/.bashrc, 
+"  ~/.kshrc, or  ~/.profile, etc)
 "
-"  [[ TODO -- advise about x-config hack for capslock ]]
+"       xmodmap -e "remove lock = Caps_Lock"
 "
+"  </Preaching>
 
 
 " _level1_

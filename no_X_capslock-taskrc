@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+xmodmap -e "remove lock = Caps_Lock"
+
