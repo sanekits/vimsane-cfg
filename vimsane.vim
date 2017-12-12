@@ -1,5 +1,14 @@
 " vimsane.vim vim: textwidth=75 :
 " Les Matheson - lmatheson4@bloomberg.net
+"
+" Extreme basics:
+" ==============
+"    Enter insert mode:     i
+"    Leave insert mode:     <ESC>
+"    Write file to disk:    :w[enter]
+"    Change window right:   Ctrl+L
+"    Change window left:    Ctrl+H
+"    Exit vim:              :q[enter]
 
 " What is vimsane?
 " ================
