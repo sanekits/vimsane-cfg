@@ -403,11 +403,13 @@ nnoremap <leader>f <C-^>
 nnoremap <leader>x  :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 
-" In normal mode, when wrap is ON, the per-line (instead of 
+" In normal and visual mode, when wrap is ON, the per-line (instead of 
 " per-display) vertical movement is disorienting.   
 " This is cured by remapping j and k to gj and gk:
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 " wildmenu turns on the fancy visual display of <TAB> matches when doing
 " command-line completion:
