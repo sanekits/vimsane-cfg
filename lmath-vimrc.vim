@@ -129,7 +129,7 @@ set undodir=~/.vimundo/
 
 
 " We don't want no stinkin 'u' for 'undo'.
-nnoremap u <Nop>
+#nnoremap u <Nop>
 
 
 
