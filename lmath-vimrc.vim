@@ -173,7 +173,7 @@ nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| l
 command! Chmodx ! chmod +x %
 
 function! s:ToxCore(dirFragment)
-    let s:dirn=systemlist('rbuzz_rcd ' . a:dirFragment . " 1")[0]
+    let s:dirn=systemlist('tox_core ' . a:dirFragment . " 1")[0]
     exe "lcd " . s:dirn
     echo "Changed dir to [" . s:dirn . "]"
 endfunction
