@@ -637,9 +637,9 @@ nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 
 
 " Goto next error with F4:
-nnoremap <F4> :cn<CR>
-" Goto prev error with Shift-F4:
-nnoremap <S-F4> :cp<CR>
+nnoremap <F4> :cnext<CR>
+" Goto prev error with ,F4:
+nnoremap <leader><F4> :cprev<CR>
 
 " SaveSession saves the current window/file layout into .taskrc/session.vim,
 " so if you restart vim in this same directory it all gets restored
