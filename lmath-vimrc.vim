@@ -193,7 +193,7 @@ function! s:ToxCore(args)
     endif
 endfunction
 
-command! -nargs=1 Tox call s:ToxCore(<f-args>)
+command! -nargs=? Tox call s:ToxCore(<f-args>)
 
 
 
