@@ -131,6 +131,10 @@ set undodir=~/.vimundo/
 " We don't want no stinkin 'u' for 'undo'.
 "nnoremap u <Nop>
 
+" Command history is important enough to get its own home-row key:
+nmap ; q:
+" Search command history is almost home-row stuff:
+nmap \ q/
 
 
 
@@ -172,10 +176,21 @@ nnoremap <leader>ogs :!env grok -r <C-R>=shellescape(expand("<cword>"))<CR> \| l
 
 command! Chmodx ! chmod +x %
 
-function! s:ToxCore(dirFragment)
-    let s:dirn=systemlist('tox_core ' . a:dirFragment . " 1")[0]
-    exe "lcd " . s:dirn
-    echo "Changed dir to [" . s:dirn . "]"
+" TODO: move this to tox source tree
+function! s:ToxCore(args)
+    "messages clear
+    let s:cmdline='tox_core ' . a:args
+    "echom "s:cmdline=" . s:cmdline
+    let s:dirn=systemlist(s:cmdline)[0]
+    "echom "s:dirn=" . s:dirn
+    " Because tox prefixes a '!' if not a single dir:
+    if s:dirn[0]!='!' 
+        exe "lcd " . s:dirn
+        echo "Changed dir to [" . s:dirn . "]"
+    else
+        " Just print whatever tox_core says
+        echo s:dirn[1:] 
+    endif
 endfunction
 
 command! -nargs=1 Tox call s:ToxCore(<f-args>)
