@@ -88,6 +88,10 @@ source $VIMHOME/vimsane.vim
 "
 " Tip: run one or more ex commands on startup, from shell:
 "   $ vim -c "set makeprg=bin/build" -c "set nowrap" *.c *.h
+"
+" Tip: In command window, if you do Ctrl+V and then type any key-combination,
+" it will print what vim sees.  Useful for determining which key-combinations
+" are valid.
 
 
 au BufRead,BufNewFile *.jrnl  setfiletype jrnl
@@ -131,10 +135,13 @@ set undodir=~/.vimundo/
 " We don't want no stinkin 'u' for 'undo'.
 "nnoremap u <Nop>
 
-" Command history is important enough to get its own home-row key:
+" Command history is important enough to get its own home-row key (using
+" precious semicolon and backslash
 nmap ; q:
 " Search command history is almost home-row stuff:
 nmap \ q/
+" ,; will exit either command or search history -- or vim itself!
+nmap <leader>; :q<CR>
 
 
 
