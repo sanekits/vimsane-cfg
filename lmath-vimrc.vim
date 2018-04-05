@@ -186,7 +186,7 @@ command! Chmodx ! chmod +x %
 " TODO: move this to tox source tree
 function! s:ToxCore(args)
     "messages clear
-    let s:cmdline='tox_core ' . a:args
+    let s:cmdline='~/bin/tox-py/tox_core.py ' . a:args
     "echom "s:cmdline=" . s:cmdline
     let s:dirn=systemlist(s:cmdline)[0]
     "echom "s:dirn=" . s:dirn
