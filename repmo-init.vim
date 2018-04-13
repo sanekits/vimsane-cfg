@@ -24,10 +24,10 @@
 :map <expr> j repmo#Key('gj', 'gk')|sunmap j
 :map <expr> k repmo#Key('gk', 'gj')|sunmap k
 
-" repeat the last [count]motion or the last zap-key. Backspace
-" and shift-backspace (S-kDel) are mirrors
-:map <expr> <bs> repmo#LastKey('<bs>')|sunmap <bs>
-:map <expr> <S-kDel> repmo#LastRevKey('<S-kDel>')|sunmap <S-kDel>
+" repeat the last [count]motion or the last zap-key. semicolon
+" and pipe are mirrors:
+:map <expr> ; repmo#LastKey(';')|sunmap ;
+:map <expr> <bar> repmo#LastRevKey('<bar>')|sunmap <bar>
 
 " add these mappings when repeating with `;' or `,':
 " :noremap <expr> f repmo#ZapKey('f')|sunmap f

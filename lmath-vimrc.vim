@@ -136,12 +136,12 @@ set undodir=~/.vimundo/
 "nnoremap u <Nop>
 
 " Command history is important enough to get its own home-row key (using
-" precious semicolon and backslash
-nmap ; q:
+" precious backspace and backslash
+nmap <bs> q:
 " Search command history is almost home-row stuff:
 nmap \ q/
-" ,; will exit either command or search history -- or vim itself!
-nmap <leader>; :q<CR>
+" <leader><backspace> will exit either command or search history -- or vim itself!
+nmap <leader><bs> :q<CR>
 
 
 

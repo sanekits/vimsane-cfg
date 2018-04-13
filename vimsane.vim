@@ -140,6 +140,9 @@
 " doesn't go very deep, but it does a decent first whack and helps you to
 " function in vim if you're totally new.
 "
+" Recommended: study the cheatsheet
+" =================================
+" https://github.com/sanekits/vimtips/blob/master/vim-cheatsheet.png
 
 
 " Why CAPSLOCK is Satan:
