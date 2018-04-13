@@ -370,6 +370,7 @@ nnoremap = :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
 
 hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
+source $VIMHOME/repmo-init.vim
 
 
 
