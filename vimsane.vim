@@ -245,14 +245,10 @@
 " Level 2:  A bit more advanced:
 " =======================================
 "
-" F3 --> *VS* Run plink to compile the current project(s).  This
-"        does 'plink *.mk' on whatever makefiles are in the
-"        current directory.  Errors will be parsed and marked
-"        in the appropriate sourcefiles in Vim.
-"        [[ TODO  - implement ]]
 "
-" F4 --> Goto next compile error [[ TODO ]]
-" Shift-F4 --> Goto previous compile error [[ TODO ]]
+" F3  --> Build menu (if filetype=cpp)
+" F4  --> Goto next compile error 
+" ,F4 --> Goto previous compile error 
 
 "
 " Normalize split sizes, handy when resizing a terminal:
