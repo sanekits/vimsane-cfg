@@ -454,7 +454,7 @@ set linebreak  " if you do wrap, do it nicely (caution: this conflicts with 'set
 
 
 set updatetime=800
-set title
+set notitle
 set showcmd
 
 
