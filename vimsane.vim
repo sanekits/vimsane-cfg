@@ -627,7 +627,7 @@ set tags=tags;/
 
 " Compile with F3:
 set makeprg=plink\ *.mk
-nnoremap <F3> :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
+nmap <F3> :wall<CR>:make!<CR><CR>:cw<CR>
 " I like the normal-mode '=' key to rebuild.  A weird personal preference, so it's
 " disabled here.  Uncomment if you agree.
 " nnoremap = :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>

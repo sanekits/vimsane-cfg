@@ -362,7 +362,7 @@ function! EditSymfileUnderCursor()
     exec ":sp " l:sumfile  
 endfunction
 
-nnoremap = :wall<CR>:make!<CR><CR>:cn<CR>:cw<CR>
+nmap = :wall<CR>:make!<CR>:cw<CR>
 
 
 "source $VIMHOME/all_color_codes.vim  " See this file for color code definitions
