@@ -390,7 +390,7 @@ set wrap
 nnoremap <C-S> :w<CR>
 
 " Ctrl-a will select-all in the current file:
-nnoremap <C-A> ggVG
+"nnoremap <C-A> ggVG
 
 " ,f switches to the previous ("alternate") file.  This 
 " is useful for toggling back and forth between two files
