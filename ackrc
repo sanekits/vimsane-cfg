@@ -1,0 +1,6 @@
+# vim/.ackrc
+--ignore-file=ext:orig
+--ignore-file=ext:pyc
+--ignore-file=ext:o
+--ignore-file=ext:tsk
+
