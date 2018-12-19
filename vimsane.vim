@@ -363,6 +363,9 @@ set showmatch
 set ignorecase
 set smartcase
 
+" Use egrep -n for :grep
+set grepprg=egrep\ -n
+
 " Highlight search matches:
 set hlsearch
 

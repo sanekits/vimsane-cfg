@@ -117,7 +117,7 @@ vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
 
 "set mouse=a
-set grepprg=egrep
+
 
 
 " Grep for the current word in current dir
