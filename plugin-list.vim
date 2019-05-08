@@ -226,5 +226,10 @@ Plugin 'kshenoy/vim-signature'
 
 
 
+" =====================
+"   typescript-vim
+" =====================
+    " typescript-vim plugin:
+Plugin 'leafgarland/typescript-vim'
 
 
