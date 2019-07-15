@@ -201,6 +201,7 @@ function! s:ToxCore(args)
 endfunction
 
 command! -nargs=? Tox call s:ToxCore(<f-args>)
+command! -nargs=? To call s:ToxCore(<f-args>)
 
 
 

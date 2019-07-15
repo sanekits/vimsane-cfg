@@ -233,3 +233,11 @@ Plugin 'kshenoy/vim-signature'
 Plugin 'leafgarland/typescript-vim'
 
 
+" ======================
+"    jedi-vim
+" ======================
+    " jedi-vim plugin:
+Plugin 'davidhalter/jedi-vim'
+
+
+
