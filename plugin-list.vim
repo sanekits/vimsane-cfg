@@ -101,6 +101,18 @@ Plugin 'guns/xterm-color-table.vim'
 
 
 
+" ======================
+"    jedi-vim
+" ======================
+    " jedi-vim plugin:
+Plugin 'davidhalter/jedi-vim'
+   " Their 'usages' default conflicts with bufexplorer
+   " <leader>n:
+   let g:jedi#usages_command=""
+
+
+
+
     "  BufExplorer lets you navigate through multiple buffers conveniently:
 Plugin 'jlanzarotta/bufexplorer'
   let g:bufExplorerShowRelativePath=1  " Show relative paths.
@@ -233,11 +245,6 @@ Plugin 'kshenoy/vim-signature'
 Plugin 'leafgarland/typescript-vim'
 
 
-" ======================
-"    jedi-vim
-" ======================
-    " jedi-vim plugin:
-Plugin 'davidhalter/jedi-vim'
 
 
 
