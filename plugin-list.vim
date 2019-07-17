@@ -105,10 +105,11 @@ Plugin 'guns/xterm-color-table.vim'
 "    jedi-vim
 " ======================
     " jedi-vim plugin:
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
    " Their 'usages' default conflicts with bufexplorer
    " <leader>n:
-   let g:jedi#usages_command=""
+"   let g:jedi#usages_command=""
+"   let g:jedi#popup_on_dot=""
 
 
 
