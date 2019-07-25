@@ -237,7 +237,7 @@ Plugin 'leafgarland/typescript-vim'
 "    jedi-vim
 " ======================
     " jedi-vim plugin:
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 
 
 
