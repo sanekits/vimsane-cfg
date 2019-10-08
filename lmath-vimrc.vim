@@ -373,5 +373,11 @@ hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
 source $VIMHOME/repmo-init.vim
 
+if &diff " If we're started in diff mode, choose a useful 
+"         color scheme, instead of the default.
+     colorscheme github
+     " colorscheme molokai
+endif
+
 
 
