@@ -418,13 +418,10 @@ vnoremap k gk
 set wildmenu
 
 
-" We do, in general, want formatoptions += c, o, r (see help 
+" We do, in general, want formatoptions += o, r (see help 
 " fo-table).  This ensures that the comment leader is inserted in 
 " unsurprising ways when writing or editing comment blocks:
-set formatoptions += "c" 
-set formatoptions += "o"
-set formatoptions += "r"
-
+autocmd BufNewFile,BufRead * setlocal formatoptions+=or
 
 
 " The default colorscheme for vimsane.  Try :colorscheme <tab> to
