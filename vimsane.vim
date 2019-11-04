@@ -418,31 +418,28 @@ vnoremap k gk
 set wildmenu
 
 
-" We do, in general, want formatoptions += c, o, r (see help 
-" fo-table).  This ensures that the comment leader is inserted in 
-" unsurprising ways when writing or editing comment blocks:
-set formatoptions += "c" 
-set formatoptions += "o"
-set formatoptions += "r"
-
+augroup  fmtOpts2
+    " We do, in general, want formatoptions += o, r (see help 
+    " fo-table).  This ensures that the comment leader is inserted in 
+    " unsurprising ways when writing or editing comment blocks.
+    " See also -- https://stackoverflow.com/a/23326474/237059
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions+=or
+augroup  END
 
 
 " The default colorscheme for vimsane.  Try :colorscheme <tab> to
 " cycle through the available choices.
 colorscheme industry1
 
-if &diff " If we're started in diff mode, choose a useful 
-         " color scheme, instead of the default.
-    colorscheme blue
-endif
 
 " The vimdiff colors are truly horrid.  Here's a fix from
 " http://stackoverflow.com/questions/1862423/how-to-tell-which-commit-a-tag-points-to-in-git
 
-highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
-highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+"highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+"highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+"highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+"highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
 
 
 
@@ -670,6 +667,11 @@ if filereadable(expand("$VIMHOME/fsd-train.vim"))
     source $VIMHOME/fsd-train.vim  
 endif
 
+if &diff " If we're started in diff mode, choose a useful 
+"         color scheme, instead of the default.
+     colorscheme github
+     " colorscheme molokai
+endif
 
 
 " If you create a ~/.taskrc directory (or ./.taskrc within your
