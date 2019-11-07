@@ -4,4 +4,6 @@ set path+=/opt/rh/devtoolset-4/root/usr/include/c++/5.3.1
 set path+=/usr/include
 
 
+setlocal formatoptions+=o
+setlocal formatoptions+=r
 

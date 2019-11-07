@@ -1,0 +1,20 @@
+# taskrc for /home/lmatheson4/.vim
+# vim: filetype=sh :
+
+#  Use taskrc -h for help on built-in taskrc functions.
+#  To provide help for definitions in this file, add #Help tags, e.g.:
+#    function my_func {
+     #Help: my_func is my first and only function...
+
+function fix_ftplugin_formatoptions {      
+    #Help the generic ftplugin script does damage to our preferred formatoptions.
+    # This can be fixed on a per-filetype basis, e.g.:
+    #   fix_ftplugin_formatoptions sh cpp py
+    #
+    cd $taskrc_dir/after/ftplugin || return $(errExit "Can't cd 101")
+    while [[ ! -z $1 ]]; do
+        [[ -f $1.vim ]] && { echo "$1.vim already exists, sorry." ; shift; continue; }
+        cat ../fave-formatoptions | sed "s/XXX/$1/" > $1.vim && echo "Done: $1.vim" || echo  "Bad cmd 102 for $1";  
+        shift
+    done
+}
