@@ -334,19 +334,6 @@ if has("gui_running")
 endif
 
 
-" augroup  fmtOpts
-"     autocmd!
-"     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"     " According to http://stackoverflow.com/a/8748154/237059, there's a bug in a
-"     " plugin which makes 'set formatoptions += {x}' malfunction.  Here's our
-"     " workaround:
-"     autocmd BufNewFile,BufRead * setlocal formatoptions+=cor
-" 
-"     "let g:syntastic_cpp_compiler = 'g++'
-"     "let g:syntastic_cpp_compiler = 'clang++'
-"     "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-"     "au BufNewFile,BufRead *.cpp set syntax=cpp11
-" augroup  END
 
 " The clang_complete plugin needs the directory name containing libclang.so:
 let g:clang_library_path='/opt/swt/lib'
