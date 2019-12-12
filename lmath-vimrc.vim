@@ -368,3 +368,4 @@ if &diff " If we're started in diff mode, choose a useful
 endif
 
 
+
