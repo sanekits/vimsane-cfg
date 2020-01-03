@@ -45,7 +45,11 @@ Plugin 'altercation/vim-colors-solarized'
     let g:solarized_termtrans=1
 
 
-
+"======================
+"  tabular + vim-markdown
+"======================
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 
 
