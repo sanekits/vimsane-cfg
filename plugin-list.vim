@@ -251,5 +251,10 @@ Plugin 'leafgarland/typescript-vim'
 
 
 
+" =====================
+"   easymotion
+" =====================
+    " easymotion plugin:
+Plugin 'easymotion/vim-easymotion'
 
 
