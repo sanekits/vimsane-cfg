@@ -35,6 +35,10 @@ call vundle#begin( expand("$LmHome/.vim/bundle"))
 " Plugin management: see this include file...
 source $VIMHOME/plugin-list.vim  " Use external plugins list
 
+" Enable the :Man command for manpage reading
+" TODO: move this to vimsane?
+runtime ftplugin/man.vim 
+
 
 " End of vundle initialization
 call vundle#end()
