@@ -45,8 +45,12 @@ Plugin 'altercation/vim-colors-solarized'
     let g:solarized_termtrans=1
 
 
-
-
+"======================
+"  tabular + vim-markdown
+"======================
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled=1
 
 
 " =====================
@@ -247,5 +251,10 @@ Plugin 'leafgarland/typescript-vim'
 
 
 
+" =====================
+"   easymotion
+" =====================
+    " easymotion plugin:
+Plugin 'easymotion/vim-easymotion'
 
 
