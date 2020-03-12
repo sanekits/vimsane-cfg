@@ -103,6 +103,8 @@ let g:tex_flavor = "latex"
 vnoremap <leader>v :<C-U>exec expand(getreg('*'))<CR>
 
 
+" Hybrid line numbers are best:
+set number relativenumber
 
 " <leader>a/z are used for faster up/down:
 " nnoremap <leader>a 15k
