@@ -357,6 +357,8 @@ set textwidth=0
 
 " Number lines in the margin:
 set number
+" Try 'hybrid' line numbering:
+"set number relativenumber
 set showmatch
 
 " Disable case-sensitivity in searches
