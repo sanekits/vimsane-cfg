@@ -323,3 +323,7 @@ nnoremap <leader><F4> :cprev<CR>
 " SaveSession saves the current window/file layout into .taskrc/session.vim,
 " so if you restart vim in this same directory it all gets restored
 command! SaveSession mksession .taskrc/session.vim
+
+" Without plugins, we can mimic a bit:
+nnoremap <leader>n :buffers<CR>:buffer<Space>
+
