@@ -72,8 +72,8 @@ set wrap
 " I would have mapped it to 'save', which is a much more
 " common action.  If you agree, uncomment the following 2 lines.  Then
 " you can use '-' for substitute-chars, and 's' for save-file:
-" nnoremap - s
-" nnoremap s :w<CR>
+nnoremap - s
+nnoremap s :w<CR>
 
 
 " Ctrl-S will save the current file:
