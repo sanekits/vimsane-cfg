@@ -107,7 +107,7 @@ set wildmenu
 
 " The default colorscheme for vimsane.  Try :colorscheme <tab> to
 " cycle through the available choices.
-colorscheme industry1
+colorscheme delek
 
 " SaveSession saves the current window/file layout into .taskrc/session.vim,
 " so if you restart vim in this same directory it all gets restored
