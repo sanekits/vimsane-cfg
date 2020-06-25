@@ -22,6 +22,7 @@ let g:vimrc_script_path = expand('<sfile>:p')
 let $VIMHOME=expand('<sfile>:p:h')
 
 let g:load_taskrcs=1
+source $VIMHOME/repmo-init.vim
 source $VIMHOME/vimsane.vim
 
 
@@ -361,12 +362,10 @@ nmap = :wall<CR>:make!<CR>:cw<CR>
 
 hi x019_Blue3 ctermfg=19 guifg=#0000af "rgb=0,0,175
 
-source $VIMHOME/repmo-init.vim
 
 if &diff " If we're started in diff mode, choose a useful 
 "         color scheme, instead of the default.
      colorscheme github
      " colorscheme molokai
 endif
-
 
