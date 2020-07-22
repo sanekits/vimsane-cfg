@@ -38,11 +38,11 @@ function vim_container_init {
     [[ -f /usr/bin/vim ]] || ln -sf /usr/bin/vi /usr/bin/vim
     mkdir -p ~/.vimtmp
     # If our vim doesn't have python, switch to the simple vimrc:
-    local nopy_cnt=$(vim --version | egrep -o '\-python[2-4]?' | wc -l)
+    local nopy_cnt=$(command vim --version | egrep -o '\-python[2-4]?' | wc -l)
     if (( nopy_cnt >= 2 )); then
         # We have no python support:
         (
-            echo "WARN: no python in this vim, switching to basic vimrc"
+            read -p "WARN: no python in this vim, switching to basic vimrc.  Hit Enter."
             cd ~/.vim
             mv basic-vimrc.vim vimrc
         )
