@@ -30,11 +30,11 @@ function build_vim() {
     # it creates this semaphore.  By removing it, we prompt the vim() function
     # to ask the user about initialization.
     rm .container-init-flag &>/dev/null
+    true
 }
 
 function vim_container_init {
     read -p "vim hasn't been initialized in this container yet, hit Enter to do setup."
-    set -x
     [[ -f /usr/bin/vim ]] || ln -sf /usr/bin/vi /usr/bin/vim
     mkdir -p ~/.vimtmp
     # If our vim doesn't have python, switch to the simple vimrc:
@@ -47,9 +47,8 @@ function vim_container_init {
             mv basic-vimrc.vim vimrc
         )
     fi
-    set +x
     command vim "$@"
-    touch ~/.container-init-flag
+    touch ~/.vim/.container-init-flag
 }
 
 function vim {
