@@ -3,7 +3,6 @@
 .tox-index
 .VimballRecord
 bundle
-colors
 tags
 *.un~
 vimrc
