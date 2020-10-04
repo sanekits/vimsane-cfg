@@ -481,6 +481,8 @@ nnoremap <F10> :buffers<CR>:buffer<Space>
 " the behavior of that.  Use 'set nolist' to turn this off.
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set nolist
+" Ignore whitespace in vimdiff
+set diffopt+=iwhite
 
 " Toggle paste mode with F2:
 set pastetoggle=<F2>
