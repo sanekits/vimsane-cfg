@@ -324,9 +324,7 @@ endfunction
 
 
 
-" Note on MoboXterm, I had to symlink from ~/.vim/colors to /usr/share/vim/vim74/colors 
-" to get  any colorscheme to work.  This symlink is masked by .gitignore in .vim
-colorscheme delek
+colorscheme industry
 
 if has("gui_running")
 	set guifont=Monospace\ 11
