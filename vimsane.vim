@@ -484,9 +484,6 @@ set nolist
 " Ignore whitespace in vimdiff
 set diffopt+=iwhite
 
-" In diff mode, treat whitespace as insignificant by default:
-set diffopt+=iwhite
-
 " Toggle paste mode with F2:
 set pastetoggle=<F2>
 " In normal mode, we get similar effects:
