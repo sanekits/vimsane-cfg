@@ -1,0 +1,62 @@
+# vim_container_help.taskrc
+# vim: filetype=sh :
+#  
+# Tools to aid with embedding this vim into a Docker container (typically /root/.vim)
+
+function die {
+    echo "ERROR: $@" >&2
+    exit 1
+}
+
+# Run build_vim() after the container is built, but before it's started.
+# The recommendation is to create a ./vim dir in the context dir, using
+# build_vim() to populate it, and mount a volume into /root/.vim from that
+# content.  This function does a fast-update if re-run
+function build_vim() {
+    local dest_dir=$1
+    [[ -z $dest_dir ]] && dest_dir=./vim
+    mkdir -p $dest_dir
+    cd $dest_dir || return $(die "Cant cd to $dest_dir")
+    echo "Building $dest_dir:"
+    if [[ -d .git ]]; then
+        git pull  
+    else
+        git clone ~/.vim/ . || return $(die "Failed git clone from ~/.vim to $dest_dir")
+    fi
+    # A few fixups:
+    [[ -f lmath-vimrc.vim ]] && mv lmath-vimrc.vim vimrc
+    [[ -f load-lmath-plugins.vim ]] && mv load-lmath-plugins.vim load-plugins.vim
+    # When the container-side init code is done (i.e. installing plugins, etc)
+    # it creates this semaphore.  By removing it, we prompt the vim() function
+    # to ask the user about initialization.
+    rm .container-init-flag &>/dev/null
+    true
+}
+
+function vim_container_init {
+    read -p "vim hasn't been initialized in this container yet, hit Enter to do setup."
+    [[ -f /usr/bin/vim ]] || ln -sf /usr/bin/vi /usr/bin/vim
+    mkdir -p ~/.vimtmp
+    # If our vim doesn't have python, switch to the simple vimrc:
+    local nopy_cnt=$(command vim --version | egrep -o '\-python[2-4]?' | wc -l)
+    if (( nopy_cnt >= 2 )); then
+        # We have no python support:
+        (
+            read -p "WARN: no python in this vim, switching to basic vimrc.  Hit Enter."
+            cd ~/.vim
+            mv basic-vimrc.vim vimrc
+        )
+    fi
+    command vim "$@"
+    touch ~/.vim/.container-init-flag
+}
+
+function vim {
+    # vim helper to source from shell-init in the container
+    VIMHOME=/root/.vim
+    export VIMHOME
+    [[ -f ~/.vim/.container-init-flag ]] || { vim_container_init "$@"; return; }
+    command vim "$@"
+}
+
+

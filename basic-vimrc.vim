@@ -327,3 +327,6 @@ command! SaveSession mksession .taskrc/session.vim
 " Without plugins, we can mimic a bit:
 nnoremap <leader>n :buffers<CR>:buffer<Space>
 
+" ,q will quit without saving, losing all unsaved changes:
+nnoremap <leader>q :qa!<CR>
+

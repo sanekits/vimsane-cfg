@@ -2,6 +2,6 @@
 
 
 if [[ ! -z $DISPLAY ]]; then
-    xmodmap -e "remove lock = Caps_Lock"
+    xmodmap -e "remove lock = Caps_Lock" 2>/dev/null
 fi
 
