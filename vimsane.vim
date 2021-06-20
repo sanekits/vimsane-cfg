@@ -482,6 +482,9 @@ nnoremap <F10> :buffers<CR>:buffer<Space>
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 set nolist
 
+" In diff mode, treat whitespace as insignificant by default:
+set diffopt+=iwhite
+
 " Toggle paste mode with F2:
 set pastetoggle=<F2>
 " In normal mode, we get similar effects:
