@@ -324,7 +324,7 @@ endfunction
 
 
 
-colorscheme delek
+colorscheme industry1
 
 if has("gui_running")
 	set guifont=Monospace\ 11
