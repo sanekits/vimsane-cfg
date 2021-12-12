@@ -1,4 +1,5 @@
 "/ ~/.vim/lmath-vimrc.vim
+" Setup:  see load-lmath-plugins.vim
 "
 set nocompatible
 
