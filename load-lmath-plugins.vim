@@ -1,17 +1,12 @@
 " ~/.vim/load-lmath-plugins.vim
 "
-" This depends on Vundle, a vim plugin manager.
-"
-" To install Vundle:
-"
-"   $  cd $HOME/.vim
-"   $  git clone "https://github.com/VundleVim/Vundle.vim.git"
-"
-"   ... then, run vim, and enter ":PluginInstall" at the command line.
-"   Vundle will fetch other plugins from github to complete your setup.
-"
-"   The list of plugins loaded can be found in plugin-list.vim
-"
+" Setup
+" -----
+" 1. mkdir ~/.vimtmp
+" 2. mkdir ~/.vim && cd ~/.vim
+" 3. git clone "https://github.com/VundleVim/Vundle.vim.git"
+" 4. ln -sf load-lmath-plugins.vim load-plugins.vim
+" 5. Run vim and then ":PluginInstall"
 
 call DebugMsg("Loading " . expand('<sfile>') )
 
