@@ -3,7 +3,7 @@
 " Setup
 " -----
 " 1. mkdir -p ~/.vimtmp ~/.vim && cd .vim
-" 2. git clone gh:VundleVim/Vundle.vim.git
+" 2. git clone https://github.com:VundleVim/Vundle.vim.git
 " 3. ln -sf load-lmath-plugins.vim load-plugins.vim
 " 4. Run vim and then ":PluginInstall"
 
