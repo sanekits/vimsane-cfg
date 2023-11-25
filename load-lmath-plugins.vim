@@ -3,7 +3,7 @@
 " Setup
 " -----
 " 1. mkdir -p ~/.vimtmp ~/.vim && cd .vim
-" 2. git clone https://github.com:VundleVim/Vundle.vim.git
+" 2. git clone bbgithub:sanekits/Vundle.vim.git
 " 3. ln -sf load-lmath-plugins.vim load-plugins.vim
 " 4. Run vim and then ":PluginInstall"
 
@@ -31,7 +31,7 @@ source $VIMHOME/plugin-list.vim  " Use external plugins list
 
 " Enable the :Man command for manpage reading
 " TODO: move this to vimsane?
-runtime ftplugin/man.vim 
+runtime ftplugin/man.vim
 
 
 " End of vundle initialization
