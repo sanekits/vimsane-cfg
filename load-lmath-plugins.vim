@@ -16,12 +16,13 @@ if exists("&macmeta")
 endif
 
 "call Stubx( expand("x1: $VIMHOME -- ") . &runtimepath )
+set nocompatible
 filetype off " Vundle requires this.
 set rtp+=$VIMHOME/Vundle.vim
 
 " The argument to vundle#begin allows you to redirect the root
 " of all plugins managed by vundle:
-call vundle#begin( expand("$LmHome/.vim/bundle"))
+call vundle#begin( expand("~/.vim/bundle"))
 "call Stubx( "x2: " . &runtimepath )
 
 
